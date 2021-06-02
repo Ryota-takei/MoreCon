@@ -30,7 +30,7 @@ export const ConfirmCodeForm: React.VFC<Prop> = (props) => {
     resolver: yupResolver(ConfirmSchema),
   });
 
-  const onSubmitResend = async () => {
+  const handleClickResend = async () => {
     setIsLoading(true);
     const username = email;
     try {
@@ -87,7 +87,7 @@ export const ConfirmCodeForm: React.VFC<Prop> = (props) => {
           color="blue.300"
           type="submit"
           isLoading={isLoading}
-          onClick={onSubmitResend}
+          onClick={handleClickResend}
         />
       </Box>
     </Form>

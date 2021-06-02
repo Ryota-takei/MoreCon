@@ -54,7 +54,7 @@ export const UseSignUp = () => {
     }
   };
 
-  const onSubmitConfirm = async (data: DataConfirmValue) => {
+  const handleClickSignup = async (data: DataConfirmValue) => {
     const username = email;
     const code = data.ConfirmCode;
     console.log(data);
@@ -66,7 +66,7 @@ export const UseSignUp = () => {
     } catch (error) {
       if (error.code === "CodeMismatchException") {
         toast({
-          title: "認証コードが一致しません。お間違い無いかご確認下さい",
+          title: "認証コードが一致しません。お間違いないかご確認下さい",
           status: "error",
           isClosable: true,
         });
@@ -76,5 +76,5 @@ export const UseSignUp = () => {
       }
     }
   };
-  return { onSubmit, onSubmitConfirm, isLoading, isConfirmCode, email };
+  return { onSubmit, handleClickSignup, isLoading, isConfirmCode, email };
 };

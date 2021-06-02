@@ -8,6 +8,9 @@ export const Header: React.VFC = memo(() => {
   const onClickSignUp = useCallback(() => {
     history.push("/signup");
   }, [history]);
+  const onClickSignIn = useCallback(() => {
+    history.push("/signin");
+  }, [history]);
 
   return (
     <Box h="80px" boxShadow="md">
@@ -35,6 +38,7 @@ export const Header: React.VFC = memo(() => {
             borderColor="blue.200"
             bg="white"
             color="blue.200"
+            onClick={onClickSignIn}
           />
         </HStack>
       </Flex>

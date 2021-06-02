@@ -20,7 +20,7 @@ export const TopPage: React.VFC = memo(() => {
           <Box mt="4">
             <NormalButton
               color="blue.200"
-              text="テストログイン"
+              text="テストユーザーでログイン"
               bg="white"
               hover={{ bg: "blue.300", color: "white" }}
             />
