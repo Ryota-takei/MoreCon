@@ -4,19 +4,26 @@ import { PostsPage } from "../components/pages/PostsPage";
 import { SignIn } from "../components/pages/SignIn";
 import { SignUp } from "../components/pages/SignUp";
 import { TopPage } from "../components/pages/TopPage";
+import { HeaderLayout } from "../components/template/HeaderLayout";
 import { userRoutes } from "./UserRoutes";
 
 export const Router = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <TopPage />
+        <HeaderLayout>
+          <TopPage />
+        </HeaderLayout>
       </Route>
       <Route path="/posts">
-        <PostsPage />
+        <HeaderLayout>
+          <PostsPage />
+        </HeaderLayout>
       </Route>
       <Route path="/signup">
-        <SignUp />
+        <HeaderLayout>
+          <SignUp />
+        </HeaderLayout>
       </Route>
       <Route path="/signin">
         <SignIn />
@@ -31,7 +38,7 @@ export const Router = () => {
                 exact={route.exact}
                 path={`${url}${route.path}`}
               >
-                {route.children}
+                <HeaderLayout>{route.children}</HeaderLayout>
               </Route>
             ))}
           </Switch>
@@ -39,7 +46,9 @@ export const Router = () => {
       />
 
       <Route path="*">
-        <Page404 />
+        <HeaderLayout>
+          <Page404 />
+        </HeaderLayout>
       </Route>
     </Switch>
   );

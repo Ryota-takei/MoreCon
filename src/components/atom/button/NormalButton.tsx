@@ -7,10 +7,11 @@ type Prop = {
   bg:string
   text:string
   hover:{bg:string, color?:string}
+  onClick?: () => void
 }
 
 export const NormalButton:React.VFC<Prop> = (props) => {
-  const {text, hover, ...inputProps} = props
+  const {text, hover, onClick, ...inputProps} = props
   return (
     <Button
     {...inputProps}
@@ -19,6 +20,7 @@ export const NormalButton:React.VFC<Prop> = (props) => {
     border="1px"
     borderRadius="15px"
     p={{base:"3", md:"5"}}
+    onClick={onClick}
   >
     {text}
   </Button>
