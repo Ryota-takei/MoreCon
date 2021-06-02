@@ -1,15 +1,12 @@
-import { Button } from "@chakra-ui/button";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 import React, { memo } from "react";
-import { NormalButton } from "../atom/NormalButton";
-import { Header } from "../organism/layout/Header";
+import { NormalButton } from "../atom/button/NormalButton";
 import { ImageCard } from "../organism/topPageCard/ImageCard";
 
 export const TopPage: React.VFC = memo(() => {
   return (
     <>
-      <Header />
       <Box maxW="1250px" mx="auto" mb="60px">
         <Box
           mt={{ base: "3", md: "6" }}
