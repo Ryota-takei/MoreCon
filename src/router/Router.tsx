@@ -26,7 +26,9 @@ export const Router = () => {
         </HeaderLayout>
       </Route>
       <Route path="/signin">
-        <SignIn />
+        <HeaderLayout>
+          <SignIn />
+        </HeaderLayout>
       </Route>
       <Route
         path="/user"

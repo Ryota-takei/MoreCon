@@ -49,7 +49,7 @@ export const SignUpForm: React.VFC<Prop> = (props) => {
           />
           <NormalInputArea
             label="パスワード"
-            errorMessage={errors.email?.message}
+            errorMessage={errors.password?.message}
             placeholder="パスワード"
             name="password"
             type="password"
