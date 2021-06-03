@@ -1,10 +1,12 @@
-import {  VStack } from "@chakra-ui/layout";
-import { SecondaryButton } from "../../atom/button/SecondaryButton";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { VStack } from "@chakra-ui/layout";
+
+import { SecondaryButton } from "../../atom/button/SecondaryButton";
 import { NormalInputArea } from "../../molecule/inputArea/NormalInputArea";
 import { Form } from "../layout/Form";
+import { memo } from "react";
 
 type DataValue = {
   email: string;
@@ -17,7 +19,7 @@ type Prop = {
   isLoading: boolean;
 };
 
-export const SignUpForm: React.VFC<Prop> = (props) => {
+export const SignUpForm: React.VFC<Prop> = memo((props) => {
   const { onSubmit, isLoading } = props;
   const {
     register,
@@ -67,7 +69,7 @@ export const SignUpForm: React.VFC<Prop> = (props) => {
       </form>
     </Form>
   );
-};
+});
 
 const REQUIRE_EMAIL_MSG = "メールアドレスの記入をお願いします";
 const REQUIRE_USER_MSG = "ユーザーの記入をお願いします";

@@ -1,7 +1,7 @@
-import { Auth } from "aws-amplify";
-import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
 import { useHistory } from "react-router";
+import { Auth } from "aws-amplify";
+import { useToast } from "@chakra-ui/toast";
 
 type DataValue = {
   email: string;
@@ -29,6 +29,7 @@ export const UseSignUp = () => {
         password: data.password,
         attributes: {
           email: data.email,
+          nickname: data.username,
         },
       });
       toast({
@@ -62,7 +63,13 @@ export const UseSignUp = () => {
     try {
       const user = await Auth.confirmSignUp(username, code);
       console.log(user);
-      history.push("/posts");
+      toast({
+        title:
+          "セキュリティーの理由からお手数をお掛けしますが、ログインをお願いします",
+        isClosable: true,
+        position: "top",
+      });
+      history.push({ pathname: "/signin", state: username });
     } catch (error) {
       if (error.code === "CodeMismatchException") {
         toast({

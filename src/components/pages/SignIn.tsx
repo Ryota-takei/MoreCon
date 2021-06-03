@@ -1,18 +1,28 @@
-import { Box, VStack } from "@chakra-ui/layout";
-import { Auth } from "aws-amplify";
-import { Form } from "../organism/layout/Form";
+import { memo, useEffect } from "react";
+import { useLocation } from "react-router";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { FcGoogle } from "react-icons/fc";
+import { Auth } from "aws-amplify";
+import { Box, VStack } from "@chakra-ui/layout";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+
 import { NormalInputArea } from "../molecule/inputArea/NormalInputArea";
 import { SecondaryButton } from "../atom/button/SecondaryButton";
 import { UseSignIn } from "../../hooks/auth/UseSignIn";
 import { IconButton } from "../atom/button/IconButton";
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
+import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { Form } from "../organism/layout/Form";
 
-export const SignIn: React.VFC = () => {
+type Location = {
+  state: string;
+};
+
+export const SignIn: React.VFC = memo(() => {
   const { handleClickLogin, isLoading } = UseSignIn();
+  const {adminCheck} = UseAdminCheck()
+  const { state } = useLocation() as Location;
   const {
     register,
     formState: { errors },
@@ -21,11 +31,16 @@ export const SignIn: React.VFC = () => {
     resolver: yupResolver(SigninSchema),
   });
 
+  useEffect(()=> {
+    adminCheck()
+  },[])
+
   const handleClickGoogleLogin = async () => {
     try {
       const user = Auth.federatedSignIn({
         provider: CognitoHostedUIIdentityProvider.Google,
       });
+      console.log(user)
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +57,7 @@ export const SignIn: React.VFC = () => {
             name="email"
             type="email"
             registers={register("email")}
+            value={state}
           />
           <NormalInputArea
             label="パスワード"
@@ -76,7 +92,7 @@ export const SignIn: React.VFC = () => {
       </Box>
     </Form>
   );
-};
+});
 
 const REQUIRE_EMAIL_MSG = "メールアドレスを記入して下さい";
 const VIOLATION_EMAIL = "正しい形式で入力してください";
