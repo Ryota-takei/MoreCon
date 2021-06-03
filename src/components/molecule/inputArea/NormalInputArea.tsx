@@ -1,7 +1,7 @@
+import React, { memo } from 'react'
 import { FormControl, FormLabel } from '@chakra-ui/form-control'
 import { Input } from '@chakra-ui/input'
 import { Text } from '@chakra-ui/layout'
-import React, { memo } from 'react'
 
 type Prop = {
   label:string

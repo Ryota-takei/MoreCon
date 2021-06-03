@@ -15,6 +15,7 @@ import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
 import { Form } from "../organism/layout/Form";
 
+
 type Location = {
   state: string;
 };
