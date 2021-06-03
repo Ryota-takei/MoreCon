@@ -1,17 +1,17 @@
-import { useToast } from "@chakra-ui/toast";
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { Auth } from "aws-amplify";
+import { useToast } from "@chakra-ui/toast";
+
+type DataValue = {
+  email: string;
+  password: string;
+};
 
 export const UseSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const toast = useToast();
   const history = useHistory();
-
-  type DataValue = {
-    email: string;
-    password: string;
-  };
 
   const handleClickLogin = async (data: DataValue) => {
     setIsLoading(true);

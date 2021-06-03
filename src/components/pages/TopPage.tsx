@@ -1,10 +1,18 @@
+import React, { memo, useEffect } from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
-import React, { memo } from "react";
+
+import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
 import { NormalButton } from "../atom/button/NormalButton";
 import { ImageCard } from "../organism/topPageCard/ImageCard";
 
 export const TopPage: React.VFC = memo(() => {
+  const { isAdminCheck } = UseAdminCheck();
+
+  useEffect(() => {
+    isAdminCheck();
+  }, []);
+
   return (
     <>
       <Box maxW="1250px" mx="auto" mb="60px">

@@ -1,9 +1,17 @@
-import React from 'react'
+import React, { memo, useEffect } from 'react'
 
-export const PostsPage:React.VFC = () => {
+import { UseAdminCheck } from '../../hooks/auth/UseAdminCheck';
+
+export const PostsPage:React.VFC = memo(() => {
+  const {notAdminCheck} = UseAdminCheck()
+
+  useEffect(() => {
+    notAdminCheck()
+  }, []);
+
   return (
     <div>
       投稿一覧
     </div>
   )
-}
+})

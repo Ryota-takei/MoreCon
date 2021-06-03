@@ -1,5 +1,5 @@
+import { memo, ReactNode } from "react";
 import { Box, Heading } from "@chakra-ui/layout";
-import React, { memo, ReactNode } from "react";
 
 type Prop = {
   children: ReactNode;
@@ -8,6 +8,7 @@ type Prop = {
 
 export const Form: React.VFC<Prop> = memo((props) => {
   const { children, heading } = props;
+
   return (
     <Box bg="gray.50" minH="100Vh" w="100%" pt={{ base: "80px", md: "120px" }}>
       <Box

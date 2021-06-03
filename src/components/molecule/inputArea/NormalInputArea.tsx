@@ -11,6 +11,7 @@ type Prop = {
   type: string
   registers?: any
   readonly?:boolean
+  value?:string
 }
 
 export const NormalInputArea:React.VFC<Prop> = memo((props) => {
@@ -27,6 +28,7 @@ export const NormalInputArea:React.VFC<Prop> = memo((props) => {
       label={props.label}
       type={props.type}
       readOnly={props.readonly}
+      value={props.value}
     />
     <Text color="red.500" fontSize="14px">
       {props.errorMessage}

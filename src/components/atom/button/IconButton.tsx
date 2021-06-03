@@ -1,6 +1,6 @@
 import { Button } from "@chakra-ui/button";
 import { Text } from "@chakra-ui/layout";
-import React from "react";
+import { memo } from "react";
 import type { IconType } from "react-icons";
 
 type Prop = {
@@ -15,7 +15,7 @@ type Prop = {
   onClick: () => void;
 };
 
-export const IconButton: React.VFC<Prop> = (props) => {
+export const IconButton: React.VFC<Prop> = memo((props) => {
   return (
     <Button
       bg={props.bg}
@@ -36,4 +36,4 @@ export const IconButton: React.VFC<Prop> = (props) => {
       {props.text}
     </Button>
   );
-};
+});

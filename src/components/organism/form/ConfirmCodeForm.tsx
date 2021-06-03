@@ -1,13 +1,14 @@
-import React, { useState } from "react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Form } from "../layout/Form";
+import { Auth } from "aws-amplify";
+import { useToast } from "@chakra-ui/toast";
 import { Box, VStack } from "@chakra-ui/layout";
+
+import { Form } from "../layout/Form";
 import { NormalInputArea } from "../../molecule/inputArea/NormalInputArea";
 import { SecondaryButton } from "../../atom/button/SecondaryButton";
-import { useToast } from "@chakra-ui/toast";
-import { Auth } from "aws-amplify";
 
 type DataValue = {
   ConfirmCode: string;
@@ -18,7 +19,7 @@ type Prop = {
   email: string;
 };
 
-export const ConfirmCodeForm: React.VFC<Prop> = (props) => {
+export const ConfirmCodeForm: React.VFC<Prop> = memo((props) => {
   const toast = useToast();
   const [isLoading, setIsLoading] = useState(false);
   const { onSubmit, email } = props;
@@ -92,7 +93,7 @@ export const ConfirmCodeForm: React.VFC<Prop> = (props) => {
       </Box>
     </Form>
   );
-};
+});
 const REQUIRE_CONFIRMCODE_MSG = "認証コードを入力して下さい";
 
 const ConfirmSchema = yup.object().shape({
