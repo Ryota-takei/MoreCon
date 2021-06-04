@@ -494,6 +494,53 @@ export const listUsers = /* GraphQL */ `
     }
   }
 `;
+export const searchByDisplayId = /* GraphQL */ `
+  query SearchByDisplayId(
+    $displayId: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelUserFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    searchByDisplayId(
+      displayId: $displayId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        displayId
+        name
+        profile
+        image
+        createdAt
+        updatedAt
+        correspondingPosts {
+          nextToken
+        }
+        posts {
+          nextToken
+        }
+        owner
+        comments {
+          nextToken
+        }
+        likes {
+          nextToken
+        }
+        thankCounts {
+          nextToken
+        }
+        thank {
+          nextToken
+        }
+      }
+      nextToken
+    }
+  }
+`;
 export const getComment = /* GraphQL */ `
   query GetComment($id: ID!) {
     getComment(id: $id) {

@@ -2305,6 +2305,56 @@ export type ListUsersQuery = {
   } | null,
 };
 
+export type SearchByDisplayIdQueryVariables = {
+  displayId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type SearchByDisplayIdQuery = {
+  searchByDisplayId?:  {
+    __typename: "ModelUserConnection",
+    items?:  Array< {
+      __typename: "User",
+      id: string,
+      displayId?: string | null,
+      name: string,
+      profile: string,
+      image?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      correspondingPosts?:  {
+        __typename: "ModelPostConnection",
+        nextToken?: string | null,
+      } | null,
+      posts?:  {
+        __typename: "ModelPostConnection",
+        nextToken?: string | null,
+      } | null,
+      owner?: string | null,
+      comments?:  {
+        __typename: "ModelCommentConnection",
+        nextToken?: string | null,
+      } | null,
+      likes?:  {
+        __typename: "ModelLikeConnection",
+        nextToken?: string | null,
+      } | null,
+      thankCounts?:  {
+        __typename: "ModelThankConnection",
+        nextToken?: string | null,
+      } | null,
+      thank?:  {
+        __typename: "ModelThankConnection",
+        nextToken?: string | null,
+      } | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetCommentQueryVariables = {
   id: string,
 };
