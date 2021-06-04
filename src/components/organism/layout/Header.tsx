@@ -1,15 +1,24 @@
-import React, { memo, useCallback } from "react";
-import { useHistory } from "react-router";
+import React, { memo, useCallback, useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 import { Auth } from "aws-amplify";
 import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
 
 import { NormalButton } from "../../atom/button/NormalButton";
 import { useAppSelector } from "../../../app/hooks";
-import { selectIsAdmin } from "../../../features/user/userSlice";
+import NoImage from "../../../Image/NoImage.png";
+import { selectIsAdmin, selectUser } from "../../../features/user/userSlice";
+import { Image } from "@chakra-ui/image";
+import { UseGetImage } from "../../../hooks/function/UseGetImage";
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
+  const location = useLocation();
   const isAdmin = useAppSelector(selectIsAdmin);
+  const userInformation = useAppSelector(selectUser);
+  const [imageUrl, setImageUrl] = useState("");
+  const { getImage } = UseGetImage(userInformation, setImageUrl);
+
+  console.log(location);
 
   const onClickSignUp = useCallback(() => {
     history.push("/signup");
@@ -18,6 +27,14 @@ export const Header: React.VFC = memo(() => {
   const onClickSignIn = useCallback(() => {
     history.push("/signin");
   }, [history]);
+
+  const onClickHeading = useCallback(() => {
+    history.push(isAdmin ? "/posts" : "/");
+  }, [isAdmin]);
+
+  const onClickIcon = () => {
+    history.push(`/user/${userInformation?.displayId}`);
+  };
 
   const onClickSignout = async () => {
     try {
@@ -29,6 +46,10 @@ export const Header: React.VFC = memo(() => {
     }
   };
 
+  useEffect(() => {
+    getImage();
+  }, [userInformation]);
+
   return (
     <Box h="80px" boxShadow="md">
       <Flex
@@ -36,13 +57,16 @@ export const Header: React.VFC = memo(() => {
         mx="auto"
         justifyContent="space-between"
       >
-        <Box>
+        <Box
+          _hover={{ cursor: "pointer", opacity: "0.7" }}
+          onClick={onClickHeading}
+        >
           <Heading as="h1" fontWeight="bold" size="xl" lineHeight="80px">
             MoreCon
           </Heading>
         </Box>
         <HStack spacing="2">
-          {isAdmin ? (
+          {location.pathname.includes("user") && (
             <NormalButton
               hover={{ bg: "blue.300", color: "white" }}
               text="ログアウト"
@@ -51,7 +75,8 @@ export const Header: React.VFC = memo(() => {
               color="blue.200"
               onClick={onClickSignout}
             />
-          ) : (
+          )}
+          {!isAdmin && !location.pathname.includes("user") && (
             <>
               <NormalButton
                 hover={{ bg: "blue.500" }}
@@ -69,6 +94,19 @@ export const Header: React.VFC = memo(() => {
                 onClick={onClickSignIn}
               />
             </>
+          )}
+          {isAdmin && !location.pathname.includes("user") && (
+            <Image
+              src={userInformation?.image ? imageUrl : NoImage}
+              alt="プロフィール画像"
+              borderRadius="full"
+              boxSize="70px"
+              mx="auto"
+              border="1px"
+              borderColor="gray.100"
+              onClick={onClickIcon}
+              _hover={{ cursor: "pointer", opacity: "0.8" }}
+            />
           )}
         </HStack>
       </Flex>
