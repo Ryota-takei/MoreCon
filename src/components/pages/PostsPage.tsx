@@ -1,17 +1,20 @@
 import React, { memo, useEffect } from 'react'
-import { useAppSelector } from '../../app/hooks';
-import { selectUser } from '../../features/user/userSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getCurrentUserInformation, selectUser } from '../../features/user/userSlice';
+
 
 import { UseAdminCheck } from '../../hooks/auth/UseAdminCheck';
 
 export const PostsPage:React.VFC = memo(() => {
   const {notAdminCheck} = UseAdminCheck()
+  const dispatch = useAppDispatch()
   const userInformation = useAppSelector(selectUser)
 
   console.log(userInformation)
 
   useEffect(() => {
-    notAdminCheck()
+  notAdminCheck()
+  dispatch(getCurrentUserInformation())
   }, []);
 
   return (

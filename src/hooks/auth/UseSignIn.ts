@@ -9,13 +9,14 @@ import { getUser } from "../../graphql/queries";
 import { CreateUserMutation, GetUserQuery } from "../../API";
 import { createUser } from "../../graphql/mutations";
 import { useAppDispatch } from "../../app/hooks";
+import { UseGetUniqueStr } from "../function/UseGetUniqueStr";
 
 export type DataValue = {
   email: string;
   password: string;
 };
 
-export type GetUser = {
+export type GetUserGraph = {
   data: GetUserQuery;
 };
 
@@ -23,19 +24,11 @@ export type NewUser = {
   data: CreateUserMutation;
 };
 
-const getUniqueStr = (myStrong?: number): string => {
-  let strong = 1000;
-  if (myStrong) strong = myStrong;
-  return (
-    new Date().getTime().toString(16) +
-    Math.floor(strong * Math.random()).toString(16)
-  );
-};
-
 export const UseSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const toast = useToast();
+  const { getUniqueStr } = UseGetUniqueStr();
   const dispatch = useAppDispatch();
 
   const handleClickLogin = async (data: DataValue) => {
@@ -44,7 +37,7 @@ export const UseSignIn = () => {
       const userData = (await Auth.signIn(data.email, data.password)) as User;
       const result = (await API.graphql(
         graphqlOperation(getUser, { id: userData.username })
-      )) as GetUser;
+      )) as GetUserGraph;
 
       const input = {
         id: userData.username,

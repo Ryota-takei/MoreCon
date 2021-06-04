@@ -9,7 +9,6 @@ export type User = {
 };
 
 export type GetUser = {
-  user?: {
     __typename: "User",
     id: string,
     displayId?: string | null,
@@ -98,5 +97,5 @@ export type GetUser = {
       } | null > | null,
       nextToken?: string | null,
     } | null,
-  } | null,
-};
+} |undefined |null
+
