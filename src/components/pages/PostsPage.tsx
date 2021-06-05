@@ -40,7 +40,7 @@ export const PostsPage: React.VFC = memo(() => {
             value={displayTitle}
           />
         </Box>
-        <NewPostList/>
+        <NewPostList />
       </Box>
       <NewPostModal
         isOpen={isOpen}

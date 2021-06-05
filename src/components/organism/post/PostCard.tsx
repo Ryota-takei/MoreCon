@@ -2,6 +2,7 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
+import { useDisclosure } from "@chakra-ui/react";
 
 import { UseGetCreateDate } from "../../../hooks/function/UseGetDate";
 import { UseGetImage } from "../../../hooks/function/UseGetImage";
@@ -13,6 +14,7 @@ import { deletePost } from "../../../graphql/mutations";
 import { deletePosts } from "../../../features/post/newPostSlice";
 import { MenuBar } from "../menu/MenuBar";
 import { Alert } from "../alert/Alert";
+import { EditPostModal } from "../modal/EditPostModal";
 
 type Prop = {
   post: Post;
@@ -21,14 +23,15 @@ type Prop = {
 export const PostCard: React.VFC<Prop> = memo((props) => {
   const { post } = props;
   const [imageUrl, setImageUrl] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const dispatch = useAppDispatch();
   const loginUser = useAppSelector(selectUser);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const { date } = UseGetCreateDate(post?.timestamp);
   const { getImage } = UseGetImage(post?.contributor, setImageUrl);
-  const onClose = () => setIsOpen(false);
+  const onCloseAlert = () => setOpen(false);
 
   const onClickDeletePost = async () => {
     try {
@@ -67,14 +70,14 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
           />
           <Stack w="100%">
             <Flex>
-              <Flex mr="auto">
+              <Flex mr="auto" alignItems="center">
                 <Heading size="sm">{post?.contributor?.name}</Heading>
-                <Text color="gray.400">さん</Text>
+                <Heading size="xs" color="gray.400" ml="1">さん</Heading>
               </Flex>
               <Flex>
                 <Text color="gray.400">{date}</Text>
                 {loginUser?.id === post?.contributor?.id ? (
-                  <MenuBar setIsOpen={setIsOpen} />
+                  <MenuBar setIsOpen={setOpen} onOpen={onOpen} />
                 ) : null}
               </Flex>
             </Flex>
@@ -87,9 +90,10 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
           <Text>{post?.content}</Text>
         </Box>
       </Box>
+      <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
       <Alert
-        isOpen={isOpen}
-        onClose={onClose}
+        isOpen={open}
+        onClose={onCloseAlert}
         cancelRef={cancelRef}
         onClickDeletePost={onClickDeletePost}
       />

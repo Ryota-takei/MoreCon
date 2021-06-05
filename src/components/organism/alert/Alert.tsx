@@ -18,6 +18,7 @@ type Prop = {
 export const Alert: React.VFC<Prop> = memo((props) => {
   
   return (
+    <>
     <AlertDialog
       isOpen={props.isOpen}
       onClose={props.onClose}
@@ -45,5 +46,6 @@ export const Alert: React.VFC<Prop> = memo((props) => {
         </AlertDialogContent>
       </AlertDialogOverlay>
     </AlertDialog>
+    </>
   );
 });

@@ -7,6 +7,12 @@ export type PostState = {
   nextToken?: string | null;
 };
 
+type EditInputType = {
+  id: string | undefined;
+  content: string;
+  title: string;
+};
+
 const initialState: PostState = {
   posts: [],
   nextToken: null,
@@ -34,6 +40,13 @@ export const postsSlice = createSlice({
       );
       state.posts = [...newPosts];
     },
+    editPosts: (state, action: PayloadAction<EditInputType>) => {
+      const post = state.posts.find((post) => post?.id === action.payload?.id);
+      if (post) {
+        post.title = action.payload?.title;
+        post.content = action.payload?.content;
+      }
+    },
   },
   extraReducers: (builder) => {},
 });
@@ -44,6 +57,7 @@ export const {
   subscriptionPosts,
   fetchNextToken,
   deletePosts,
+  editPosts,
 } = postsSlice.actions;
 
 export const selectPosts = (state: RootState) => state.posts.posts;

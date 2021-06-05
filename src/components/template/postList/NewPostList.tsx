@@ -72,7 +72,7 @@ export const NewPostList: React.VFC = memo(() => {
   }, []);
 
   return (
-    <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "100px" }} P="2">
+    <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "100px" }} p="2">
       <Flex
         borderRadius="10px"
         w="80%"
