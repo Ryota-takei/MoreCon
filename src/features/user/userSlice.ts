@@ -4,7 +4,7 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { RootState } from "../../app/store";
 import { getUser } from "../../graphql/queries";
 import { GetUserGraph } from "../../hooks/auth/UseSignIn";
-import { GetUser } from "../../types/user";
+import { GetUser } from "../../types/user/user";
 
 export interface UserState {
   isAdmin: boolean;

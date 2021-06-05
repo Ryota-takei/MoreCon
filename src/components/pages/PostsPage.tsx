@@ -10,6 +10,7 @@ import {
 import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
 import { useDisclosure } from "@chakra-ui/react";
 import { NewPostModal } from "../organism/modal/NewPostModal";
+import { NewPostList } from "../template/postList/NewPostList";
 
 export const PostsPage: React.VFC = memo(() => {
   const { notAdminCheck } = UseAdminCheck();
@@ -39,6 +40,7 @@ export const PostsPage: React.VFC = memo(() => {
             value={displayTitle}
           />
         </Box>
+        <NewPostList/>
       </Box>
       <NewPostModal
         isOpen={isOpen}

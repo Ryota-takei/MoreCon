@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -36,9 +36,11 @@ type InputValue = {
 
 export const NewPostModal: React.VFC<Prop> = memo((props) => {
   const { onClose, isOpen, setDisplayTitle } = props;
+  const [isLoading, setIsLoading] = useState(false)
   const userInformation = useAppSelector(selectUser);
   const {
     register,
+    setValue,
     handleSubmit,
     watch,
     formState: { errors },
@@ -59,6 +61,7 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
   };
 
   const onSubmitPost = async(data:InputValue) => {
+    setIsLoading(true)
     const input = {
       content: data.content,
       title: data.title,
@@ -69,9 +72,13 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
     try {
       const post = await  API.graphql(graphqlOperation(createPost,{input}))
       onClose()
+      setValue("title", "")
+      setValue("content", "")
+      setIsLoading(false)
     } catch(error) {
       console.log(error)
       alert("エラーが発生しました")
+      setIsLoading(false)
     }
   };
 
@@ -126,6 +133,7 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
                 bg="white"
                 color="blue.200"
                 type="submit"
+                isLoading={isLoading}
               />
             </Flex>
           </ModalFooter>

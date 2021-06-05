@@ -1,5 +1,5 @@
 import { Storage } from "aws-amplify";
-import { GetUser } from "../../types/user";
+import { GetUser } from "../../types/user/user";
 
 export const UseGetImage = (
   userInformation: GetUser,
