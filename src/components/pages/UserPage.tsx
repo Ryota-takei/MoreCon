@@ -66,7 +66,7 @@ export const UserPage: React.VFC = memo(() => {
   console.log(userInformation);
   return (
     <>
-      <Box w={{ base: "100", md: "50%" }} bg="gray.50" minH="100vh" mx="auto">
+      <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">
         <Stack textAlign="center" pt="8" spacing="5">
           <Image
             src={userInformation?.image ? imageUrl : NoImage}

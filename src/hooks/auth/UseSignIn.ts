@@ -44,6 +44,7 @@ export const UseSignIn = () => {
         name: userData.attributes.nickname,
         profile: "こんにちは！",
         displayId: getUniqueStr(),
+  
       };
 
       if (result.data.getUser) {

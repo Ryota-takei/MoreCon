@@ -199,5 +199,5 @@ const VIOLATION_PROFILE_COUNT = "プロフィールは250文字以下で入力�
 
 const profileChangeSchema = yup.object().shape({
   name: yup.string().required(REQUIRE).max(16, VIOLATION_NAME_COUNT),
-  profile: yup.string().nullable().max(250, VIOLATION_PROFILE_COUNT),
+  profile: yup.string().required(REQUIRE).max(250, VIOLATION_PROFILE_COUNT),
 });

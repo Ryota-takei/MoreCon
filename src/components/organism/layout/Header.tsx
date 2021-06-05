@@ -50,6 +50,8 @@ export const Header: React.VFC = memo(() => {
     getImage();
   }, [userInformation]);
 
+  console.log(imageUrl)
+
   return (
     <Box h="80px" boxShadow="md">
       <Flex
