@@ -4,7 +4,7 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 
 import { getUserInformation } from "../../../src/features/user/userSlice";
-import { User } from "../../types/user";
+import { User } from "../../types/user/user";
 import { getUser } from "../../graphql/queries";
 import { CreateUserMutation, GetUserQuery } from "../../API";
 import { createUser } from "../../graphql/mutations";

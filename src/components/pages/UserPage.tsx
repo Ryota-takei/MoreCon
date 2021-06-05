@@ -10,7 +10,7 @@ import {
 import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
 import { searchByDisplayId } from "../../graphql/queries";
 import { SearchByDisplayIdQuery } from "../../API";
-import { GetUser } from "../../types/user";
+import { GetUser } from "../../types/user/user";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import NoImage from "../../Image/NoImage.png";

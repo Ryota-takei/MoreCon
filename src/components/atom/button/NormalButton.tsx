@@ -10,6 +10,7 @@ type Prop = {
   hover: { bg: string; color?: string };
   onClick?: () => void;
   type?:"button" | "submit" | "reset" | undefined
+  isLoading?: boolean
 };
 
 export const NormalButton: React.VFC<Prop> = memo((props) => {
