@@ -23,22 +23,75 @@ export const onCreatePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -51,22 +104,75 @@ export const onCreatePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -80,6 +186,28 @@ export const onCreatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -88,6 +216,59 @@ export const onCreatePost = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
+        }
+        nextToken
+      }
+      Thanks {
+        items {
+          id
+          userId
+          postId
+          correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -115,22 +296,75 @@ export const onUpdatePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -143,22 +377,75 @@ export const onUpdatePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -172,6 +459,28 @@ export const onUpdatePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -180,6 +489,59 @@ export const onUpdatePost = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
+        }
+        nextToken
+      }
+      Thanks {
+        items {
+          id
+          userId
+          postId
+          correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -207,22 +569,75 @@ export const onDeletePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -235,22 +650,75 @@ export const onDeletePost = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -264,6 +732,28 @@ export const onDeletePost = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -272,6 +762,59 @@ export const onDeletePost = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
+        }
+        nextToken
+      }
+      Thanks {
+        items {
+          id
+          userId
+          postId
+          correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -299,6 +842,35 @@ export const onCreateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -313,6 +885,35 @@ export const onCreateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -327,6 +928,28 @@ export const onCreateUser = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -335,6 +958,28 @@ export const onCreateUser = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -344,6 +989,28 @@ export const onCreateUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -353,6 +1020,28 @@ export const onCreateUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -380,6 +1069,35 @@ export const onUpdateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -394,6 +1112,35 @@ export const onUpdateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -408,6 +1155,28 @@ export const onUpdateUser = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -416,6 +1185,28 @@ export const onUpdateUser = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -425,6 +1216,28 @@ export const onUpdateUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -434,6 +1247,28 @@ export const onUpdateUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -461,6 +1296,35 @@ export const onDeleteUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -475,6 +1339,35 @@ export const onDeleteUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
         }
         nextToken
       }
@@ -489,6 +1382,28 @@ export const onDeleteUser = /* GraphQL */ `
           postId
           createdAt
           updatedAt
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -497,6 +1412,28 @@ export const onDeleteUser = /* GraphQL */ `
           id
           userId
           postId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -506,6 +1443,28 @@ export const onDeleteUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -515,6 +1474,28 @@ export const onDeleteUser = /* GraphQL */ `
           userId
           postId
           correspondingUserId
+          post {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
+          user {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          owner
         }
         nextToken
       }
@@ -550,7 +1531,25 @@ export const onCreateComment = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -560,12 +1559,57 @@ export const onCreateComment = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -578,25 +1622,79 @@ export const onCreateComment = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -629,7 +1727,25 @@ export const onDeleteComment = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -639,12 +1755,57 @@ export const onDeleteComment = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -657,25 +1818,79 @@ export const onDeleteComment = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -703,7 +1918,25 @@ export const onCreateLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -713,12 +1946,57 @@ export const onCreateLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -731,25 +2009,79 @@ export const onCreateLike = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -777,7 +2109,25 @@ export const onUpdateLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -787,12 +2137,57 @@ export const onUpdateLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -805,25 +2200,79 @@ export const onUpdateLike = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -851,7 +2300,25 @@ export const onDeleteLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -861,12 +2328,57 @@ export const onDeleteLike = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -879,25 +2391,79 @@ export const onDeleteLike = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -926,7 +2492,25 @@ export const onCreateThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -936,12 +2520,57 @@ export const onCreateThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -954,25 +2583,79 @@ export const onCreateThank = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -1001,7 +2684,25 @@ export const onUpdateThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -1011,12 +2712,57 @@ export const onUpdateThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -1029,25 +2775,79 @@ export const onUpdateThank = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;
@@ -1076,7 +2876,25 @@ export const onDeleteThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         correspondingUser {
           id
@@ -1086,12 +2904,57 @@ export const onDeleteThank = /* GraphQL */ `
           image
           createdAt
           updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
           owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
         }
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
+          nextToken
+        }
+        Thanks {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
@@ -1104,25 +2967,79 @@ export const onDeleteThank = /* GraphQL */ `
         createdAt
         updatedAt
         correspondingPosts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         posts {
+          items {
+            id
+            type
+            likeCount
+            title
+            content
+            timestamp
+            contributorId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         owner
         comments {
+          items {
+            id
+            type
+            content
+            timestamp
+            userId
+            postId
+            createdAt
+            updatedAt
+            owner
+          }
           nextToken
         }
         likes {
+          items {
+            id
+            userId
+            postId
+            owner
+          }
           nextToken
         }
         thankCounts {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
         thank {
+          items {
+            id
+            userId
+            postId
+            correspondingUserId
+            owner
+          }
           nextToken
         }
       }
+      owner
     }
   }
 `;

@@ -15,6 +15,7 @@ import { deletePosts } from "../../../features/post/newPostSlice";
 import { MenuBar } from "../menu/MenuBar";
 import { Alert } from "../alert/Alert";
 import { EditPostModal } from "../modal/EditPostModal";
+import { PostCardFooter } from "./PostCardFooter";
 
 type Prop = {
   post: Post;
@@ -56,10 +57,9 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
         border="1px"
         borderColor="gray.100"
         borderRadius="10px"
-        p="3"
         boxShadow="sm"
       >
-        <HStack>
+        <HStack p="3">
           <Image
             src={post?.contributor?.image ? imageUrl : NoImage}
             alt="プロフィール画像"
@@ -72,7 +72,9 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
             <Flex>
               <Flex mr="auto" alignItems="center">
                 <Heading size="sm">{post?.contributor?.name}</Heading>
-                <Heading size="xs" color="gray.400" ml="1">さん</Heading>
+                <Heading size="xs" color="gray.400" ml="1">
+                  さん
+                </Heading>
               </Flex>
               <Flex>
                 <Text color="gray.400">{date}</Text>
@@ -86,9 +88,10 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
             </Box>
           </Stack>
         </HStack>
-        <Box m="2">
+        <Box m="4">
           <Text>{post?.content}</Text>
         </Box>
+        <PostCardFooter post={post} />
       </Box>
       <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
       <Alert
