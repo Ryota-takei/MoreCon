@@ -1577,7 +1577,7 @@ export const listComments = /* GraphQL */ `
 `;
 export const listCommentsSortedByTimestamp = /* GraphQL */ `
   query ListCommentsSortedByTimestamp(
-    $type: String
+    $postId: ID
     $timestamp: ModelIntKeyConditionInput
     $sortDirection: ModelSortDirection
     $filter: ModelCommentFilterInput
@@ -1585,7 +1585,7 @@ export const listCommentsSortedByTimestamp = /* GraphQL */ `
     $nextToken: String
   ) {
     listCommentsSortedByTimestamp(
-      type: $type
+      postId: $postId
       timestamp: $timestamp
       sortDirection: $sortDirection
       filter: $filter

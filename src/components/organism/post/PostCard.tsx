@@ -1,21 +1,19 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import { Image } from "@chakra-ui/image";
-import { Box, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
+import { Box, Text } from "@chakra-ui/layout";
 import { useDisclosure } from "@chakra-ui/react";
 
-import { UseGetCreateDate } from "../../../hooks/function/UseGetDate";
 import { UseGetImage } from "../../../hooks/function/UseGetImage";
 import { Post } from "../../../types/post/NewPots";
-import NoImage from "../../../Image/NoImage.png";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectUser } from "../../../features/user/userSlice";
 import { deletePost } from "../../../graphql/mutations";
 import { deletePosts } from "../../../features/post/newPostSlice";
-import { MenuBar } from "../menu/MenuBar";
 import { Alert } from "../alert/Alert";
 import { EditPostModal } from "../modal/EditPostModal";
 import { PostCardFooter } from "./PostCardFooter";
+import { CardHeader } from "../../molecule/card/CardHeader";
+import { CommentCard } from "../comment/CommentCard";
 
 type Prop = {
   post: Post;
@@ -29,15 +27,18 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
   const dispatch = useAppDispatch();
   const loginUser = useAppSelector(selectUser);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [isOpenComment, setIsOpenComment] = useState(false);
+  const [commentCount, setCommentCount] = useState(0);
 
-  const { date } = UseGetCreateDate(post?.timestamp);
   const { getImage } = UseGetImage(post?.contributor, setImageUrl);
   const onCloseAlert = () => setOpen(false);
 
   const onClickDeletePost = async () => {
     try {
       if (post) {
-        API.graphql(graphqlOperation(deletePost, { input: { id: post.id } }));
+        await API.graphql(
+          graphqlOperation(deletePost, { input: { id: post.id } })
+        );
         dispatch(deletePosts(post.id));
       }
     } catch (error) {
@@ -48,6 +49,7 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
 
   useEffect(() => {
     getImage();
+    setCommentCount(post?.comments?.items?.length ?? 0)
   }, []);
 
   return (
@@ -59,40 +61,27 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
         borderRadius="10px"
         boxShadow="sm"
       >
-        <HStack p="3">
-          <Image
-            src={post?.contributor?.image ? imageUrl : NoImage}
-            alt="プロフィール画像"
-            borderRadius="full"
-            boxSize="70px"
-            border="1px"
-            borderColor="gray.100"
-          />
-          <Stack w="100%">
-            <Flex>
-              <Flex mr="auto" alignItems="center">
-                <Heading size="sm">{post?.contributor?.name}</Heading>
-                <Heading size="xs" color="gray.400" ml="1">
-                  さん
-                </Heading>
-              </Flex>
-              <Flex>
-                <Text color="gray.400">{date}</Text>
-                {loginUser?.id === post?.contributor?.id ? (
-                  <MenuBar setIsOpen={setOpen} onOpen={onOpen} />
-                ) : null}
-              </Flex>
-            </Flex>
-            <Box>
-              <Text fontWeight="bold"> {post?.title}</Text>
-            </Box>
-          </Stack>
-        </HStack>
+        <CardHeader
+          post={post}
+          loginUser={loginUser}
+          imageUrl={imageUrl}
+          onOpen={onOpen}
+          setOpen={setOpen}
+          fontWeight="bold"
+        />
+
         <Box m="4">
           <Text>{post?.content}</Text>
         </Box>
-        <PostCardFooter post={post} />
+        <PostCardFooter post={post} setIsOpenComment={setIsOpenComment} commentCount={commentCount} />
       </Box>
+      {isOpenComment && (
+        <CommentCard
+          post={post}
+          imageUrl={imageUrl}
+          setCommentCount={setCommentCount}
+        />
+      )}
       <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
       <Alert
         isOpen={open}

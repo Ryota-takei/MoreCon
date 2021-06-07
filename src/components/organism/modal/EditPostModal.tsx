@@ -64,8 +64,6 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
       dispatch(editPosts(input));
       setValue("title", "");
       setValue("content", "");
-      console.log(res)
-      console.log(input)
       setIsLoading(false)
       onClose();
     } catch (error) {
