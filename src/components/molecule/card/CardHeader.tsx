@@ -1,4 +1,3 @@
-import { Image } from "@chakra-ui/image";
 import { Box, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
 import React, { memo } from "react";
 import { Post } from "../../../types/post/NewPots";
@@ -6,6 +5,7 @@ import { MenuBar } from "../../organism/menu/MenuBar";
 import NoImage from "../../../Image/NoImage.png";
 import { GetUser } from "../../../types/user/user";
 import { UseGetCreateDate } from "../../../hooks/function/UseGetDate";
+import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
   post: Post ;
@@ -29,13 +29,9 @@ export const CardHeader: React.VFC<Prop> = memo((props) => {
 
   return (
     <HStack p="3">
-      <Image
+      <Avatar
         src={post?.contributor?.image ? imageUrl : NoImage}
-        alt="プロフィール画像"
-        borderRadius="full"
         boxSize="70px"
-        border="1px"
-        borderColor="gray.100"
       />
       <Stack w="100%">
         <Flex>

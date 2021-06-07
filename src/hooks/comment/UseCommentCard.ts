@@ -94,7 +94,7 @@ export const UseCommentCard = (
   }, [post]);
 
   useEffect(() => {
-    let unsubscribe;
+    let unsubscribe:any;
     const subscription = API.graphql(graphqlOperation(onCreateComment));
     if (subscription instanceof Observable) {
       const sub = subscription.subscribe({
@@ -118,7 +118,7 @@ export const UseCommentCard = (
         sub.unsubscribe();
       };
     }
-    return unsubscribe;
+    return () =>  unsubscribe();
   }, []);
   return {
     comments,

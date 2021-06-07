@@ -58,7 +58,7 @@ export const NewPostList: React.VFC = memo(() => {
 
   useEffect(() => {
     getPosts("INITIAL_QUERY");
-    let unsubscribe;
+    let unsubscribe:any;
     const subscription = API.graphql(graphqlOperation(onCreatePost));
     if (subscription instanceof Observable) {
       const sub = subscription.subscribe({
@@ -73,7 +73,7 @@ export const NewPostList: React.VFC = memo(() => {
         sub.unsubscribe();
       };
     }
-    return unsubscribe;
+    return () => unsubscribe();
   }, []);
 
   return (

@@ -12,7 +12,9 @@ type Prop = {
   isOpen: boolean;
   onClose: () => void;
   cancelRef: React.RefObject<HTMLButtonElement>;
-  onClickDeletePost: () => Promise<void>;
+  onClick: () => Promise<void> | void;
+  buttonText: string
+  dialogBody: string
 };
 
 export const Alert: React.VFC<Prop> = memo((props) => {
@@ -26,21 +28,24 @@ export const Alert: React.VFC<Prop> = memo((props) => {
     >
       <AlertDialogOverlay>
         <AlertDialogContent p="3">
-          <AlertDialogBody fontWeight="bold" textAlign="center">
-            本当に削除しますか？
+          <AlertDialogBody fontWeight="bold" textAlign="center" mt="8">
+            {props.dialogBody}
           </AlertDialogBody>
 
-          <AlertDialogFooter>
+          <AlertDialogFooter mt="5">
             <Button size="sm" onClick={props.onClose}>
               キャンセル
             </Button>
             <Button
-              colorScheme="blue"
-              onClick={props.onClickDeletePost}
+              bg="blue.300"
+              onClick={props.onClick}
               ml={3}
               size="sm"
+              color="white"
+              px="5"
+              _hover={{bg:"blue.500"}}
             >
-              削除
+              {props.buttonText}
             </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
