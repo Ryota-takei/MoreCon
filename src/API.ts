@@ -5785,7 +5785,7 @@ export type ListCommentsQuery = {
 };
 
 export type ListCommentsSortedByTimestampQueryVariables = {
-  type?: string | null,
+  postId?: string | null,
   timestamp?: ModelIntKeyConditionInput | null,
   sortDirection?: ModelSortDirection | null,
   filter?: ModelCommentFilterInput | null,

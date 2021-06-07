@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { Box, Flex, VStack } from "@chakra-ui/layout";
@@ -20,14 +20,17 @@ import {
 import { onCreatePost } from "../../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
 import { PostCard } from "../../organism/post/PostCard";
+import { Spinner } from "@chakra-ui/spinner";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 
 export const NewPostList: React.VFC = memo(() => {
   const disPatch = useAppDispatch();
   const posts = useAppSelector(selectPosts);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPosts = async (type: Type, nextToken: string | null = null) => {
+    setIsLoading(true);
     const res = (await API.graphql(
       graphqlOperation(listPostsSortedByTimestamp, {
         type: "new",
@@ -49,6 +52,8 @@ export const NewPostList: React.VFC = memo(() => {
     if (res.data?.listPostsSortedByTimestamp?.nextToken) {
       disPatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
     }
+
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -73,42 +78,50 @@ export const NewPostList: React.VFC = memo(() => {
 
   return (
     <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "100px" }} p="2">
-      <Flex
-        borderRadius="10px"
-        w="80%"
-        border="1px"
-        borderColor="blue.200"
-        mx="auto"
-      >
-        <Box
-          bg="blue.300"
-          color="white"
-          w="50%"
-          textAlign="center"
-          style={{
-            borderTopLeftRadius: "10px",
-            borderBottomLeftRadius: "10px",
-          }}
-        >
-          新着順
+      {isLoading ? (
+        <Box w="100%" textAlign="center">
+          <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />
         </Box>
-        <Box
-          color="blue.300"
-          w="50%"
-          textAlign="center"
-          style={{
-            borderTopRightRadius: "10px",
-            borderBottomRightRadius: "10px",
-          }}
-        >
-          注目順
-        </Box>
-      </Flex>
-      <VStack spacing="3" mt="4">
-        {posts.map((post) => (
-          <PostCard post={post} key={post?.id} />
-        ))}
-      </VStack>
+      ) : (
+        <>
+          <Flex
+            borderRadius="10px"
+            w="80%"
+            border="1px"
+            borderColor="blue.200"
+            mx="auto"
+          >
+            <Box
+              bg="blue.300"
+              color="white"
+              w="50%"
+              textAlign="center"
+              style={{
+                borderTopLeftRadius: "10px",
+                borderBottomLeftRadius: "10px",
+              }}
+            >
+              新着順
+            </Box>
+            <Box
+              color="blue.300"
+              w="50%"
+              textAlign="center"
+              style={{
+                borderTopRightRadius: "10px",
+                borderBottomRightRadius: "10px",
+              }}
+            >
+              注目順
+            </Box>
+          </Flex>
+          <VStack spacing="3" mt="4">
+            {posts.map((post) => (
+              <PostCard post={post} key={post?.id} />
+            ))}
+          </VStack>
+        </>
+      )}
     </Box>
   );
 });

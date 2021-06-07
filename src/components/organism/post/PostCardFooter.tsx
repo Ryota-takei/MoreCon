@@ -1,17 +1,22 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
+import { BiComment } from "react-icons/bi";
 
 import { Post } from "../../../types/post/NewPots";
 import { UseLikePost } from "../../../hooks/like/UseLikePost";
 
 type Prop = {
   post: Post;
+  setIsOpenComment: React.Dispatch<React.SetStateAction<boolean>>;
+  commentCount:number
 };
 
 export const PostCardFooter: React.VFC<Prop> = memo((props) => {
-  const { post } = props;
+  const { post, setIsOpenComment, commentCount } = props;
+  
+  // カスタムフック
   const { onClickLikeCancel, onClickLike, likeCount, isLike } =
     UseLikePost(post);
 
@@ -25,11 +30,16 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
           </HStack>
         </VStack>
         <VStack color="gray.500" w="33%" spacing="0">
-          <Text>{post?.likes?.items?.length}欲しい</Text>
+          <HStack spacing="0" >
+            <Text>{commentCount}</Text>
+            <Text fontSize="xs">コメント</Text>
+          </HStack>
         </VStack>
         <VStack color="gray.500" w="33%" spacing="0">
-          <Text>{post?.likes?.items?.length}</Text>
-          <Text>欲しい</Text>
+          <HStack spacing="0">
+            <Text>{commentCount}</Text>
+            <Text fontSize="xs">コメント</Text>
+          </HStack>
         </VStack>
       </Flex>
       <Flex borderTop="1px" color="gray.200" p="1">
@@ -61,9 +71,10 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
           _hover={{ cursor: "pointer", opacity: "0.7" }}
           w="33%"
           spacing="0"
+          onClick={() => setIsOpenComment((preVal) => !preVal)}
         >
-          <AiOutlineLike size="20px" />
-          <Text fontSize="sm">欲しい</Text>
+          <BiComment size="20px" />
+          <Text fontSize="xs">コメント</Text>
         </VStack>
         <VStack
           color="gray.500"
