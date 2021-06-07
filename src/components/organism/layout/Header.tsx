@@ -7,8 +7,8 @@ import { NormalButton } from "../../atom/button/NormalButton";
 import { useAppSelector } from "../../../app/hooks";
 import NoImage from "../../../Image/NoImage.png";
 import { selectIsAdmin, selectUser } from "../../../features/user/userSlice";
-import { Image } from "@chakra-ui/image";
 import { UseGetImage } from "../../../hooks/function/UseGetImage";
+import { Avatar } from "@chakra-ui/avatar";
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
@@ -98,14 +98,10 @@ export const Header: React.VFC = memo(() => {
             </>
           )}
           {isAdmin && !location.pathname.includes("user") && (
-            <Image
+            <Avatar
               src={userInformation?.image ? imageUrl : NoImage}
-              alt="プロフィール画像"
-              borderRadius="full"
               boxSize="70px"
               mx="auto"
-              border="1px"
-              borderColor="gray.100"
               onClick={onClickIcon}
               _hover={{ cursor: "pointer", opacity: "0.8" }}
             />

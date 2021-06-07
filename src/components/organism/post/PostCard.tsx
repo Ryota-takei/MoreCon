@@ -49,7 +49,7 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
 
   useEffect(() => {
     getImage();
-    setCommentCount(post?.comments?.items?.length ?? 0)
+    setCommentCount(post?.comments?.items?.length ?? 0);
   }, []);
 
   return (
@@ -73,7 +73,11 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
         <Box m="4">
           <Text>{post?.content}</Text>
         </Box>
-        <PostCardFooter post={post} setIsOpenComment={setIsOpenComment} commentCount={commentCount} />
+        <PostCardFooter
+          post={post}
+          setIsOpenComment={setIsOpenComment}
+          commentCount={commentCount}
+        />
       </Box>
       {isOpenComment && (
         <CommentCard
@@ -87,7 +91,9 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
         isOpen={open}
         onClose={onCloseAlert}
         cancelRef={cancelRef}
-        onClickDeletePost={onClickDeletePost}
+        dialogBody="本当に削除しますか？"
+        buttonText="削除"
+        onClick={onClickDeletePost}
       />
     </>
   );

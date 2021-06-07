@@ -1,10 +1,10 @@
-import { Image } from "@chakra-ui/image";
 import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/layout";
 import React, { useEffect, useState } from "react";
 import { UseGetImage } from "../../../hooks/function/UseGetImage";
 import { Comment } from "../../../types/comment/CommentType";
 import moment from "moment";
 import NoImage from "../../../Image/NoImage.png";
+import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
   comment: Comment;
@@ -44,13 +44,9 @@ export const CommentList: React.VFC<Prop> = (props) => {
   return (
     <Box mt="2">
       <HStack>
-        <Image
+        <Avatar
           src={comment?.user?.image ? imageUrl : NoImage}
-          alt="プロフィール画像"
-          borderRadius="full"
           boxSize="40px"
-          border="1px"
-          borderColor="gray.100"
         />
         <Stack borderRadius="15px" bg="gray.100" p="3" spacing="0">
           <Flex justifyContent="space-between">
