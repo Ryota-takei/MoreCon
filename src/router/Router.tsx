@@ -1,10 +1,10 @@
 import { Route, Switch } from "react-router-dom";
 import { Page404 } from "../components/pages/Page404";
-import { PostsPage } from "../components/pages/PostsPage";
 import { SignIn } from "../components/pages/SignIn";
 import { SignUp } from "../components/pages/SignUp";
 import { TopPage } from "../components/pages/TopPage";
 import { HeaderLayout } from "../components/template/HeaderLayout";
+import { postRouter } from "./PostRouter";
 import { userRoutes } from "./UserRoutes";
 
 export const Router = () => {
@@ -15,11 +15,22 @@ export const Router = () => {
           <TopPage />
         </HeaderLayout>
       </Route>
-      <Route path="/posts">
-        <HeaderLayout>
-          <PostsPage />
-        </HeaderLayout>
-      </Route>
+      <Route
+        path="/posts"
+        render={({ match: { url } }) => (
+          <Switch>
+            {postRouter.map((route) => (
+              <Route
+                key={route.path}
+                exact={route.exact}
+                path={`${url}${route.path}`}
+              >
+                <HeaderLayout>{route.children}</HeaderLayout>
+              </Route>
+            ))}
+          </Switch>
+        )}
+      />
       <Route path="/signup">
         <HeaderLayout>
           <SignUp />

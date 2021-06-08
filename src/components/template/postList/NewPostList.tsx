@@ -58,7 +58,7 @@ export const NewPostList: React.VFC = memo(() => {
 
   useEffect(() => {
     getPosts("INITIAL_QUERY");
-    let unsubscribe:any;
+    let unsubscribe;
     const subscription = API.graphql(graphqlOperation(onCreatePost));
     if (subscription instanceof Observable) {
       const sub = subscription.subscribe({
@@ -73,7 +73,7 @@ export const NewPostList: React.VFC = memo(() => {
         sub.unsubscribe();
       };
     }
-    return () => unsubscribe();
+    return unsubscribe;
   }, []);
 
   return (
@@ -117,7 +117,7 @@ export const NewPostList: React.VFC = memo(() => {
           </Flex>
           <VStack spacing="3" mt="4">
             {posts.map((post) => (
-              <PostCard post={post} key={post?.id} />
+              <PostCard post={post} key={post?.id} isPosts={true} />
             ))}
           </VStack>
         </>

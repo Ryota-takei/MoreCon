@@ -1,9 +1,7 @@
 import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/layout";
-import React, { useEffect, useState } from "react";
-import { UseGetImage } from "../../../hooks/function/UseGetImage";
+import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Comment } from "../../../types/comment/CommentType";
 import moment from "moment";
-import NoImage from "../../../Image/NoImage.png";
 import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
@@ -11,9 +9,9 @@ type Prop = {
 };
 export const CommentList: React.VFC<Prop> = (props) => {
   const { comment } = props;
-  const [imageUrl, setImageUrl] = useState("");
-  const { getImage } = UseGetImage(comment?.user, setImageUrl);
+  const {imageUrl } = useGetImage(comment?.user);
   const now = moment();
+
 
   const calcTimestampDiff = (timestamp?: number) => {
     const scales = [
@@ -37,15 +35,11 @@ export const CommentList: React.VFC<Prop> = (props) => {
     }
   };
 
-  useEffect(() => {
-    getImage();
-  }, [comment]);
-
   return (
     <Box mt="2">
       <HStack>
         <Avatar
-          src={comment?.user?.image ? imageUrl : NoImage}
+          src={imageUrl}
           boxSize="40px"
         />
         <Stack borderRadius="15px" bg="gray.100" p="3" spacing="0">

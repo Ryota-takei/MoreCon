@@ -1,22 +1,22 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
+import React, { memo, useCallback } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Auth } from "aws-amplify";
 import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
 
 import { NormalButton } from "../../atom/button/NormalButton";
 import { useAppSelector } from "../../../app/hooks";
-import NoImage from "../../../Image/NoImage.png";
 import { selectIsAdmin, selectUser } from "../../../features/user/userSlice";
-import { UseGetImage } from "../../../hooks/function/UseGetImage";
+
 import { Avatar } from "@chakra-ui/avatar";
+import { useGetImage } from "../../../hooks/function/useGetImage";
+
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
   const location = useLocation();
   const isAdmin = useAppSelector(selectIsAdmin);
   const userInformation = useAppSelector(selectUser);
-  const [imageUrl, setImageUrl] = useState("");
-  const { getImage } = UseGetImage(userInformation, setImageUrl);
+  const { imageUrl } = useGetImage(userInformation);
 
   console.log(location);
 
@@ -45,12 +45,6 @@ export const Header: React.VFC = memo(() => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getImage();
-  }, [userInformation]);
-
-  console.log(imageUrl)
 
   return (
     <Box h="80px" boxShadow="md">
@@ -99,7 +93,7 @@ export const Header: React.VFC = memo(() => {
           )}
           {isAdmin && !location.pathname.includes("user") && (
             <Avatar
-              src={userInformation?.image ? imageUrl : NoImage}
+              src={imageUrl}
               boxSize="70px"
               mx="auto"
               onClick={onClickIcon}

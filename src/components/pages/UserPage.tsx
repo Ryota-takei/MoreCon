@@ -13,9 +13,8 @@ import { SearchByDisplayIdQuery } from "../../API";
 import { GetUser } from "../../types/user/user";
 import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
-import NoImage from "../../Image/NoImage.png";
 import { NormalButton } from "../atom/button/NormalButton";
-import { UseGetImage } from "../../hooks/function/UseGetImage";
+import { useGetImage } from "../../hooks/function/useGetImage";
 
 type SearchUser = {
   data: SearchByDisplayIdQuery;
@@ -25,10 +24,9 @@ export const UserPage: React.VFC = memo(() => {
   const { notAdminCheck } = UseAdminCheck();
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<GetUser>();
-  const [imageUrl, setImageUrl] = useState("");
   const userInformation = useAppSelector(selectUser);
   const { userId } = useParams<{ userId: string }>();
-  const { getImage } = UseGetImage(userInformation, setImageUrl);
+  const {imageUrl } = useGetImage(userInformation);
   const history = useHistory();
 
   console.log(userInformation);
@@ -58,9 +56,6 @@ export const UserPage: React.VFC = memo(() => {
     getUserInformation();
   }, [userId]);
 
-  useEffect(() => {
-    getImage();
-  }, [userInformation]);
 
   console.log(user);
   console.log(userInformation);
@@ -69,7 +64,7 @@ export const UserPage: React.VFC = memo(() => {
       <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">
         <Stack textAlign="center" pt="8" spacing="5">
           <Image
-            src={userInformation?.image ? imageUrl : NoImage}
+            src={imageUrl}
             alt="プロフィール画像"
             borderRadius="full"
             boxSize="150px"
