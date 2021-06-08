@@ -25,7 +25,7 @@ type Comments = {
   data: ListCommentsSortedByTimestampQuery;
 };
 
-export const UseCommentCard = (
+export const useCommentCard = (
   setCommentCount: React.Dispatch<React.SetStateAction<number>>,
   post: Post
 ) => {
@@ -91,6 +91,7 @@ export const UseCommentCard = (
 
   useEffect(() => {
     getComments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post]);
 
   useEffect(() => {
@@ -118,7 +119,8 @@ export const UseCommentCard = (
         sub.unsubscribe();
       };
     }
-    return  unsubscribe;
+    return unsubscribe;
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return {
     comments,

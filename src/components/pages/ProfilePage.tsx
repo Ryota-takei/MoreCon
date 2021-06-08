@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -14,14 +14,15 @@ import {
   selectUser,
 } from "../../features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { Form } from "../organism/layout/Form";
 import { ImageTrimmingModal } from "../organism/modal/ImageTrimmingModal";
 import { NormalButton } from "../atom/button/NormalButton";
 import { updateUser } from "../../graphql/mutations";
-import { UseGetUniqueStr } from "../../hooks/function/UseGetUniqueStr";
-import { useGetImage } from "../../hooks/function/useGetImage";
+
 import { useHistory } from "react-router";
+import { useGetImage } from "../../hooks/function/useGetImage";
+import { getUniqueStr } from "../../function/getUniqueStr";
 
 type InputValue = {
   name: string;
@@ -34,14 +35,12 @@ export const ProfilePage: React.VFC = memo(() => {
 
   const userInformation = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const history = useHistory()
+  const history = useHistory();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const {getUniqueStr} = UseGetUniqueStr()
-  
-  //カスタムフック
-  const {imageUrl} = useGetImage(userInformation)
-  const { notAdminCheck } = UseAdminCheck();
 
+  //カスタムフック
+  const { imageUrl } = useGetImage(userInformation);
+  const { notAdminCheck } = useAdminCheck();
 
   const {
     register,
@@ -55,15 +54,18 @@ export const ProfilePage: React.VFC = memo(() => {
   useEffect(() => {
     notAdminCheck();
     dispatch(getCurrentUserInformation());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
     setValue("name", userInformation?.name);
     setValue("profile", userInformation?.profile);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInformation]);
 
-  const onChangeProfile = async (data: InputValue) => {
+  const onChangeProfile = useCallback(async (data: InputValue) => {
     let fileName;
+
     if (uploadImage && typeof uploadImage === "string") {
       fileName = uploadImage;
     } else if (uploadImage && typeof uploadImage !== "string") {
@@ -85,16 +87,13 @@ export const ProfilePage: React.VFC = memo(() => {
     try {
       const res = await API.graphql(graphqlOperation(updateUser, { input }));
       console.log(res);
-      history.push(`/user/${userInformation?.displayId}`)
+      history.push(`/user/${userInformation?.displayId}`);
     } catch (error) {
       console.log(error);
       alert(error);
     }
-  };
-
-  console.log(userInformation);
-  console.log(uploadImage, previewImage);
-  console.log(imageUrl);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

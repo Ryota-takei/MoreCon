@@ -1,14 +1,12 @@
-import React, { memo} from "react";
+import React, { memo } from "react";
 import { Box, HStack, Text } from "@chakra-ui/layout";
 import { Textarea } from "@chakra-ui/textarea";
 
 import { NormalButton } from "../../atom/button/NormalButton";
-import { selectUser } from "../../../features/user/userSlice";
-import { useAppSelector } from "../../../app/hooks";
 import { Post } from "../../../types/post/NewPots";
 import { Spinner } from "@chakra-ui/spinner";
 import { CommentList } from "./CommentList";
-import { UseCommentCard } from "../../../hooks/comment/UseCommentCard";
+import { useCommentCard } from "../../../hooks/comment/useCommentCard";
 import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
@@ -19,7 +17,6 @@ type Prop = {
 
 export const CommentCard: React.VFC<Prop> = memo((props) => {
   const { post, imageUrl, setCommentCount } = props;
-  const loginUser = useAppSelector(selectUser);
 
   //カスタムフック
   const {
@@ -31,7 +28,7 @@ export const CommentCard: React.VFC<Prop> = memo((props) => {
     onClickComment,
     checkKeyDown,
     errors,
-  } = UseCommentCard(setCommentCount, post);
+  } = useCommentCard(setCommentCount, post);
 
   return (
     <Box w="100%" p="2" border="1px" borderColor="gray.100" borderRadius="10px">
@@ -46,10 +43,7 @@ export const CommentCard: React.VFC<Prop> = memo((props) => {
             onKeyDown={(e) => checkKeyDown}
           >
             <HStack>
-              <Avatar
-                src={imageUrl}
-                boxSize="40px"
-              />
+              <Avatar src={imageUrl} boxSize="40px" />
               <Text fontSize="14px" color="red.500">
                 {errors.comment?.message}
               </Text>

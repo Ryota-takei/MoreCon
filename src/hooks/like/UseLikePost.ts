@@ -10,7 +10,7 @@ type CreateLike = {
   data: CreateLikeMutation;
 };
 
-export const UseLikePost = (post:Post) => {
+export const useLikePost = (post:Post) => {
   const loginUser = useAppSelector(selectUser);
   const [isLoading, setIsLoading] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
@@ -74,6 +74,7 @@ export const UseLikePost = (post:Post) => {
       setIsLike(true);
     }
     setLikeCount(post?.likes?.items?.length ?? 0);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginUser]);
 
   return { onClickLikeCancel, onClickLike, likeCount, isLike };

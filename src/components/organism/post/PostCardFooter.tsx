@@ -1,13 +1,12 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import React, { memo, useRef, useState } from "react";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BiComment, BiShareAlt } from "react-icons/bi";
 
 import { Post } from "../../../types/post/NewPots";
-import { UseLikePost } from "../../../hooks/like/UseLikePost";
+import { useLikePost } from "../../../hooks/like/useLikePost";
 import { Alert } from "../../organism/alert/Alert";
-import { UseUpdatePostStatus } from "../../../hooks/post/UseUpdatePostStatus";
+import { useUpdatePostStatus } from "../../../hooks/post/useUpdatePostStatus";
 import { Pop } from "../pop/Pop";
 
 type Prop = {
@@ -24,8 +23,8 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
 
   // カスタムフック
   const { onClickLikeCancel, onClickLike, likeCount, isLike } =
-    UseLikePost(post);
-  const { onClickProduct } = UseUpdatePostStatus(post, setIsOpen);
+    useLikePost(post);
+  const { onClickProduct } = useUpdatePostStatus(post, setIsOpen);
 
   return (
     <>

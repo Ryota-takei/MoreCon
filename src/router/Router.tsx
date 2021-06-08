@@ -3,7 +3,6 @@ import { Page404 } from "../components/pages/Page404";
 import { SignIn } from "../components/pages/SignIn";
 import { SignUp } from "../components/pages/SignUp";
 import { TopPage } from "../components/pages/TopPage";
-import { HeaderLayout } from "../components/template/HeaderLayout";
 import { postRouter } from "./PostRouter";
 import { userRoutes } from "./UserRoutes";
 
@@ -11,9 +10,7 @@ export const Router = () => {
   return (
     <Switch>
       <Route exact path="/">
-        <HeaderLayout>
-          <TopPage />
-        </HeaderLayout>
+        <TopPage />
       </Route>
       <Route
         path="/posts"
@@ -25,21 +22,17 @@ export const Router = () => {
                 exact={route.exact}
                 path={`${url}${route.path}`}
               >
-                <HeaderLayout>{route.children}</HeaderLayout>
+                {route.children}
               </Route>
             ))}
           </Switch>
         )}
       />
       <Route path="/signup">
-        <HeaderLayout>
-          <SignUp />
-        </HeaderLayout>
+        <SignUp />
       </Route>
       <Route path="/signin">
-        <HeaderLayout>
-          <SignIn />
-        </HeaderLayout>
+        <SignIn />
       </Route>
       <Route
         path="/user"
@@ -51,7 +44,7 @@ export const Router = () => {
                 exact={route.exact}
                 path={`${url}${route.path}`}
               >
-                <HeaderLayout>{route.children}</HeaderLayout>
+                {route.children}
               </Route>
             ))}
           </Switch>
@@ -59,9 +52,7 @@ export const Router = () => {
       />
 
       <Route path="*">
-        <HeaderLayout>
-          <Page404 />
-        </HeaderLayout>
+        <Page404 />
       </Route>
     </Switch>
   );

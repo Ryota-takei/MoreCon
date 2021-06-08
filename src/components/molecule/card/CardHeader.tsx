@@ -3,7 +3,7 @@ import React, { memo } from "react";
 import { Post } from "../../../types/post/NewPots";
 import { MenuBar } from "../../organism/menu/MenuBar";
 import { GetUser } from "../../../types/user/user";
-import { UseGetCreateDate } from "../../../hooks/function/UseGetDate";
+import { getCreateDate } from "../../../function/getCreateDate";
 import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
@@ -24,7 +24,6 @@ export const CardHeader: React.VFC<Prop> = memo((props) => {
     onOpen,
     fontWeight,
   } = props;
-  const { date } = UseGetCreateDate(post?.timestamp);
 
   return (
     <HStack p="3">
@@ -41,7 +40,7 @@ export const CardHeader: React.VFC<Prop> = memo((props) => {
             </Heading>
           </Flex>
           <Flex>
-            <Text color="gray.400">{date}</Text>
+            <Text color="gray.400">{getCreateDate(post?.timestamp)}</Text>
             {loginUser?.id === post?.contributor?.id && setOpen && onOpen ? (
               <MenuBar setIsOpen={setOpen} onOpen={onOpen} />
             ) : null}

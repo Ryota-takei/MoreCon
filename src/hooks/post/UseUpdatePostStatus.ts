@@ -4,7 +4,7 @@ import { deletePosts } from "../../features/post/newPostSlice";
 import { updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 
-export const UseUpdatePostStatus = (
+export const useUpdatePostStatus = (
   post: Post,
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {

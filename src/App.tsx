@@ -4,16 +4,17 @@ import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 import theme from "./chakraTheme/theme";
 
-import { UseChangeAuth } from "./hooks/auth/UseChangeAuth";
+import { useChangeAuth } from "./hooks/auth/useChangeAuth";
 import { useAppSelector } from "./app/hooks";
 import { selectIsAdmin } from "./features/user/userSlice";
 
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
+import { HeaderLayout } from "./components/template/HeaderLayout";
 Amplify.configure(config);
 
 function App() {
-  const { authStatus, changeAuth } = UseChangeAuth();
+  const { authStatus, changeAuth } = useChangeAuth();
   const isAdmin = useAppSelector(selectIsAdmin);
 
   Amplify.configure({
@@ -21,15 +22,18 @@ function App() {
     aws_appsync_authenticationType: authStatus,
   });
 
-  useEffect(()=> {
-    changeAuth()
-  },[isAdmin])
+  useEffect(() => {
+    changeAuth();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAdmin]);
 
-    console.log(authStatus, isAdmin)
+  console.log(authStatus, isAdmin);
   return (
     <ChakraProvider theme={theme}>
       <BrowserRouter>
-        <Router />
+        <HeaderLayout>
+          <Router />
+        </HeaderLayout>
       </BrowserRouter>
     </ChakraProvider>
   );

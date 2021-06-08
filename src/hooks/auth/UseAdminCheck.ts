@@ -4,7 +4,7 @@ import { useHistory } from "react-router";
 import { useAppDispatch } from "../../app/hooks";
 import { getCurrentUserStatus } from "../../features/user/userSlice";
 
-export const UseAdminCheck = () => {
+export const useAdminCheck = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
@@ -23,6 +23,7 @@ export const UseAdminCheck = () => {
       alert("エラーが発生しました")
     }
   };
+  
   const notAdminCheck = async () => {
     try{
       await Auth.currentUserInfo().then((user) => {

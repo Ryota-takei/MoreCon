@@ -3,13 +3,13 @@ import { useHistory } from "react-router";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 
-import { getUserInformation } from "../../../src/features/user/userSlice";
+import { getUserInformation } from "../../features/user/userSlice";
 import { User } from "../../types/user/user";
 import { getUser } from "../../graphql/queries";
 import { CreateUserMutation, GetUserQuery } from "../../API";
 import { createUser } from "../../graphql/mutations";
 import { useAppDispatch } from "../../app/hooks";
-import { UseGetUniqueStr } from "../function/UseGetUniqueStr";
+import { getUniqueStr } from "../../function/getUniqueStr";
 
 export type DataValue = {
   email: string;
@@ -24,11 +24,10 @@ export type NewUser = {
   data: CreateUserMutation;
 };
 
-export const UseSignIn = () => {
+export const useSignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const history = useHistory();
   const toast = useToast();
-  const { getUniqueStr } = UseGetUniqueStr();
   const dispatch = useAppDispatch();
 
   const handleClickLogin = async (data: DataValue) => {

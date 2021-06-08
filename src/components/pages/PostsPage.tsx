@@ -1,29 +1,25 @@
 import { Input } from "@chakra-ui/input";
 import { Box } from "@chakra-ui/layout";
 import React, { memo, useEffect, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  getCurrentUserInformation,
-  selectUser,
-} from "../../features/user/userSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { getCurrentUserInformation } from "../../features/user/userSlice";
 
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { useDisclosure } from "@chakra-ui/react";
 import { NewPostModal } from "../organism/modal/NewPostModal";
 import { NewPostList } from "../template/postList/NewPostList";
 
 export const PostsPage: React.VFC = memo(() => {
-  const { notAdminCheck } = UseAdminCheck();
   const dispatch = useAppDispatch();
-  const userInformation = useAppSelector(selectUser);
   const [displayTitle, setDisplayTitle] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  console.log(userInformation);
+  //カスタムフック
+  const { notAdminCheck } = useAdminCheck();
 
   useEffect(() => {
     notAdminCheck();
     dispatch(getCurrentUserInformation());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

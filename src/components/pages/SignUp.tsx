@@ -2,16 +2,18 @@ import { memo, useEffect } from "react";
 
 import { SignUpForm } from "../organism/form/SignUpForm";
 import { ConfirmCodeForm } from "../organism/form/ConfirmCodeForm";
-import { UseSignUp } from "../../hooks/auth/UseSignUp";
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useSignUp } from "../../hooks/auth/useSignUp";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 
 export const SignUp: React.VFC = memo(() => {
+  //カスタムフック
   const { onSubmit, handleClickSignup, isLoading, isConfirmCode, email } =
-    UseSignUp();
-  const { adminCheck } = UseAdminCheck();
+    useSignUp();
+  const { adminCheck } = useAdminCheck();
 
   useEffect(() => {
     adminCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return isConfirmCode ? (

@@ -7,7 +7,7 @@ import {
   getCurrentUserInformation,
   selectUser,
 } from "../../features/user/userSlice";
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { searchByDisplayId } from "../../graphql/queries";
 import { SearchByDisplayIdQuery } from "../../API";
 import { GetUser } from "../../types/user/user";
@@ -21,16 +21,14 @@ type SearchUser = {
 };
 
 export const UserPage: React.VFC = memo(() => {
-  const { notAdminCheck } = UseAdminCheck();
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<GetUser>();
   const userInformation = useAppSelector(selectUser);
   const { userId } = useParams<{ userId: string }>();
-  const {imageUrl } = useGetImage(userInformation);
+  const { imageUrl } = useGetImage(userInformation);
   const history = useHistory();
-
-  console.log(userInformation);
-  console.log(userId);
+  //カスタムフック
+  const { notAdminCheck } = useAdminCheck();
 
   useEffect(() => {
     dispatch(getCurrentUserInformation());
@@ -54,11 +52,9 @@ export const UserPage: React.VFC = memo(() => {
       }
     };
     getUserInformation();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-
-  console.log(user);
-  console.log(userInformation);
   return (
     <>
       <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">

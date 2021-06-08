@@ -37,7 +37,7 @@ export const Pop: React.VFC<Prop> = memo((props) => {
             <HStack spacing="10">
               <Box color="blue.600" _hover={{ cursor: "pointer" }}>
                 <TwitterShareButton
-                  url={`http://localhost:3000/posts/${post?.id}`}
+                  url={`https://www.morecon.net/${post?.id}`}
                   title={post?.title}
                 >
                   <TwitterIcon size={32} round />
@@ -45,7 +45,7 @@ export const Pop: React.VFC<Prop> = memo((props) => {
               </Box>
               <Box color="blue.300" _hover={{ cursor: "pointer" }}>
                 <FacebookShareButton
-                  url={`http://localhost:3000/posts/${post?.id}`}
+                  url={`https://www.morecon.net/${post?.id}`}
                 >
                   <FacebookIcon size={32} round />
                 </FacebookShareButton>

@@ -56,6 +56,7 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
 
   useEffect(() => {
     setCommentCount(post?.comments?.items?.length ?? 0);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(imageUrl);
