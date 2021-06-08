@@ -8,7 +8,7 @@ export const useUpdatePostStatus = (
   post: Post,
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
-const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const onClickProduct = async () => {
     const input = {
@@ -30,5 +30,5 @@ const dispatch = useAppDispatch()
     }
   };
 
-  return {onClickProduct}
+  return { onClickProduct };
 };
