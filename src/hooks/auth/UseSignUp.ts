@@ -13,7 +13,7 @@ type DataConfirmValue = {
   ConfirmCode: string;
 };
 
-export const UseSignUp = () => {
+export const useSignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [isConfirmCode, setIsConfirmCode] = useState(false);
@@ -24,7 +24,7 @@ export const UseSignUp = () => {
     setIsLoading(true);
     console.log(data);
     try {
-      const { user } = await Auth.signUp({
+      await Auth.signUp({
         username: data.email,
         password: data.password,
         attributes: {

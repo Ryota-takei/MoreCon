@@ -49,18 +49,18 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
   useEffect(() => {
     setValue("title", post?.title);
     setValue("content", post?.content);
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSubmitEditPost = async (data: InputValue) => {
     setIsLoading(true)
-    console.log(data)
     const input = {
       id: post?.id,
       title: data.title,
       content: data.content,
     };
     try {
-      const res = await API.graphql(graphqlOperation(updatePost, { input }));
+     await API.graphql(graphqlOperation(updatePost, { input }));
       dispatch(editPosts(input));
       setValue("title", "");
       setValue("content", "");

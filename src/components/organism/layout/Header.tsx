@@ -2,12 +2,11 @@ import React, { memo, useCallback } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Auth } from "aws-amplify";
 import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
+import { Avatar } from "@chakra-ui/avatar";
 
 import { NormalButton } from "../../atom/button/NormalButton";
 import { useAppSelector } from "../../../app/hooks";
 import { selectIsAdmin, selectUser } from "../../../features/user/userSlice";
-
-import { Avatar } from "@chakra-ui/avatar";
 import { useGetImage } from "../../../hooks/function/useGetImage";
 
 
@@ -17,8 +16,6 @@ export const Header: React.VFC = memo(() => {
   const isAdmin = useAppSelector(selectIsAdmin);
   const userInformation = useAppSelector(selectUser);
   const { imageUrl } = useGetImage(userInformation);
-
-  console.log(location);
 
   const onClickSignUp = useCallback(() => {
     history.push("/signup");
@@ -30,13 +27,15 @@ export const Header: React.VFC = memo(() => {
 
   const onClickHeading = useCallback(() => {
     history.push(isAdmin ? "/posts" : "/");
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
-  const onClickIcon = () => {
+  const onClickIcon = useCallback(() => {
     history.push(`/user/${userInformation?.displayId}`);
-  };
+     // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[userInformation]);
 
-  const onClickSignout = async () => {
+  const onClickSignout = useCallback( async () => {
     try {
       await Auth.signOut();
       history.push("/");
@@ -44,7 +43,7 @@ export const Header: React.VFC = memo(() => {
       alert("エラーが発生しました");
       console.log(error);
     }
-  };
+  },[history]);
 
   return (
     <Box h="80px" boxShadow="md">

@@ -4,7 +4,7 @@ import {selectIsAdmin} from "../../features/user/userSlice"
 
 type AuthStatus = "AMAZON_COGNITO_USER_POOLS" | "API_KEY";
 
-export const UseChangeAuth = () => {
+export const useChangeAuth = () => {
   const isAdmin = useSelector(selectIsAdmin);
   const [authStatus, setAuthStatus] = useState<AuthStatus>("API_KEY");
   const changeAuth = () => {

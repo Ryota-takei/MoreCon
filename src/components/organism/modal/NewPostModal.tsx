@@ -30,13 +30,13 @@ type Prop = {
 };
 
 type InputValue = {
-  title: string
-  content: string
-}
+  title: string;
+  content: string;
+};
 
 export const NewPostModal: React.VFC<Prop> = memo((props) => {
   const { onClose, isOpen, setDisplayTitle } = props;
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false);
   const userInformation = useAppSelector(selectUser);
   const {
     register,
@@ -60,25 +60,25 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
     e.key === "Enter" && e.preventDefault();
   };
 
-  const onSubmitPost = async(data:InputValue) => {
-    setIsLoading(true)
+  const onSubmitPost = async (data: InputValue) => {
+    setIsLoading(true);
     const input = {
       content: data.content,
       title: data.title,
-      timestamp:Math.floor(Date.now() / 1000),
+      timestamp: Math.floor(Date.now() / 1000),
       contributorId: userInformation?.id,
-      type: "new"
-    }
+      type: "new",
+    };
     try {
-      const post = await  API.graphql(graphqlOperation(createPost,{input}))
-      onClose()
-      setValue("title", "")
-      setValue("content", "")
-      setIsLoading(false)
-    } catch(error) {
-      console.log(error)
-      alert("エラーが発生しました")
-      setIsLoading(false)
+      await API.graphql(graphqlOperation(createPost, { input }));
+      onClose();
+      setValue("title", "");
+      setValue("content", "");
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      alert("エラーが発生しました");
+      setIsLoading(false);
     }
   };
 

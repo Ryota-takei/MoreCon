@@ -9,20 +9,17 @@ import * as yup from "yup";
 
 import { NormalInputArea } from "../molecule/inputArea/NormalInputArea";
 import { SecondaryButton } from "../atom/button/SecondaryButton";
-import { UseSignIn } from "../../hooks/auth/UseSignIn";
+import { useSignIn } from "../../hooks/auth/useSignIn";
 import { IconButton } from "../atom/button/IconButton";
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { Form } from "../organism/layout/Form";
-
 
 type Location = {
   state: string;
 };
 
 export const SignIn: React.VFC = memo(() => {
-  const { handleClickLogin, isLoading } = UseSignIn();
-  const {adminCheck} = UseAdminCheck()
   const { state } = useLocation() as Location;
   const {
     register,
@@ -31,17 +28,21 @@ export const SignIn: React.VFC = memo(() => {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
+  //カスタムフック
+  const { handleClickLogin, isLoading } = useSignIn();
+  const { adminCheck } = useAdminCheck();
 
-  useEffect(()=> {
-    adminCheck()
-  },[])
+  useEffect(() => {
+    adminCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleClickGoogleLogin = async () => {
     try {
       const user = Auth.federatedSignIn({
         provider: CognitoHostedUIIdentityProvider.Google,
       });
-      console.log(user)
+      console.log(user);
     } catch (error) {
       console.log(error);
     }

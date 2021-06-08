@@ -52,8 +52,7 @@ export const NewPostList: React.VFC = memo(() => {
     if (res.data?.listPostsSortedByTimestamp?.nextToken) {
       disPatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
     }
-
-    setIsLoading(false);
+    setIsLoading(false)
   };
 
   useEffect(() => {
@@ -74,6 +73,7 @@ export const NewPostList: React.VFC = memo(() => {
       };
     }
     return unsubscribe;
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

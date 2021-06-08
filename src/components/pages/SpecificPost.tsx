@@ -1,24 +1,14 @@
 import React, { memo, useEffect, useState } from "react";
-import {
-  RouteComponentProps,
-  Router,
-  useHistory,
-  useLocation,
-  useParams,
-} from "react-router";
-import { Location } from "history";
+import { useHistory, useParams } from "react-router";
+
 import { Post } from "../../types/post/NewPots";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import {
-  getCurrentUserInformation,
-  selectUser,
-} from "../../features/user/userSlice";
+import { useAppDispatch } from "../../app/hooks";
+import { getCurrentUserInformation } from "../../features/user/userSlice";
 
 import { PostCard } from "../organism/post/PostCard";
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { API, graphqlOperation } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
-import { GetPostQuery } from "../../API";
 import { Spinner } from "@chakra-ui/spinner";
 import { Box } from "@chakra-ui/layout";
 
@@ -30,12 +20,12 @@ type GetPost = {
 
 export const SpecificPost: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
-  const { notAdminCheck } = UseAdminCheck();
   const { postId } = useParams<{ postId: string }>();
   const [post, setPost] = useState<Post>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const userInformation = useAppSelector(selectUser);
   const history = useHistory();
+  //カスタムフック
+  const { notAdminCheck } = useAdminCheck();
 
   const getPostInformation = async () => {
     setIsLoading(true);
@@ -57,10 +47,12 @@ export const SpecificPost: React.VFC = memo(() => {
       setIsLoading(false);
     }
   };
+
   useEffect(() => {
-      dispatch(getCurrentUserInformation());
-      notAdminCheck();
-      getPostInformation();
+    dispatch(getCurrentUserInformation());
+    notAdminCheck();
+    getPostInformation();
+     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId]);
 
   return (

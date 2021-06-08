@@ -2,15 +2,21 @@ import React, { memo, useEffect } from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 
-import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
+import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { NormalButton } from "../atom/button/NormalButton";
 import { ImageCard } from "../organism/topPageCard/ImageCard";
+import { useAppDispatch } from "../../app/hooks";
+import { getCurrentUserInformation } from "../../features/user/userSlice";
 
 export const TopPage: React.VFC = memo(() => {
-  const { isAdminCheck } = UseAdminCheck();
+  const { isAdminCheck } = useAdminCheck();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
+    //user情報をReduxに格納
+    dispatch(getCurrentUserInformation());
     isAdminCheck();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
