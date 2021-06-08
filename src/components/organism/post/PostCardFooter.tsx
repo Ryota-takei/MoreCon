@@ -2,12 +2,13 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
-import { BiComment } from "react-icons/bi";
+import { BiComment, BiShareAlt } from "react-icons/bi";
 
 import { Post } from "../../../types/post/NewPots";
 import { UseLikePost } from "../../../hooks/like/UseLikePost";
 import { Alert } from "../../organism/alert/Alert";
 import { UseUpdatePostStatus } from "../../../hooks/post/UseUpdatePostStatus";
+import { Pop } from "../pop/Pop";
 
 type Prop = {
   post: Post;
@@ -24,7 +25,7 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
   // カスタムフック
   const { onClickLikeCancel, onClickLike, likeCount, isLike } =
     UseLikePost(post);
-  const {onClickProduct} = UseUpdatePostStatus(post, setIsOpen)
+  const { onClickProduct } = UseUpdatePostStatus(post, setIsOpen);
 
   return (
     <>
@@ -41,12 +42,13 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
             <Text fontSize="xs">コメント</Text>
           </HStack>
         </VStack>
-        <VStack color="gray.500" w="33%" spacing="0">
-          <HStack spacing="0">
-            <Text>{commentCount}</Text>
-            <Text fontSize="xs">コメント</Text>
-          </HStack>
-        </VStack>
+        <Pop post={post}>
+          <VStack color="gray.600" w="33%" spacing="0">
+            <HStack _hover={{ cursor: "pointer", opacity: "0.7" }}>
+              <BiShareAlt size="25px" />
+            </HStack> 
+          </VStack>
+        </Pop>
       </Flex>
       <Flex borderTop="1px" color="gray.200" p="1">
         <VStack

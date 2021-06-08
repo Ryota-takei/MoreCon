@@ -16,12 +16,11 @@ import {
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { UseAdminCheck } from "../../hooks/auth/UseAdminCheck";
 import { Form } from "../organism/layout/Form";
-import NoImage from "../../Image/NoImage.png";
 import { ImageTrimmingModal } from "../organism/modal/ImageTrimmingModal";
 import { NormalButton } from "../atom/button/NormalButton";
 import { updateUser } from "../../graphql/mutations";
 import { UseGetUniqueStr } from "../../hooks/function/UseGetUniqueStr";
-import { UseGetImage } from "../../hooks/function/UseGetImage";
+import { useGetImage } from "../../hooks/function/useGetImage";
 import { useHistory } from "react-router";
 
 type InputValue = {
@@ -32,15 +31,16 @@ type InputValue = {
 export const ProfilePage: React.VFC = memo(() => {
   const [uploadImage, setUploadImage] = useState<Blob | string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
-  const [imageUrl, setImageUrl] = useState("");
 
   const userInformation = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const history = useHistory()
-  const { notAdminCheck } = UseAdminCheck();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const {getUniqueStr} = UseGetUniqueStr()
-  const {getImage} = UseGetImage(userInformation, setImageUrl)
+  
+  //カスタムフック
+  const {imageUrl} = useGetImage(userInformation)
+  const { notAdminCheck } = UseAdminCheck();
 
 
   const {
@@ -60,7 +60,6 @@ export const ProfilePage: React.VFC = memo(() => {
   useEffect(() => {
     setValue("name", userInformation?.name);
     setValue("profile", userInformation?.profile);
-    getImage();
   }, [userInformation]);
 
   const onChangeProfile = async (data: InputValue) => {
@@ -114,7 +113,7 @@ export const ProfilePage: React.VFC = memo(() => {
               />
             ) : (
               <Image
-                src={userInformation?.image ? imageUrl : NoImage}
+                src={imageUrl}
                 alt="プロフィール画像"
                 borderRadius="full"
                 boxSize="120px"

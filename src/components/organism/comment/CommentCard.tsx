@@ -1,20 +1,19 @@
 import React, { memo} from "react";
 import { Box, HStack, Text } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/image";
 import { Textarea } from "@chakra-ui/textarea";
 
 import { NormalButton } from "../../atom/button/NormalButton";
 import { selectUser } from "../../../features/user/userSlice";
 import { useAppSelector } from "../../../app/hooks";
-import NoImage from "../../../Image/NoImage.png";
 import { Post } from "../../../types/post/NewPots";
 import { Spinner } from "@chakra-ui/spinner";
 import { CommentList } from "./CommentList";
 import { UseCommentCard } from "../../../hooks/comment/UseCommentCard";
+import { Avatar } from "@chakra-ui/avatar";
 
 type Prop = {
   post: Post;
-  imageUrl: string;
+  imageUrl: string | undefined;
   setCommentCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
@@ -47,10 +46,8 @@ export const CommentCard: React.VFC<Prop> = memo((props) => {
             onKeyDown={(e) => checkKeyDown}
           >
             <HStack>
-              <Image
-                src={loginUser?.image ? imageUrl : NoImage}
-                alt="プロフィール画像"
-                borderRadius="full"
+              <Avatar
+                src={imageUrl}
                 boxSize="40px"
               />
               <Text fontSize="14px" color="red.500">
