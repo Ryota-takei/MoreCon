@@ -45,13 +45,7 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
   } = useForm({
     resolver: yupResolver(postChangeSchema),
   });
-
-  useEffect(() => {
-    setValue("title", post?.title);
-    setValue("content", post?.content);
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
+  
   const onSubmitEditPost = async (data: InputValue) => {
     setIsLoading(true)
     const input = {
@@ -60,8 +54,10 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
       content: data.content,
     };
     try {
-     await API.graphql(graphqlOperation(updatePost, { input }));
-      dispatch(editPosts(input));
+     const res = await API.graphql(graphqlOperation(updatePost, { input })) as Post
+    console.log(res);
+    
+     dispatch(editPosts(res));
       setValue("title", "");
       setValue("content", "");
       setIsLoading(false)
@@ -72,6 +68,13 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
       setIsLoading(false)
     }
   };
+  
+  
+    useEffect(() => {
+      setValue("title", post?.title);
+      setValue("content", post?.content);
+       // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

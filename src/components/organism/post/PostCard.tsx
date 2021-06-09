@@ -24,14 +24,15 @@ type Prop = {
 
 export const PostCard: React.VFC<Prop> = memo((props) => {
   const { post, isPosts } = props;
-  const [open, setOpen] = useState(false);
-  const cancelRef = useRef<HTMLButtonElement>(null);
-  const dispatch = useAppDispatch();
+
+  const history = useHistory();
   const loginUser = useAppSelector(selectUser);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const dispatch = useAppDispatch();
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [commentCount, setCommentCount] = useState(0);
-  const history = useHistory();
+  const [open, setOpen] = useState(false);
+  const cancelRef = useRef<HTMLButtonElement>(null);
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const onCloseAlert = () => setOpen(false);
   //カスタムフック(postに紐づいているユーザー情報からimageUrlを取得)
   const { imageUrl } = useGetImage(post?.contributor);

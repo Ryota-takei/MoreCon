@@ -18,6 +18,7 @@ export const useGetImage = (userInformation: GetUser) => {
         alert("エラーが発生しました");
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [userInformation]
   );
 
@@ -34,6 +35,7 @@ export const useGetImage = (userInformation: GetUser) => {
     return () => {
       sub = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInformation]);
 
   return { imageUrl };

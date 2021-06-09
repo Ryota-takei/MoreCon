@@ -5,7 +5,8 @@ import { MenuButton, MenuItem, MenuList, Menu } from "@chakra-ui/menu";
 
 type Prop = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  onOpen:() => void
+  onOpen?: () => void;
+  
 };
 
 export const MenuBar: React.VFC<Prop> = memo((props) => {
@@ -26,7 +27,7 @@ export const MenuBar: React.VFC<Prop> = memo((props) => {
         />
         <MenuList>
           <MenuItem onClick={() => setIsOpen(true)}>削除する</MenuItem>
-          <MenuItem onClick={onOpen}>編集する</MenuItem>
+            <MenuItem onClick={onOpen}>編集する</MenuItem>
         </MenuList>
       </Menu>
     </>

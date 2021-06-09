@@ -12,8 +12,6 @@ import { PostCard } from "../../organism/post/PostCard";
 import { useGetNewPostAndSubScribe } from "../../../hooks/post/useGetNewPostAndSubScribe";
 import { useGetWantedPostAndSubScribe } from "../../../hooks/post/useGetWantedPostAndSubScribe";
 
-type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
-
 export const NewPostList: React.VFC = memo(() => {
   const posts = useAppSelector(selectPosts);
   const isNewPost = useAppSelector(selectIsNewPost);
@@ -28,7 +26,7 @@ export const NewPostList: React.VFC = memo(() => {
   console.log(posts);
 
   return (
-    <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "100px" }} p="2">
+    <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "30px" }} p="2">
       <Flex
         borderRadius="10px"
         w="80%"

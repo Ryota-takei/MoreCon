@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 
 import { RootState } from "../../app/store";
@@ -37,11 +37,11 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    getCurrentUserStatus: (state, action) => {
+    getCurrentUserStatus: (state, action:PayloadAction<boolean> )=> {
       state.isAdmin = action.payload;
       console.log(action.payload);
     },
-    getUserInformation: (state, action) => {
+    getUserInformation: (state, action:PayloadAction<GetUser>) => {
       state.user = action.payload;
     },
   },

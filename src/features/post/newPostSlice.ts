@@ -8,12 +8,6 @@ export type PostState = {
   isNewPost: boolean;
 };
 
-type EditInputType = {
-  id: string | undefined;
-  content: string;
-  title: string;
-};
-
 const initialState: PostState = {
   posts: [],
   nextToken: null,
@@ -42,11 +36,22 @@ export const postsSlice = createSlice({
       );
       state.posts = [...newPosts];
     },
-    editPosts: (state, action: PayloadAction<EditInputType>) => {
-      const post = state.posts.find((post) => post?.id === action.payload?.id);
-      if (post) {
-        post.title = action.payload?.title;
-        post.content = action.payload?.content;
+    editPosts: (state, action: PayloadAction<Post>) => {
+      if (action.payload?.type === "inProduction") {
+        const newPosts = state.posts.filter(
+          (post) => post?.id !== action.payload?.id
+        );
+        state.posts = [...newPosts]
+      } else {
+        const post = state.posts.find(
+          (post) => post?.id === action.payload?.id
+        );
+        if (post && post.type === "new" && action.payload) {
+          post.title = action.payload.title;
+          post.content = action.payload.content;
+        }  else {
+          state.posts = [...state.posts, action.payload]
+        }
       }
     },
     changePostStatus: (state, action: PayloadAction<boolean>) => {
