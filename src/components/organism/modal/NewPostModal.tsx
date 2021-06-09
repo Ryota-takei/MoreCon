@@ -19,9 +19,10 @@ import {
 
 import { selectUser } from "../../../features/user/userSlice";
 import { NormalButton } from "../../atom/button/NormalButton";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPost } from "../../../graphql/mutations";
+import { changePostStatus } from "../../../features/post/newPostSlice";
 
 type Prop = {
   isOpen: boolean;
@@ -36,8 +37,10 @@ type InputValue = {
 
 export const NewPostModal: React.VFC<Prop> = memo((props) => {
   const { onClose, isOpen, setDisplayTitle } = props;
+
   const [isLoading, setIsLoading] = useState(false);
   const userInformation = useAppSelector(selectUser);
+  const dispatch = useAppDispatch();
   const {
     register,
     setValue,
@@ -47,8 +50,8 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
   } = useForm({
     resolver: yupResolver(postChangeSchema),
   });
-  const watchFields = watch(["title"]);
 
+  const watchFields = watch(["title"]);
   const onCloseModal = () => {
     onClose();
     setDisplayTitle(watchFields[0]);
@@ -67,14 +70,17 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
       title: data.title,
       timestamp: Math.floor(Date.now() / 1000),
       contributorId: userInformation?.id,
+      likeCount: 0,
       type: "new",
     };
     try {
       await API.graphql(graphqlOperation(createPost, { input }));
-      onClose();
       setValue("title", "");
       setValue("content", "");
       setIsLoading(false);
+      dispatch(changePostStatus(true));
+      onClose();
+      setDisplayTitle("");
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");

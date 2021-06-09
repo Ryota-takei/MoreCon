@@ -5,6 +5,7 @@ import { Post } from "../../types/post/NewPots";
 export type PostState = {
   posts: Post[];
   nextToken?: string | null;
+  isNewPost: boolean;
 };
 
 type EditInputType = {
@@ -16,6 +17,7 @@ type EditInputType = {
 const initialState: PostState = {
   posts: [],
   nextToken: null,
+  isNewPost: true,
 };
 
 export const postsSlice = createSlice({
@@ -47,6 +49,9 @@ export const postsSlice = createSlice({
         post.content = action.payload?.content;
       }
     },
+    changePostStatus: (state, action: PayloadAction<boolean>) => {
+      state.isNewPost = action.payload;
+    },
   },
   extraReducers: (builder) => {},
 });
@@ -58,9 +63,11 @@ export const {
   fetchNextToken,
   deletePosts,
   editPosts,
+  changePostStatus,
 } = postsSlice.actions;
 
 export const selectPosts = (state: RootState) => state.posts.posts;
 export const selectNextToken = (state: RootState) => state.posts.nextToken;
+export const selectIsNewPost = (state: RootState) => state.posts.isNewPost;
 
 export default postsSlice.reducer;
