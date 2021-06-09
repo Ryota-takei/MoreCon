@@ -32,7 +32,6 @@ export const useGetWantedPostAndSubScribe = () => {
         nextToken: nextToken,
       } as ListPostsQueryVariables)
     )) as GraphQLResult<ListPostsSortedByLikeCountQuery>;
-    console.log(res);
 
     if (res.data?.listPostsSortedByLikeCount?.items) {
       if (type === "INITIAL_QUERY") {
@@ -52,6 +51,7 @@ export const useGetWantedPostAndSubScribe = () => {
     if (!isNewPost) {
       getPosts("INITIAL_QUERY");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isNewPost]);
 
   return { isGetWantedPostLoading };

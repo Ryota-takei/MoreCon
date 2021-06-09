@@ -56,7 +56,7 @@ export const SpecificPost: React.VFC = memo(() => {
   }, [postId]);
 
   return (
-    <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto" mt="5">
+    <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto" mt="5" maxW="1250px">
       {isLoading ? (
         <Box w="100%" textAlign="center">
           <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />

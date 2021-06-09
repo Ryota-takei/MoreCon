@@ -1,18 +1,22 @@
 import { Input } from "@chakra-ui/input";
-import { Box } from "@chakra-ui/layout";
+import { Box, Flex } from "@chakra-ui/layout";
 import React, { memo, useEffect, useState } from "react";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
 
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { useDisclosure } from "@chakra-ui/react";
 import { NewPostModal } from "../organism/modal/NewPostModal";
 import { NewPostList } from "../template/postList/NewPostList";
+import { SideMenu } from "../organism/sideMenu/SideMenu";
+import { selectPage } from "../../features/page/pageSlice";
+import { InProductionList } from "../template/postList/InProductionList";
 
 export const PostsPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
   const [displayTitle, setDisplayTitle] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const pageState = useAppSelector(selectPage);
   //カスタムフック(ログインしているかの確認。していなければトップページに遷移)
   const { notAdminCheck } = useAdminCheck();
 
@@ -23,8 +27,9 @@ export const PostsPage: React.VFC = memo(() => {
   }, []);
 
   return (
-    <>
-      <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">
+    <Flex w={{ base: "100%", md: "70%" }} mx="auto" maxW="1250px">
+      <SideMenu />
+      <Box w={{ base: "100%", sm: "90%", md: "75%" }} minH="100vh" mx="auto">
         <Box textAlign="center" w="100%" mt="3">
           <Input
             w="80%"
@@ -36,13 +41,14 @@ export const PostsPage: React.VFC = memo(() => {
             value={displayTitle}
           />
         </Box>
-        <NewPostList />
+        {pageState === "newPosts" && <NewPostList />}
+        {pageState === "inProduction" && <InProductionList />}
       </Box>
       <NewPostModal
         isOpen={isOpen}
         onClose={onClose}
         setDisplayTitle={setDisplayTitle}
       />
-    </>
+    </Flex>
   );
 });

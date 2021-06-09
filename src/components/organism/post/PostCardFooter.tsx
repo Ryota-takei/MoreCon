@@ -1,6 +1,5 @@
 import React, { memo, useRef, useState } from "react";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
-import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 import { BiComment, BiShareAlt } from "react-icons/bi";
 
 import { Post } from "../../../types/post/NewPots";
@@ -8,6 +7,11 @@ import { useLikePost } from "../../../hooks/like/useLikePost";
 import { Alert } from "../../organism/alert/Alert";
 import { useUpdatePostStatus } from "../../../hooks/post/useUpdatePostStatus";
 import { Pop } from "../pop/Pop";
+import { useAppSelector } from "../../../app/hooks";
+import { selectPage } from "../../../features/page/pageSlice";
+import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
+import { PostCardFooterLike } from "../../molecule/postCardFooter.tsx/PostCardFooterLike";
+import { PostCardFooterProduction } from "../../molecule/postCardFooter.tsx/PostCardFooterProduction";
 
 type Prop = {
   post: Post;
@@ -17,6 +21,7 @@ type Prop = {
 
 export const PostCardFooter: React.VFC<Prop> = memo((props) => {
   const { post, setIsOpenComment, commentCount } = props;
+  const currentPage = useAppSelector(selectPage);
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const onCloseAlert = () => setIsOpen(false);
@@ -51,29 +56,22 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
         </Pop>
       </Flex>
       <Flex borderTop="1px" color="gray.200" p="1">
-        <VStack
-          color="gray.500"
-          _hover={{ cursor: "pointer", opacity: "0.7" }}
-          w="33%"
-          spacing="0"
-          onClick={isLike ? onClickLikeCancel : onClickLike}
-        >
-          {isLike ? (
-            <>
-              <Box color="blue.400">
-                <AiFillLike size="20px" />
-              </Box>
-              <Text fontSize="xs" color="blue.400">
-                want
-              </Text>
-            </>
-          ) : (
-            <>
-              <AiOutlineLike size="20px" />
-              <Text fontSize="xs">want</Text>
-            </>
-          )}
-        </VStack>
+        {currentPage === "newPosts" && (
+          <PostCardFooterLike
+            isLike={isLike}
+            onClickLike={onClickLike}
+            onClickLikeCancel={onClickLikeCancel}
+          />
+        )}
+        {currentPage === "inProduction" && (
+          <VStack w="33%" spacing="0" color="blue.400">
+            <Text
+              fontWeight="bold"
+              fontSize="sm"
+              p="1"
+            >{`${post?.correspondingUser?.name}さんが制作中。コメントで応援しよう！！`}</Text>
+          </VStack>
+        )}
         <VStack
           color="gray.500"
           _hover={{ cursor: "pointer", opacity: "0.7" }}
@@ -81,25 +79,27 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
           spacing="0"
           onClick={() => setIsOpenComment((preVal) => !preVal)}
         >
-          <BiComment size="20px" />
-          <Text fontSize="xs">コメント</Text>
-        </VStack>
-        <VStack color="gray.500" w="33%" spacing="0">
           <HStack h="100%">
-            <Text
-              fontSize="md"
-              bg="blue.300"
-              borderRadius="15px"
-              _hover={{ cursor: "pointer", bg: "blue.500" }}
-              color="white"
-              py="1"
-              px="5"
-              fontWeight="bold"
-              onClick={() => setIsOpen(true)}
-            >
-              制作する
-            </Text>
+            <VStack spacing="0">
+              <BiComment size="20px" />
+              <Text fontSize="xs">コメント</Text>
+            </VStack>
           </HStack>
+        </VStack>
+        <VStack color="gray.500" w="33%" >
+          {currentPage === "newPosts" && (
+            <HStack h="100%">
+              <PostStatusButton
+                onClick={() => setIsOpen(true)}
+                text="制作する"
+              />
+            </HStack>
+          )}
+          {currentPage === "inProduction" && (
+            <Box h="100%">
+              <PostCardFooterProduction post={post} />
+            </Box>
+          )}
         </VStack>
       </Flex>
       <Alert

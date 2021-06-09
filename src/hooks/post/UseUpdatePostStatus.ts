@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { deletePosts } from "../../features/post/newPostSlice";
+import { selectUser } from "../../features/user/userSlice";
 import { updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 
@@ -9,11 +10,14 @@ export const useUpdatePostStatus = (
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 ) => {
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(selectUser);
 
   const onClickProduct = async () => {
+    if(post?.type !== "new") return
     const input = {
       id: post?.id,
       type: "inProduction",
+      correspondingUserId: currentUser?.id,
     };
 
     try {
