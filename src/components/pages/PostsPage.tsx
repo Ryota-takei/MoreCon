@@ -13,7 +13,7 @@ export const PostsPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
   const [displayTitle, setDisplayTitle] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
-  //カスタムフック
+  //カスタムフック(ログインしているかの確認。していなければトップページに遷移)
   const { notAdminCheck } = useAdminCheck();
 
   useEffect(() => {

@@ -21,9 +21,10 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
   const cancelRef = useRef<HTMLButtonElement>(null);
   const onCloseAlert = () => setIsOpen(false);
 
-  // カスタムフック
+  // カスタムフック(likeの切り替え、like数、ログインしているユーザーがlikeしているかの確認)
   const { onClickLikeCancel, onClickLike, likeCount, isLike } =
     useLikePost(post);
+  //制作するボタンを押した際にpostのステータスの変更
   const { onClickProduct } = useUpdatePostStatus(post, setIsOpen);
 
   return (
@@ -45,7 +46,7 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
           <VStack color="gray.600" w="33%" spacing="0">
             <HStack _hover={{ cursor: "pointer", opacity: "0.7" }}>
               <BiShareAlt size="25px" />
-            </HStack> 
+            </HStack>
           </VStack>
         </Pop>
       </Flex>

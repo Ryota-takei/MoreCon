@@ -33,7 +33,7 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
   const [commentCount, setCommentCount] = useState(0);
   const history = useHistory();
   const onCloseAlert = () => setOpen(false);
-  //カスタムフック
+  //カスタムフック(postに紐づいているユーザー情報からimageUrlを取得)
   const { imageUrl } = useGetImage(post?.contributor);
 
   const onClickDeletePost = async () => {
