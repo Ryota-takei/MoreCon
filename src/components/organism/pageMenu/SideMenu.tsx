@@ -1,4 +1,4 @@
-import { Box,Stack } from "@chakra-ui/layout";
+import { Box, Stack } from "@chakra-ui/layout";
 import { FaRegLightbulb, FaDesktop } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { BsPeopleCircle } from "react-icons/bs";
@@ -49,12 +49,14 @@ export const SideMenu = () => {
           text="完成！"
           page="finish"
         />
-        <Menu
-          onClick={clickMyPage}
-          children={<BsPeopleCircle />}
-          text="マイページ"
-          page="myPage"
-        />
+        <Box>
+          <Menu
+            onClick={clickMyPage}
+            children={<BsPeopleCircle />}
+            text="マイページ"
+            page="myPage"
+          />
+        </Box>
       </Stack>
     </Box>
   );

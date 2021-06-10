@@ -54,7 +54,10 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
   const watchFields = watch(["title"]);
   const onCloseModal = () => {
     onClose();
-    setDisplayTitle(watchFields[0]);
+
+    if (watchFields[0]) {
+      setDisplayTitle(watchFields[0]);
+    }
   };
 
   const checkKeyDown = (
