@@ -18,7 +18,7 @@ type Prop = {
 export const CommentCard: React.VFC<Prop> = memo((props) => {
   const { post, imageUrl, setCommentCount } = props;
 
-  //カスタムフック
+  //カスタムフック (コメントの取得、コメントの投稿)
   const {
     comments,
     isFetchingLoading,

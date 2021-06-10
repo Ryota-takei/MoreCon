@@ -15,18 +15,19 @@ export const Menu: React.VFC<Prop> = (props) => {
   const pageState = useAppSelector(selectPage);
   return (
     <HStack
-      p="3"
+      p={{base: "2", md:"3"}}
       borderRadius="15px"
-      fontSize={{base:"14px", sm:"18px"}}
+      fontSize={{ base: "14px", sm: "18px" }}
       spacing="2"
       fontWeight="bold"
-      _hover={{ cursor: "pointer", color: "blue.500", bg: "blue.50"}}
+      _hover={{ cursor: "pointer", color: "blue.500", bg: "blue.50" }}
       onClick={onClick}
       color={page === pageState ? "blue.500" : "black"}
-      bg={page === pageState ? "blue.50" : undefined}
+      bg={page === pageState ?  "blue.50"  : undefined}
+      w={{ base: "33%", md: "100%" }}
     >
       {children}
-      <Text>{text}</Text>
+      <Text　mx="auto">{text}</Text>
     </HStack>
   );
 };

@@ -13,7 +13,7 @@ import {
   fetchNextToken,
   initialQuery,
   selectIsNewPost,
-} from "../../features/post/newPostSlice";
+} from "../../features/post/postSlice";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 

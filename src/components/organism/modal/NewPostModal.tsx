@@ -22,7 +22,7 @@ import { NormalButton } from "../../atom/button/NormalButton";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPost } from "../../../graphql/mutations";
-import { changePostStatus } from "../../../features/post/newPostSlice";
+import { changePostStatus } from "../../../features/post/postSlice";
 
 type Prop = {
   isOpen: boolean;
@@ -158,5 +158,5 @@ const VIOLATION_PROFILE_COUNT = "本文は350文字以下で入力してくだ�
 
 const postChangeSchema = yup.object().shape({
   title: yup.string().required(REQUIRE).max(20, VIOLATION_NAME_COUNT),
-  content: yup.string().required(REQUIRE).max(250, VIOLATION_PROFILE_COUNT),
+  content: yup.string().required(REQUIRE).max(350, VIOLATION_PROFILE_COUNT),
 });

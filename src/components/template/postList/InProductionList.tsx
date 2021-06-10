@@ -1,67 +1,15 @@
-import { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { GraphQLResult } from "@aws-amplify/api-graphql";
-import { API, graphqlOperation } from "aws-amplify";
 import { Box, VStack } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
-
-import {
-  ListPostsQueryVariables,
-  ListPostsSortedByTimestampQuery,
-} from "../../../API";
-import { listPostsSortedByTimestamp } from "../../../graphql/queries";
 import { PostCard } from "../../organism/post/PostCard";
-import {
-  additionalQuery,
-  fetchNextToken,
-  initialQuery,
-  selectPosts,
-} from "../../../features/post/newPostSlice";
+import { selectPosts } from "../../../features/post/postSlice";
 import { useAppSelector } from "../../../app/hooks";
-
-type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
+import { useGetInProductionPostAndSubscribe } from "../../../hooks/post/useGetInProductionPostAndSubscribe";
 
 export const InProductionList: React.VFC = () => {
-  const dispatch = useDispatch();
   const posts = useAppSelector(selectPosts);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const getPost = async (type: Type, nextToken: string | null = null) => {
-    setIsLoading(true);
-
-    try {
-      const res = (await API.graphql(
-        graphqlOperation(listPostsSortedByTimestamp, {
-          type: "inProduction",
-          sortDirection: "DESC",
-          limit: 8,
-          nextToken: nextToken,
-        } as ListPostsQueryVariables)
-      )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
-
-      if (res.data?.listPostsSortedByTimestamp?.items) {
-        if (type === "INITIAL_QUERY") {
-          dispatch(initialQuery(res.data.listPostsSortedByTimestamp.items));
-        } else {
-          dispatch(additionalQuery(res.data.listPostsSortedByTimestamp.items));
-        }
-      }
-
-      if (res.data?.listPostsSortedByTimestamp?.nextToken) {
-        dispatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
-      }
-    } catch (error) {
-      console.log(error);
-      alert("エラーが発生しました");
-    }
-
-    setIsLoading(false);
-  };
-
-  useEffect(() => {
-    getPost("INITIAL_QUERY");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //カスタムフック（制作中の投稿の取得とサブスクリプション)
+  const { isLoading } = useGetInProductionPostAndSubscribe();
 
   return (
     <Box minH="100Vh" w="100%" p="2">

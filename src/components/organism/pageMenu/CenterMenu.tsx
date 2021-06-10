@@ -18,7 +18,7 @@ export const CenterMenu: React.VFC = memo(() => {
   };
 
   return (
-    <HStack display={{base:"flex", md:"none"}} justifyContent="center" mt="2" spacing="3">
+    <HStack display={{base:"flex", md:"none"}} justifyContent="center" mt="2" spacing="3" textAlign="center">
       <Menu onClick={clickNewPosts} text="みんなの欲しい" page="newPosts" />
       <Menu
         onClick={clickInProductionPosts}

@@ -7,7 +7,7 @@ import {
   selectIsNewPost,
   selectPosts,
   changePostStatus,
-} from "../../../features/post/newPostSlice";
+} from "../../../features/post/postSlice";
 import { PostCard } from "../../organism/post/PostCard";
 import { useGetNewPostAndSubScribe } from "../../../hooks/post/useGetNewPostAndSubScribe";
 import { useGetWantedPostAndSubScribe } from "../../../hooks/post/useGetWantedPostAndSubScribe";
