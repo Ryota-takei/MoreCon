@@ -8,7 +8,7 @@ import {
   selectPosts,
   changePostStatus,
 } from "../../../features/post/postSlice";
-import { PostCard } from "../../organism/post/PostCard";
+import { NewPostCard } from "../../organism/post/NewPostCard";
 import { useGetNewPostAndSubScribe } from "../../../hooks/post/useGetNewPostAndSubScribe";
 import { useGetWantedPostAndSubScribe } from "../../../hooks/post/useGetWantedPostAndSubScribe";
 
@@ -71,7 +71,7 @@ export const NewPostList: React.VFC = memo(() => {
         <>
           <VStack spacing="3" mt="4">
             {posts.map((post) => (
-              <PostCard post={post} key={post?.id} isPosts={true} />
+              <NewPostCard post={post} key={post?.id} isPosts={true} />
             ))}
           </VStack>
         </>

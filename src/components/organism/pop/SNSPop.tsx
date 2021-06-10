@@ -1,3 +1,6 @@
+import { memo } from "react";
+import { Box, HStack, VStack } from "@chakra-ui/layout";
+import { BiShareAlt } from "react-icons/bi";
 import {
   Popover,
   PopoverBody,
@@ -12,21 +15,25 @@ import {
   TwitterIcon,
   FacebookIcon,
 } from "react-share";
-import React, { memo, ReactNode } from "react";
-import { Box, HStack, VStack } from "@chakra-ui/layout";
+
 import { Post } from "../../../types/post/NewPots";
 
 type Prop = {
-  children: ReactNode;
   post: Post;
 };
 
-export const Pop: React.VFC<Prop> = memo((props) => {
-  const { children, post } = props;
+export const SNSPop: React.VFC<Prop> = memo((props) => {
+  const { post } = props;
 
   return (
     <Popover isLazy>
-      <PopoverTrigger>{children}</PopoverTrigger>
+      <PopoverTrigger>
+        <VStack color="gray.600" w="33%" spacing="0">
+          <HStack _hover={{ cursor: "pointer", opacity: "0.7" }}>
+            <BiShareAlt size="25px" />
+          </HStack>
+        </VStack>
+      </PopoverTrigger>
       <PopoverContent>
         <PopoverHeader color="black" ml="5" mr="5">
           共有

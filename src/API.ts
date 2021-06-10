@@ -14,6 +14,7 @@ export type UpdatePostInput = {
   contributorId?: string | null,
   correspondingUserId?: string | null,
   correspondingUserMessage?: string | null,
+  correspondingUserTitle?: string | null,
 };
 
 export type ModelPostConditionInput = {
@@ -27,6 +28,7 @@ export type ModelPostConditionInput = {
   contributorId?: ModelIDInput | null,
   correspondingUserId?: ModelIDInput | null,
   correspondingUserMessage?: ModelStringInput | null,
+  correspondingUserTitle?: ModelStringInput | null,
   and?: Array< ModelPostConditionInput | null > | null,
   or?: Array< ModelPostConditionInput | null > | null,
   not?: ModelPostConditionInput | null,
@@ -113,6 +115,7 @@ export type Post = {
   contributorId: string,
   correspondingUserId?: string | null,
   correspondingUserMessage?: string | null,
+  correspondingUserTitle?: string | null,
   owner?: string | null,
   contributor?: User | null,
   correspondingUser?: User | null,
@@ -288,6 +291,7 @@ export type CreatePostInput = {
   contributorId: string,
   correspondingUserId?: string | null,
   correspondingUserMessage?: string | null,
+  correspondingUserTitle?: string | null,
 };
 
 export type CreateUserInput = {
@@ -332,6 +336,7 @@ export type ModelPostFilterInput = {
   contributorId?: ModelIDInput | null,
   correspondingUserId?: ModelIDInput | null,
   correspondingUserMessage?: ModelStringInput | null,
+  correspondingUserTitle?: ModelStringInput | null,
   and?: Array< ModelPostFilterInput | null > | null,
   or?: Array< ModelPostFilterInput | null > | null,
   not?: ModelPostFilterInput | null,
@@ -417,6 +422,7 @@ export type UpdatePostMutation = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -442,6 +448,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -461,6 +468,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -542,6 +550,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -561,6 +570,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -643,6 +653,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -680,6 +691,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -718,6 +730,7 @@ export type UpdatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -757,6 +770,7 @@ export type DeletePostMutation = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -782,6 +796,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -801,6 +816,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -882,6 +898,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -901,6 +918,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -983,6 +1001,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1020,6 +1039,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1058,6 +1078,7 @@ export type DeletePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1108,6 +1129,7 @@ export type UpdateUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -1161,6 +1183,7 @@ export type UpdateUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -1225,6 +1248,7 @@ export type UpdateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1262,6 +1286,7 @@ export type UpdateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1300,6 +1325,7 @@ export type UpdateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1338,6 +1364,7 @@ export type UpdateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1388,6 +1415,7 @@ export type DeleteUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -1441,6 +1469,7 @@ export type DeleteUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -1505,6 +1534,7 @@ export type DeleteUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1542,6 +1572,7 @@ export type DeleteUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1580,6 +1611,7 @@ export type DeleteUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1618,6 +1650,7 @@ export type DeleteUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -1667,6 +1700,7 @@ export type DeleteCommentMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -1802,6 +1836,7 @@ export type DeleteCommentMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -1821,6 +1856,7 @@ export type DeleteCommentMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -1906,6 +1942,7 @@ export type UpdateLikeMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -2041,6 +2078,7 @@ export type UpdateLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2060,6 +2098,7 @@ export type UpdateLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2145,6 +2184,7 @@ export type DeleteLikeMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -2280,6 +2320,7 @@ export type DeleteLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2299,6 +2340,7 @@ export type DeleteLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2385,6 +2427,7 @@ export type UpdateThankMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -2520,6 +2563,7 @@ export type UpdateThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2539,6 +2583,7 @@ export type UpdateThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2625,6 +2670,7 @@ export type DeleteThankMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -2760,6 +2806,7 @@ export type DeleteThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2779,6 +2826,7 @@ export type DeleteThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2859,6 +2907,7 @@ export type CreatePostMutation = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -2884,6 +2933,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2903,6 +2953,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -2984,6 +3035,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3003,6 +3055,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3085,6 +3138,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3122,6 +3176,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3160,6 +3215,7 @@ export type CreatePostMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3210,6 +3266,7 @@ export type CreateUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -3263,6 +3320,7 @@ export type CreateUserMutation = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -3327,6 +3385,7 @@ export type CreateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3364,6 +3423,7 @@ export type CreateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3402,6 +3462,7 @@ export type CreateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3440,6 +3501,7 @@ export type CreateUserMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -3489,6 +3551,7 @@ export type CreateCommentMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -3624,6 +3687,7 @@ export type CreateCommentMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3643,6 +3707,7 @@ export type CreateCommentMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3728,6 +3793,7 @@ export type CreateLikeMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -3863,6 +3929,7 @@ export type CreateLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3882,6 +3949,7 @@ export type CreateLikeMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -3968,6 +4036,7 @@ export type CreateThankMutation = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -4103,6 +4172,7 @@ export type CreateThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4122,6 +4192,7 @@ export type CreateThankMutation = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4201,6 +4272,7 @@ export type GetPostQuery = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -4226,6 +4298,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4245,6 +4318,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4326,6 +4400,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4345,6 +4420,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -4427,6 +4503,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -4464,6 +4541,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -4502,6 +4580,7 @@ export type GetPostQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -4544,6 +4623,7 @@ export type ListPostsQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -4684,6 +4764,7 @@ export type ListPostsSortedByTimestampQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -4824,6 +4905,7 @@ export type ListPostsSortedByLikeCountQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -4964,6 +5046,7 @@ export type ListPostsSortedByContributorQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -5104,6 +5187,7 @@ export type ListPostsSortedByCorrespondingUserQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -5248,6 +5332,7 @@ export type GetUserQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -5301,6 +5386,7 @@ export type GetUserQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -5365,6 +5451,7 @@ export type GetUserQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -5402,6 +5489,7 @@ export type GetUserQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -5440,6 +5528,7 @@ export type GetUserQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -5478,6 +5567,7 @@ export type GetUserQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -5531,6 +5621,7 @@ export type ListUsersQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -5550,6 +5641,7 @@ export type ListUsersQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -5646,6 +5738,7 @@ export type SearchByDisplayIdQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -5665,6 +5758,7 @@ export type SearchByDisplayIdQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -5754,6 +5848,7 @@ export type GetCommentQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -5889,6 +5984,7 @@ export type GetCommentQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -5908,6 +6004,7 @@ export type GetCommentQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6001,6 +6098,7 @@ export type ListCommentsQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -6113,6 +6211,7 @@ export type ListCommentsSortedByTimestampQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -6213,6 +6312,7 @@ export type GetLikeQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -6348,6 +6448,7 @@ export type GetLikeQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6367,6 +6468,7 @@ export type GetLikeQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6455,6 +6557,7 @@ export type ListLikesQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -6556,6 +6659,7 @@ export type GetThankQuery = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -6691,6 +6795,7 @@ export type GetThankQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6710,6 +6815,7 @@ export type GetThankQuery = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6799,6 +6905,7 @@ export type ListThanksQuery = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -6890,6 +6997,7 @@ export type OnCreatePostSubscription = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -6915,6 +7023,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -6934,6 +7043,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7015,6 +7125,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7034,6 +7145,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7116,6 +7228,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7153,6 +7266,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7191,6 +7305,7 @@ export type OnCreatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7225,6 +7340,7 @@ export type OnUpdatePostSubscription = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -7250,6 +7366,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7269,6 +7386,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7350,6 +7468,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7369,6 +7488,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7451,6 +7571,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7488,6 +7609,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7526,6 +7648,7 @@ export type OnUpdatePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7560,6 +7683,7 @@ export type OnDeletePostSubscription = {
     contributorId: string,
     correspondingUserId?: string | null,
     correspondingUserMessage?: string | null,
+    correspondingUserTitle?: string | null,
     owner?: string | null,
     contributor?:  {
       __typename: "User",
@@ -7585,6 +7709,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7604,6 +7729,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7685,6 +7811,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7704,6 +7831,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -7786,6 +7914,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7823,6 +7952,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7861,6 +7991,7 @@ export type OnDeletePostSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -7906,6 +8037,7 @@ export type OnCreateUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -7959,6 +8091,7 @@ export type OnCreateUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -8023,6 +8156,7 @@ export type OnCreateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8060,6 +8194,7 @@ export type OnCreateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8098,6 +8233,7 @@ export type OnCreateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8136,6 +8272,7 @@ export type OnCreateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8181,6 +8318,7 @@ export type OnUpdateUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -8234,6 +8372,7 @@ export type OnUpdateUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -8298,6 +8437,7 @@ export type OnUpdateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8335,6 +8475,7 @@ export type OnUpdateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8373,6 +8514,7 @@ export type OnUpdateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8411,6 +8553,7 @@ export type OnUpdateUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8456,6 +8599,7 @@ export type OnDeleteUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -8509,6 +8653,7 @@ export type OnDeleteUserSubscription = {
         contributorId: string,
         correspondingUserId?: string | null,
         correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
         owner?: string | null,
         contributor?:  {
           __typename: "User",
@@ -8573,6 +8718,7 @@ export type OnDeleteUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8610,6 +8756,7 @@ export type OnDeleteUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8648,6 +8795,7 @@ export type OnDeleteUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8686,6 +8834,7 @@ export type OnDeleteUserSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null,
         user?:  {
@@ -8730,6 +8879,7 @@ export type OnCreateCommentSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -8865,6 +9015,7 @@ export type OnCreateCommentSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -8884,6 +9035,7 @@ export type OnCreateCommentSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -8969,6 +9121,7 @@ export type OnDeleteCommentSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -9104,6 +9257,7 @@ export type OnDeleteCommentSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9123,6 +9277,7 @@ export type OnDeleteCommentSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9203,6 +9358,7 @@ export type OnCreateLikeSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -9338,6 +9494,7 @@ export type OnCreateLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9357,6 +9514,7 @@ export type OnCreateLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9437,6 +9595,7 @@ export type OnUpdateLikeSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -9572,6 +9731,7 @@ export type OnUpdateLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9591,6 +9751,7 @@ export type OnUpdateLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9671,6 +9832,7 @@ export type OnDeleteLikeSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -9806,6 +9968,7 @@ export type OnDeleteLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9825,6 +9988,7 @@ export type OnDeleteLikeSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -9906,6 +10070,7 @@ export type OnCreateThankSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -10041,6 +10206,7 @@ export type OnCreateThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -10060,6 +10226,7 @@ export type OnCreateThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -10141,6 +10308,7 @@ export type OnUpdateThankSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -10276,6 +10444,7 @@ export type OnUpdateThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -10295,6 +10464,7 @@ export type OnUpdateThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -10376,6 +10546,7 @@ export type OnDeleteThankSubscription = {
       contributorId: string,
       correspondingUserId?: string | null,
       correspondingUserMessage?: string | null,
+      correspondingUserTitle?: string | null,
       owner?: string | null,
       contributor?:  {
         __typename: "User",
@@ -10511,6 +10682,7 @@ export type OnDeleteThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,
@@ -10530,6 +10702,7 @@ export type OnDeleteThankSubscription = {
           contributorId: string,
           correspondingUserId?: string | null,
           correspondingUserMessage?: string | null,
+          correspondingUserTitle?: string | null,
           owner?: string | null,
         } | null > | null,
         nextToken?: string | null,

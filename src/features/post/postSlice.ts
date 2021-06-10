@@ -61,7 +61,13 @@ export const postsSlice = createSlice({
         );
         state.posts = [...newPosts];
       } else {
-        state.posts = [...state.posts, action.payload]
+        state.posts = [...state.posts, action.payload];
+      }
+    },
+    editFinishPost: (state, action: PayloadAction<Post>) => {
+      console.log(action.payload);
+      if (action.payload?.type === "finish") {
+        state.posts = [action.payload, ...state.posts];
       }
     },
     changePostStatus: (state, action: PayloadAction<boolean>) => {
@@ -80,6 +86,7 @@ export const {
   editNewPosts,
   changePostStatus,
   editInProductionPost,
+  editFinishPost,
 } = postsSlice.actions;
 
 export const selectPosts = (state: RootState) => state.posts.posts;

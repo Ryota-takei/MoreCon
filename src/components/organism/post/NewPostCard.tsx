@@ -11,7 +11,7 @@ import { deletePost } from "../../../graphql/mutations";
 import { deletePosts } from "../../../features/post/postSlice";
 import { Alert } from "../alert/Alert";
 import { EditPostModal } from "../modal/EditPostModal";
-import { PostCardFooter } from "./PostCardFooter";
+import { NewPostCardFooter } from "./NewPostCardFooter";
 import { CardHeader } from "../../molecule/card/CardHeader";
 import { CommentCard } from "../comment/CommentCard";
 import { useHistory } from "react-router";
@@ -22,7 +22,7 @@ type Prop = {
   isPosts: boolean;
 };
 
-export const PostCard: React.VFC<Prop> = memo((props) => {
+export const NewPostCard: React.VFC<Prop> = memo((props) => {
   const { post, isPosts } = props;
 
   const history = useHistory();
@@ -92,7 +92,7 @@ export const PostCard: React.VFC<Prop> = memo((props) => {
               <Text>{post?.content}</Text>
             </Box>
           </Box>
-          <PostCardFooter
+          <NewPostCardFooter
             post={post}
             setIsOpenComment={setIsOpenComment}
             commentCount={commentCount}
