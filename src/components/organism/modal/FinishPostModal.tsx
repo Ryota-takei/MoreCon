@@ -1,3 +1,7 @@
+import  { memo, useState } from "react";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import { FormControl } from "@chakra-ui/form-control";
 import { Flex, Text } from "@chakra-ui/layout";
 import {
@@ -10,11 +14,8 @@ import {
   ModalOverlay,
 } from "@chakra-ui/modal";
 import { Textarea } from "@chakra-ui/textarea";
-import React, { memo, useState } from "react";
+
 import { NormalButton } from "../../atom/button/NormalButton";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
 import { Input } from "@chakra-ui/input";
 import { Post } from "../../../types/post/NewPots";
 import { API, graphqlOperation } from "aws-amplify";
@@ -24,19 +25,20 @@ import { deletePosts } from "../../../features/post/postSlice";
 import { changePageState } from "../../../features/page/pageSlice";
 
 type Prop = {
-  onClose:() => void
-  isOpen: boolean
-  post: Post
-}
+  onClose: () => void;
+  isOpen: boolean;
+  post: Post;
+};
 
 type Data = {
-  url: string
-  content: string
-}
+  url: string;
+  content: string;
+  title: string
+};
 
 export const FinishPostModal: React.VFC<Prop> = memo((props) => {
-  const { onClose, isOpen , post} = props;
-  const dispatch = useAppDispatch()
+  const { onClose, isOpen, post } = props;
+  const dispatch = useAppDispatch();
 
   const [isLoading, setIsLoading] = useState(false);
   const {
@@ -53,30 +55,30 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
     e.key === "Enter" && e.preventDefault();
   };
 
-  const submitFinishPost = async(data:Data) => {
-    setIsLoading(true)
+  const submitFinishPost = async (data: Data) => {
+    setIsLoading(true);
     const input = {
       id: post?.id,
-      type:"finish",
+      type: "finish",
       url: data.url,
-      correspondingUserMessage: data.content
-    }
+      correspondingUserMessage: data.content,
+      correspondingUserTitle: data.title
+    };
 
     try {
-      await API.graphql(graphqlOperation(updatePost, {input}))
-      if(post) {
-        dispatch(deletePosts(post.id))
+      await API.graphql(graphqlOperation(updatePost, { input }));
+      if (post) {
+        dispatch(deletePosts(post.id));
       }
-      setIsLoading(false)
-      onClose()
-      dispatch(changePageState("finish"))
+      setIsLoading(false);
+      onClose();
+      dispatch(changePageState("finish"));
     } catch (error) {
-      console.log(error)
-      alert("エラーが発生しました")
-      setIsLoading(false)
+      console.log(error);
+      alert("エラーが発生しました");
+      setIsLoading(false);
     }
-  }
-
+  };
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -86,7 +88,9 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
       >
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader textAlign="center">完成したサービスについて書いてみよう</ModalHeader>
+          <ModalHeader textAlign="center" mt="4">
+            完成したサービスについて書いてみよう
+          </ModalHeader>
           <ModalCloseButton />
           <ModalBody pb={6}>
             <FormControl>
@@ -94,13 +98,12 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
                 {errors.title?.message}
               </Text>
               <Input
-                placeholder="制作したサービスのURLを記載しよう"
+                placeholder="サービスにタイトルをつけよう*"
                 borderRadius="10px"
                 color="gray.700"
-                {...register("url")}
+                {...register("title")}
               />
             </FormControl>
-
             <FormControl mt={4}>
               <Text fontSize="14px" color="red.500">
                 {errors.content?.message}
@@ -113,6 +116,17 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
                 resize="none"
                 placeholder="このサービスについてコメントがあれば書いてみよう"
                 {...register("content")}
+              />
+            </FormControl>
+            <FormControl mt="4">
+              <Text fontSize="14px" color="red.500">
+                {errors.url?.message}
+              </Text>
+              <Input
+                placeholder="URLを記載しよう*(例）https://www.morecon.net"
+                borderRadius="10px"
+                color="gray.700"
+                {...register("url")}
               />
             </FormControl>
           </ModalBody>
@@ -138,9 +152,11 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
 });
 
 const REQUIRE = "必須入力項目です";
-const VIOLATION_PROFILE_COUNT = "本文は350文字以下で入力してください";
+const VIOLATION_CONTENT_COUNT = "本文は350文字以下で入力してください";
+const VIOLATION_TITLE_COUNT = "タイトルは40文字以下で入力してください";
 
 const postFinishSchema = yup.object().shape({
   url: yup.string().required(REQUIRE),
-  content: yup.string().max(350, VIOLATION_PROFILE_COUNT),
+  title: yup.string().max(40, VIOLATION_TITLE_COUNT).required(REQUIRE),
+  content: yup.string().max(350, VIOLATION_CONTENT_COUNT),
 });

@@ -10,8 +10,9 @@ import { NewPostModal } from "../organism/modal/NewPostModal";
 import { NewPostList } from "../template/postList/NewPostList";
 import { SideMenu } from "../organism/pageMenu/SideMenu";
 import { selectPage } from "../../features/page/pageSlice";
-import { InProductionList } from "../template/postList/InProductionList";
+import { InProductionPostList } from "../template/postList/InProductionPostList";
 import { CenterMenu } from "../organism/pageMenu/CenterMenu";
+import { FinishPostList } from "../template/postList/FinishPostList";
 
 export const PostsPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
@@ -44,7 +45,8 @@ export const PostsPage: React.VFC = memo(() => {
           <CenterMenu/>
         </Box>
         {pageState === "newPosts" && <NewPostList />}
-        {pageState === "inProduction" && <InProductionList />}
+        {pageState === "inProduction" && <InProductionPostList />}
+        {pageState === "finish" && <FinishPostList/>}
       </Box>
       <NewPostModal
         isOpen={isOpen}

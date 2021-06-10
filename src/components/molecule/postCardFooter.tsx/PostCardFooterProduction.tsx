@@ -1,16 +1,18 @@
-import { useDisclosure } from "@chakra-ui/hooks";
-import {Text } from "@chakra-ui/layout";
-import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
-import { useToast } from "@chakra-ui/toast";
+import { memo, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import React, { memo, useRef, useState } from "react";
-import { useAppDispatch } from "../../../app/hooks";
+import {Text } from "@chakra-ui/layout";
+import { useToast } from "@chakra-ui/toast";
+import { useDisclosure } from "@chakra-ui/hooks";
+import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
+
+import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
+import { FinishPostModal } from "../../organism/modal/FinishPostModal";
 import { deletePosts } from "../../../features/post/postSlice";
 import { updatePost } from "../../../graphql/mutations";
+import { useAppDispatch } from "../../../app/hooks";
 import { Post } from "../../../types/post/NewPots";
-import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
 import { Alert } from "../../organism/alert/Alert";
-import { FinishPostModal } from "../../organism/modal/FinishPostModal";
+
 
 type Prop = {
   post: Post;
@@ -18,10 +20,11 @@ type Prop = {
 
 export const PostCardFooterProduction: React.VFC<Prop> = memo((props) => {
   const { post } = props;
+
   const [isOpenReturnAlert, setIsOpenReturnAlert] = useState(false);
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const dispatch = useAppDispatch();
   const cancelRef = useRef<HTMLButtonElement>(null);
+  const dispatch = useAppDispatch();
   const toast = useToast();
 
   const onCloseReturnAlert = () => setIsOpenReturnAlert(false);

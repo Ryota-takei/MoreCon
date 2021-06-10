@@ -1,18 +1,19 @@
 import React, { memo, useRef, useState } from "react";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
-import { BiComment, BiShareAlt } from "react-icons/bi";
 
 import { Post } from "../../../types/post/NewPots";
 import { useLikePost } from "../../../hooks/like/useLikePost";
-import { Alert } from "../../organism/alert/Alert";
+import { Alert } from "../alert/Alert";
 import { useUpdatePostStatus } from "../../../hooks/post/useUpdatePostStatus";
-import { Pop } from "../pop/Pop";
+import { SNSPop } from "../pop/SNSPop";
 import { useAppSelector } from "../../../app/hooks";
 import { selectPage } from "../../../features/page/pageSlice";
 import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
 import { PostCardFooterLike } from "../../molecule/postCardFooter.tsx/PostCardFooterLike";
 import { PostCardFooterProduction } from "../../molecule/postCardFooter.tsx/PostCardFooterProduction";
 import { selectUser } from "../../../features/user/userSlice";
+import { CommentCount } from "../../molecule/postCardFooter.tsx/CommentCount";
+import { CommentIconText } from "../../molecule/postCardFooter.tsx/CommentIconText";
 
 type Prop = {
   post: Post;
@@ -20,7 +21,7 @@ type Prop = {
   commentCount: number;
 };
 
-export const PostCardFooter: React.VFC<Prop> = memo((props) => {
+export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
   const { post, setIsOpenComment, commentCount } = props;
   const currentPage = useAppSelector(selectPage);
   const currentUser = useAppSelector(selectUser);
@@ -44,18 +45,9 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
           </HStack>
         </VStack>
         <VStack color="gray.500" w="33%" spacing="0">
-          <HStack spacing="0">
-            <Text>{commentCount}</Text>
-            <Text fontSize="xs">コメント</Text>
-          </HStack>
+          <CommentCount commentCount={commentCount} />
         </VStack>
-        <Pop post={post}>
-          <VStack color="gray.600" w="33%" spacing="0">
-            <HStack _hover={{ cursor: "pointer", opacity: "0.7" }}>
-              <BiShareAlt size="25px" />
-            </HStack>
-          </VStack>
-        </Pop>
+        <SNSPop post={post} />
       </Flex>
       <Flex borderTop="1px" color="gray.200" p="1">
         {currentPage === "newPosts" && (
@@ -74,20 +66,7 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
             >{`${post?.correspondingUser?.name}さんが制作中。コメントで応援しよう！！`}</Text>
           </VStack>
         )}
-        <VStack
-          color="gray.500"
-          _hover={{ cursor: "pointer", opacity: "0.7" }}
-          w="33%"
-          spacing="0"
-          onClick={() => setIsOpenComment((preVal) => !preVal)}
-        >
-          <HStack h="100%">
-            <VStack spacing="0">
-              <BiComment size="20px" />
-              <Text fontSize="xs">コメント</Text>
-            </VStack>
-          </HStack>
-        </VStack>
+       <CommentIconText setIsOpenComment={setIsOpenComment}/>
         <VStack color="gray.500" w="33%">
           {currentPage === "newPosts" && (
             <HStack h="100%">

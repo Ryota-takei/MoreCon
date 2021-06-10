@@ -1,11 +1,11 @@
 import { Box, VStack } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
-import { PostCard } from "../../organism/post/PostCard";
+import { NewPostCard } from "../../organism/post/NewPostCard";
 import { selectPosts } from "../../../features/post/postSlice";
 import { useAppSelector } from "../../../app/hooks";
 import { useGetInProductionPostAndSubscribe } from "../../../hooks/post/useGetInProductionPostAndSubscribe";
 
-export const InProductionList: React.VFC = () => {
+export const InProductionPostList: React.VFC = () => {
   const posts = useAppSelector(selectPosts);
 
   //カスタムフック（制作中の投稿の取得とサブスクリプション)
@@ -21,7 +21,7 @@ export const InProductionList: React.VFC = () => {
         <>
           <VStack spacing="3" mt="4">
             {posts.map((post) => (
-              <PostCard post={post} key={post?.id} isPosts={true} />
+              <NewPostCard post={post} key={post?.id} isPosts={true} />
             ))}
           </VStack>
         </>

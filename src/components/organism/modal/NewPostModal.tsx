@@ -23,6 +23,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPost } from "../../../graphql/mutations";
 import { changePostStatus } from "../../../features/post/postSlice";
+import { changePageState } from "../../../features/page/pageSlice";
 
 type Prop = {
   isOpen: boolean;
@@ -82,6 +83,7 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
       setValue("content", "");
       setIsLoading(false);
       dispatch(changePostStatus(true));
+      dispatch(changePageState("newPosts"))
       onClose();
       setDisplayTitle("");
     } catch (error) {
@@ -154,9 +156,9 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
 
 const REQUIRE = "必須入力項目です";
 const VIOLATION_NAME_COUNT = "タイトルは２0文字以下で入力してください";
-const VIOLATION_PROFILE_COUNT = "本文は350文字以下で入力してください";
+const VIOLATION_PROFILE_COUNT = "本文は400文字以下で入力してください";
 
 const postChangeSchema = yup.object().shape({
   title: yup.string().required(REQUIRE).max(20, VIOLATION_NAME_COUNT),
-  content: yup.string().required(REQUIRE).max(350, VIOLATION_PROFILE_COUNT),
+  content: yup.string().required(REQUIRE).max(400, VIOLATION_PROFILE_COUNT),
 });

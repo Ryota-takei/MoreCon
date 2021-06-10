@@ -16,6 +16,7 @@ export const getPost = /* GraphQL */ `
       contributorId
       correspondingUserId
       correspondingUserMessage
+      correspondingUserTitle
       owner
       contributor {
         id
@@ -38,6 +39,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -55,6 +57,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -125,6 +128,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -142,6 +146,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -213,6 +218,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -246,6 +252,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -280,6 +287,7 @@ export const getPost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -318,6 +326,7 @@ export const listPosts = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -442,6 +451,7 @@ export const listPostsSortedByTimestamp = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -566,6 +576,7 @@ export const listPostsSortedByLikeCount = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -690,6 +701,7 @@ export const listPostsSortedByContributor = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -814,6 +826,7 @@ export const listPostsSortedByCorrespondingUser = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -932,6 +945,7 @@ export const getUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -978,6 +992,7 @@ export const getUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1034,6 +1049,7 @@ export const getUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1067,6 +1083,7 @@ export const getUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1101,6 +1118,7 @@ export const getUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1135,6 +1153,7 @@ export const getUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1182,6 +1201,7 @@ export const listUsers = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1199,6 +1219,7 @@ export const listUsers = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1288,6 +1309,7 @@ export const searchByDisplayId = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1305,6 +1327,7 @@ export const searchByDisplayId = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1381,6 +1404,7 @@ export const getComment = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -1493,6 +1517,7 @@ export const getComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1510,6 +1535,7 @@ export const getComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1591,6 +1617,7 @@ export const listComments = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1694,6 +1721,7 @@ export const listCommentsSortedByTimestamp = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1777,6 +1805,7 @@ export const getLike = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -1889,6 +1918,7 @@ export const getLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1906,6 +1936,7 @@ export const getLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1982,6 +2013,7 @@ export const listLikes = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -2066,6 +2098,7 @@ export const getThank = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2178,6 +2211,7 @@ export const getThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2195,6 +2229,7 @@ export const getThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2272,6 +2307,7 @@ export const listThanks = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id

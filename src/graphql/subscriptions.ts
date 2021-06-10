@@ -16,6 +16,7 @@ export const onCreatePost = /* GraphQL */ `
       contributorId
       correspondingUserId
       correspondingUserMessage
+      correspondingUserTitle
       owner
       contributor {
         id
@@ -38,6 +39,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -55,6 +57,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -125,6 +128,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -142,6 +146,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -213,6 +218,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -246,6 +252,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -280,6 +287,7 @@ export const onCreatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -313,6 +321,7 @@ export const onUpdatePost = /* GraphQL */ `
       contributorId
       correspondingUserId
       correspondingUserMessage
+      correspondingUserTitle
       owner
       contributor {
         id
@@ -335,6 +344,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -352,6 +362,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -422,6 +433,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -439,6 +451,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -510,6 +523,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -543,6 +557,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -577,6 +592,7 @@ export const onUpdatePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -610,6 +626,7 @@ export const onDeletePost = /* GraphQL */ `
       contributorId
       correspondingUserId
       correspondingUserMessage
+      correspondingUserTitle
       owner
       contributor {
         id
@@ -632,6 +649,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -649,6 +667,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -719,6 +738,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -736,6 +756,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -807,6 +828,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -840,6 +862,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -874,6 +897,7 @@ export const onDeletePost = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -916,6 +940,7 @@ export const onCreateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -962,6 +987,7 @@ export const onCreateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1018,6 +1044,7 @@ export const onCreateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1051,6 +1078,7 @@ export const onCreateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1085,6 +1113,7 @@ export const onCreateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1119,6 +1148,7 @@ export const onCreateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1161,6 +1191,7 @@ export const onUpdateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1207,6 +1238,7 @@ export const onUpdateUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1263,6 +1295,7 @@ export const onUpdateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1296,6 +1329,7 @@ export const onUpdateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1330,6 +1364,7 @@ export const onUpdateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1364,6 +1399,7 @@ export const onUpdateUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1406,6 +1442,7 @@ export const onDeleteUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1452,6 +1489,7 @@ export const onDeleteUser = /* GraphQL */ `
           contributorId
           correspondingUserId
           correspondingUserMessage
+          correspondingUserTitle
           owner
           contributor {
             id
@@ -1508,6 +1546,7 @@ export const onDeleteUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1541,6 +1580,7 @@ export const onDeleteUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1575,6 +1615,7 @@ export const onDeleteUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1609,6 +1650,7 @@ export const onDeleteUser = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           user {
@@ -1651,6 +1693,7 @@ export const onCreateComment = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -1763,6 +1806,7 @@ export const onCreateComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1780,6 +1824,7 @@ export const onCreateComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1856,6 +1901,7 @@ export const onDeleteComment = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -1968,6 +2014,7 @@ export const onDeleteComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -1985,6 +2032,7 @@ export const onDeleteComment = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2056,6 +2104,7 @@ export const onCreateLike = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2168,6 +2217,7 @@ export const onCreateLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2185,6 +2235,7 @@ export const onCreateLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2256,6 +2307,7 @@ export const onUpdateLike = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2368,6 +2420,7 @@ export const onUpdateLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2385,6 +2438,7 @@ export const onUpdateLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2456,6 +2510,7 @@ export const onDeleteLike = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2568,6 +2623,7 @@ export const onDeleteLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2585,6 +2641,7 @@ export const onDeleteLike = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2657,6 +2714,7 @@ export const onCreateThank = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2769,6 +2827,7 @@ export const onCreateThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2786,6 +2845,7 @@ export const onCreateThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2858,6 +2918,7 @@ export const onUpdateThank = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -2970,6 +3031,7 @@ export const onUpdateThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -2987,6 +3049,7 @@ export const onUpdateThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -3059,6 +3122,7 @@ export const onDeleteThank = /* GraphQL */ `
         contributorId
         correspondingUserId
         correspondingUserMessage
+        correspondingUserTitle
         owner
         contributor {
           id
@@ -3171,6 +3235,7 @@ export const onDeleteThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken
@@ -3188,6 +3253,7 @@ export const onDeleteThank = /* GraphQL */ `
             contributorId
             correspondingUserId
             correspondingUserMessage
+            correspondingUserTitle
             owner
           }
           nextToken

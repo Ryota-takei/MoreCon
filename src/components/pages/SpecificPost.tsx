@@ -5,7 +5,7 @@ import { Post } from "../../types/post/NewPots";
 import { useAppDispatch } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
 
-import { PostCard } from "../organism/post/PostCard";
+import { NewPostCard } from "../organism/post/NewPostCard";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { API, graphqlOperation } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
@@ -62,7 +62,7 @@ export const SpecificPost: React.VFC = memo(() => {
           <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />
         </Box>
       ) : (
-        <PostCard post={post} isPosts={false} />
+        <NewPostCard post={post} isPosts={false} />
       )}
     </Box>
   );
