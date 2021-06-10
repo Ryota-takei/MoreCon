@@ -8,7 +8,7 @@ import { Post } from "../../../types/post/NewPots";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { selectUser } from "../../../features/user/userSlice";
 import { deletePost } from "../../../graphql/mutations";
-import { deletePosts } from "../../../features/post/newPostSlice";
+import { deletePosts } from "../../../features/post/postSlice";
 import { Alert } from "../alert/Alert";
 import { EditPostModal } from "../modal/EditPostModal";
 import { PostCardFooter } from "./PostCardFooter";

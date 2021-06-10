@@ -36,12 +36,12 @@ export const postsSlice = createSlice({
       );
       state.posts = [...newPosts];
     },
-    editPosts: (state, action: PayloadAction<Post>) => {
+    editNewPosts: (state, action: PayloadAction<Post>) => {
       if (action.payload?.type === "inProduction") {
         const newPosts = state.posts.filter(
           (post) => post?.id !== action.payload?.id
         );
-        state.posts = [...newPosts]
+        state.posts = [...newPosts];
       } else {
         const post = state.posts.find(
           (post) => post?.id === action.payload?.id
@@ -49,9 +49,19 @@ export const postsSlice = createSlice({
         if (post && post.type === "new" && action.payload) {
           post.title = action.payload.title;
           post.content = action.payload.content;
-        }  else {
-          state.posts = [...state.posts, action.payload]
+        } else {
+          state.posts = [...state.posts, action.payload];
         }
+      }
+    },
+    editInProductionPost: (state, action: PayloadAction<Post>) => {
+      if (action.payload?.type === "new") {
+        const newPosts = state.posts.filter(
+          (post) => post?.id !== action.payload?.id
+        );
+        state.posts = [...newPosts];
+      } else {
+        state.posts = [...state.posts, action.payload]
       }
     },
     changePostStatus: (state, action: PayloadAction<boolean>) => {
@@ -67,8 +77,9 @@ export const {
   subscriptionPosts,
   fetchNextToken,
   deletePosts,
-  editPosts,
+  editNewPosts,
   changePostStatus,
+  editInProductionPost,
 } = postsSlice.actions;
 
 export const selectPosts = (state: RootState) => state.posts.posts;

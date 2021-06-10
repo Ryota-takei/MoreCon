@@ -13,12 +13,12 @@ import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   additionalQuery,
-  editPosts,
+  editNewPosts,
   fetchNextToken,
   initialQuery,
   selectIsNewPost,
   subscriptionPosts,
-} from "../../features/post/newPostSlice";
+} from "../../features/post/postSlice";
 import { onCreatePost, onUpdatePost } from "../../graphql/subscriptions";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
@@ -86,7 +86,7 @@ export const useGetNewPostAndSubScribe = () => {
         next: (msg: { value: { data: OnUpdatePostSubscription } }) => {
           const post = msg.value.data.onUpdatePost;
           if (post) {
-            dispatch(editPosts(post));
+            dispatch(editNewPosts(post));
             console.log(post);
           }
         },

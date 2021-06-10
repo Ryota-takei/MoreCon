@@ -1,8 +1,8 @@
 import { memo, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { API, graphqlOperation } from "aws-amplify";
 import * as yup from "yup";
+import { API, graphqlOperation } from "aws-amplify";
 import {
   Modal,
   ModalOverlay,
@@ -21,13 +21,14 @@ import { NormalButton } from "../../atom/button/NormalButton";
 import { Post } from "../../../types/post/NewPots";
 import { updatePost } from "../../../graphql/mutations";
 import { useDispatch } from "react-redux";
-import { editPosts } from "../../../features/post/newPostSlice";
+import { editNewPosts } from "../../../features/post/postSlice";
 
 type Prop = {
   isOpen: boolean;
   onClose: () => void;
   post: Post;
 };
+
 type InputValue = {
   title: string;
   content: string;
@@ -45,36 +46,37 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
   } = useForm({
     resolver: yupResolver(postChangeSchema),
   });
-  
+
   const onSubmitEditPost = async (data: InputValue) => {
-    setIsLoading(true)
+    setIsLoading(true);
     const input = {
       id: post?.id,
       title: data.title,
       content: data.content,
     };
     try {
-     const res = await API.graphql(graphqlOperation(updatePost, { input })) as Post
-    console.log(res);
-    
-     dispatch(editPosts(res));
+      const res = (await API.graphql(
+        graphqlOperation(updatePost, { input })
+      )) as Post;
+      console.log(res);
+
+      dispatch(editNewPosts(res));
       setValue("title", "");
       setValue("content", "");
-      setIsLoading(false)
+      setIsLoading(false);
       onClose();
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
-  
-  
-    useEffect(() => {
-      setValue("title", post?.title);
-      setValue("content", post?.content);
-       // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+
+  useEffect(() => {
+    setValue("title", post?.title);
+    setValue("content", post?.content);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>

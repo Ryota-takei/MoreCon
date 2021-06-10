@@ -8,11 +8,14 @@ export const onCreatePost = /* GraphQL */ `
       id
       type
       likeCount
+      thankCount
+      url
       title
       content
       timestamp
       contributorId
       correspondingUserId
+      correspondingUserMessage
       owner
       contributor {
         id
@@ -27,11 +30,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -41,11 +47,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -108,11 +117,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -122,11 +134,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -190,11 +205,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -220,11 +238,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -251,11 +272,14 @@ export const onCreatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -281,11 +305,14 @@ export const onUpdatePost = /* GraphQL */ `
       id
       type
       likeCount
+      thankCount
+      url
       title
       content
       timestamp
       contributorId
       correspondingUserId
+      correspondingUserMessage
       owner
       contributor {
         id
@@ -300,11 +327,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -314,11 +344,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -381,11 +414,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -395,11 +431,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -463,11 +502,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -493,11 +535,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -524,11 +569,14 @@ export const onUpdatePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -554,11 +602,14 @@ export const onDeletePost = /* GraphQL */ `
       id
       type
       likeCount
+      thankCount
+      url
       title
       content
       timestamp
       contributorId
       correspondingUserId
+      correspondingUserMessage
       owner
       contributor {
         id
@@ -573,11 +624,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -587,11 +641,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -654,11 +711,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -668,11 +728,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -736,11 +799,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -766,11 +832,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -797,11 +866,14 @@ export const onDeletePost = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -836,11 +908,14 @@ export const onCreateUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -879,11 +954,14 @@ export const onCreateUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -932,11 +1010,14 @@ export const onCreateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -962,11 +1043,14 @@ export const onCreateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -993,11 +1077,14 @@ export const onCreateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1024,11 +1111,14 @@ export const onCreateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1063,11 +1153,14 @@ export const onUpdateUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -1106,11 +1199,14 @@ export const onUpdateUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -1159,11 +1255,14 @@ export const onUpdateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1189,11 +1288,14 @@ export const onUpdateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1220,11 +1322,14 @@ export const onUpdateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1251,11 +1356,14 @@ export const onUpdateUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1290,11 +1398,14 @@ export const onDeleteUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -1333,11 +1444,14 @@ export const onDeleteUser = /* GraphQL */ `
           id
           type
           likeCount
+          thankCount
+          url
           title
           content
           timestamp
           contributorId
           correspondingUserId
+          correspondingUserMessage
           owner
           contributor {
             id
@@ -1386,11 +1500,14 @@ export const onDeleteUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1416,11 +1533,14 @@ export const onDeleteUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1447,11 +1567,14 @@ export const onDeleteUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1478,11 +1601,14 @@ export const onDeleteUser = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           user {
@@ -1517,11 +1643,14 @@ export const onCreateComment = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -1626,11 +1755,14 @@ export const onCreateComment = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -1640,11 +1772,14 @@ export const onCreateComment = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -1713,11 +1848,14 @@ export const onDeleteComment = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -1822,11 +1960,14 @@ export const onDeleteComment = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -1836,11 +1977,14 @@ export const onDeleteComment = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -1904,11 +2048,14 @@ export const onCreateLike = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2013,11 +2160,14 @@ export const onCreateLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2027,11 +2177,14 @@ export const onCreateLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2095,11 +2248,14 @@ export const onUpdateLike = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2204,11 +2360,14 @@ export const onUpdateLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2218,11 +2377,14 @@ export const onUpdateLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2286,11 +2448,14 @@ export const onDeleteLike = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2395,11 +2560,14 @@ export const onDeleteLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2409,11 +2577,14 @@ export const onDeleteLike = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2478,11 +2649,14 @@ export const onCreateThank = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2587,11 +2761,14 @@ export const onCreateThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2601,11 +2778,14 @@ export const onCreateThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2670,11 +2850,14 @@ export const onUpdateThank = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2779,11 +2962,14 @@ export const onUpdateThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2793,11 +2979,14 @@ export const onUpdateThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2862,11 +3051,14 @@ export const onDeleteThank = /* GraphQL */ `
         id
         type
         likeCount
+        thankCount
+        url
         title
         content
         timestamp
         contributorId
         correspondingUserId
+        correspondingUserMessage
         owner
         contributor {
           id
@@ -2971,11 +3163,14 @@ export const onDeleteThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken
@@ -2985,11 +3180,14 @@ export const onDeleteThank = /* GraphQL */ `
             id
             type
             likeCount
+            thankCount
+            url
             title
             content
             timestamp
             contributorId
             correspondingUserId
+            correspondingUserMessage
             owner
           }
           nextToken

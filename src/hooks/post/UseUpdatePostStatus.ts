@@ -1,6 +1,7 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { deletePosts } from "../../features/post/newPostSlice";
+import { changePageState } from "../../features/page/pageSlice";
+import { deletePosts } from "../../features/post/postSlice";
 import { selectUser } from "../../features/user/userSlice";
 import { updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
@@ -25,6 +26,7 @@ export const useUpdatePostStatus = (
       if (post?.id) {
         dispatch(deletePosts(post?.id));
       }
+      dispatch(changePageState("inProduction"))
       console.log(res);
     } catch (error) {
       console.log(error);

@@ -12,6 +12,7 @@ import { selectPage } from "../../../features/page/pageSlice";
 import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
 import { PostCardFooterLike } from "../../molecule/postCardFooter.tsx/PostCardFooterLike";
 import { PostCardFooterProduction } from "../../molecule/postCardFooter.tsx/PostCardFooterProduction";
+import { selectUser } from "../../../features/user/userSlice";
 
 type Prop = {
   post: Post;
@@ -22,6 +23,7 @@ type Prop = {
 export const PostCardFooter: React.VFC<Prop> = memo((props) => {
   const { post, setIsOpenComment, commentCount } = props;
   const currentPage = useAppSelector(selectPage);
+  const currentUser = useAppSelector(selectUser);
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const onCloseAlert = () => setIsOpen(false);
@@ -86,7 +88,7 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
             </VStack>
           </HStack>
         </VStack>
-        <VStack color="gray.500" w="33%" >
+        <VStack color="gray.500" w="33%">
           {currentPage === "newPosts" && (
             <HStack h="100%">
               <PostStatusButton
@@ -95,11 +97,18 @@ export const PostCardFooter: React.VFC<Prop> = memo((props) => {
               />
             </HStack>
           )}
-          {currentPage === "inProduction" && (
-            <Box h="100%">
-              <PostCardFooterProduction post={post} />
-            </Box>
-          )}
+          {currentPage === "inProduction" &&
+            post?.correspondingUserId === currentUser?.id && (
+              <Box h="100%">
+                <PostCardFooterProduction post={post} />
+              </Box>
+            )}
+          {currentPage === "inProduction" &&
+            post?.correspondingUserId !== currentUser?.id && (
+              <HStack h="100%">
+                <PostStatusButton text="制作中" />
+              </HStack>
+            )}
         </VStack>
       </Flex>
       <Alert
