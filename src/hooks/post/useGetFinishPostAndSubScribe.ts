@@ -5,15 +5,14 @@ import {
   ListPostsSortedByTimestampQuery,
   OnUpdatePostSubscription,
 } from "../../API";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import {
   additionalQuery,
   fetchNextToken,
   initialQuery,
-  selectIsNewPost,
   editFinishPost,
 } from "../../features/post/postSlice";
-import { getPost, listPostsSortedByTimestamp } from "../../graphql/queries";
+import {  listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
