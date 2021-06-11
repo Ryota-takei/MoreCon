@@ -6,8 +6,8 @@ import { selectPage } from "../../../features/page/pageSlice";
 
 type Prop = {
   isLike: boolean;
-  onClickLikeCancel: () => Promise<void>;
-  onClickLike: () => Promise<void>;
+  onClickLikeCancel?: () => Promise<void>;
+  onClickLike?: () => Promise<void>;
 };
 
 export const PostCardFooterLike: React.VFC<Prop> = memo((props) => {

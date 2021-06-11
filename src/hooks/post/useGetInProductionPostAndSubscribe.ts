@@ -1,10 +1,9 @@
 import { API, graphqlOperation } from "aws-amplify";
-import React, { memo, useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { ListPostsQueryVariables, ListPostsSortedByTimestampQuery, OnUpdatePostSubscription } from "../../API";
-import { useAppSelector } from "../../app/hooks";
-import { additionalQuery, editInProductionPost, fetchNextToken, initialQuery, selectPosts } from "../../features/post/postSlice";
+import { additionalQuery, editInProductionPost, fetchNextToken, initialQuery } from "../../features/post/postSlice";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";

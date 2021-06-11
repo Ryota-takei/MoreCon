@@ -1,7 +1,6 @@
 import { memo, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import {Text } from "@chakra-ui/layout";
-import { useToast } from "@chakra-ui/toast";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 
@@ -25,7 +24,6 @@ export const PostCardFooterProduction: React.VFC<Prop> = memo((props) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef<HTMLButtonElement>(null);
   const dispatch = useAppDispatch();
-  const toast = useToast();
 
   const onCloseReturnAlert = () => setIsOpenReturnAlert(false);
 

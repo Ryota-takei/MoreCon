@@ -7,7 +7,6 @@ import { Alert } from "../alert/Alert";
 import { useUpdatePostStatus } from "../../../hooks/post/useUpdatePostStatus";
 import { SNSPop } from "../pop/SNSPop";
 import { useAppSelector } from "../../../app/hooks";
-import { selectPage } from "../../../features/page/pageSlice";
 import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
 import { PostCardFooterLike } from "../../molecule/postCardFooter.tsx/PostCardFooterLike";
 import { PostCardFooterProduction } from "../../molecule/postCardFooter.tsx/PostCardFooterProduction";
@@ -23,7 +22,6 @@ type Prop = {
 
 export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
   const { post, setIsOpenComment, commentCount } = props;
-  const currentPage = useAppSelector(selectPage);
   const currentUser = useAppSelector(selectUser);
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
@@ -50,25 +48,34 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
         <SNSPop post={post} />
       </Flex>
       <Flex borderTop="1px" color="gray.200" p="1">
-        {currentPage === "newPosts" && (
+        {post?.type === "new" && (
           <PostCardFooterLike
             isLike={isLike}
             onClickLike={onClickLike}
             onClickLikeCancel={onClickLikeCancel}
           />
         )}
-        {currentPage === "inProduction" && (
+        {post?.type === "finish" && (
           <VStack w="33%" spacing="0" color="blue.400">
             <Text
               fontWeight="bold"
               fontSize="sm"
               p="1"
-            >{`${post?.correspondingUser?.name}さんが制作中。コメントで応援しよう！！`}</Text>
+            >{`${post?.correspondingUser?.name}さんが実現済み`}</Text>
           </VStack>
         )}
-       <CommentIconText setIsOpenComment={setIsOpenComment}/>
+        {post?.type === "inProduction" && (
+          <VStack w="33%" spacing="0" color="blue.400">
+            <Text
+              fontWeight="bold"
+              fontSize="sm"
+              p="1"
+            >{`${post?.correspondingUser?.name}さんが制作中。コメントで応援しよう！！`}</Text>{" "}
+          </VStack>
+        )}
+        <CommentIconText setIsOpenComment={setIsOpenComment} />
         <VStack color="gray.500" w="33%">
-          {currentPage === "newPosts" && (
+          {post?.type === "new" && (
             <HStack h="100%">
               <PostStatusButton
                 onClick={() => setIsOpen(true)}
@@ -76,18 +83,23 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
               />
             </HStack>
           )}
-          {currentPage === "inProduction" &&
+          {post?.type === "inProduction" &&
             post?.correspondingUserId === currentUser?.id && (
               <Box h="100%">
                 <PostCardFooterProduction post={post} />
               </Box>
             )}
-          {currentPage === "inProduction" &&
+          {post?.type === "inProduction" &&
             post?.correspondingUserId !== currentUser?.id && (
               <HStack h="100%">
                 <PostStatusButton text="制作中" />
               </HStack>
             )}
+          {post?.type === "finish" && (
+            <HStack h="100%">
+              <PostStatusButton text="完成" />
+            </HStack>
+          )}
         </VStack>
       </Flex>
       <Alert
