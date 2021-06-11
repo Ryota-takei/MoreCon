@@ -1,17 +1,13 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { useHistory } from "react-router";
-import { AiOutlineHeart } from "react-icons/ai";
 import { Avatar } from "@chakra-ui/avatar";
-import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
+import { Box, Flex, HStack, Text } from "@chakra-ui/layout";
 
 import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Post } from "../../../types/post/NewPots";
 import { NormalButton } from "../../atom/button/NormalButton";
-import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
-import { CommentCount } from "../../molecule/postCardFooter.tsx/CommentCount";
-import { CommentIconText } from "../../molecule/postCardFooter.tsx/CommentIconText";
 import { CommentCard } from "../comment/CommentCard";
-import { SNSPop } from "../pop/SNSPop";
+import { FinishPostCardFooter } from "./FinishPostCardFooter";
 
 type Prop = {
   post: Post;
@@ -34,11 +30,6 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
     }
   };
 
-  useEffect(() => {
-    setCommentCount(post?.comments?.items?.length ?? 0);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
       <Box
@@ -57,7 +48,7 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
             <Text fontWeight="bold">{`[${post?.correspondingUserTitle}]`}</Text>
           </HStack>
           <Box mb="2">{post?.correspondingUserMessage ?? ""}</Box>
-          <Flex>
+          <Flex my="5">
             <Box>
               <NormalButton
                 hover={{ bg: "blue.500" }}
@@ -79,38 +70,12 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
             </Box>
           </Flex>
         </Box>
-        <Flex borderTop="1px" borderColor="gray.200" p="1">
-          <VStack w="33%" spacing="0">
-            <HStack>
-              <Text>20ありがとう</Text>
-            </HStack>
-          </VStack>
-          <VStack w="33%" spacing="0">
-            <CommentCount commentCount={commentCount} />
-          </VStack>
-          <VStack w="33%" spacing="0">
-            <HStack>
-              <SNSPop post={post} />
-            </HStack>
-          </VStack>
-        </Flex>
-        <Flex borderTop="1px" borderColor="gray.200" p="1">
-          <VStack
-            color="gray.500"
-            _hover={{ cursor: "pointer", opacity: "0.7" }}
-            w="33%"
-            spacing="0"
-          >
-            <AiOutlineHeart size="20px" />
-            <Text fontSize="xs">ありがとう</Text>
-          </VStack>
-          <CommentIconText setIsOpenComment={setIsOpenComment} />
-          <VStack w="33%" spacing="0">
-            <HStack h="100%">
-              <PostStatusButton text="完成" />
-            </HStack>
-          </VStack>
-        </Flex>
+        <FinishPostCardFooter
+          post={post}
+          commentCount={commentCount}
+          setIsOpenComment={setIsOpenComment}
+          setCommentCount={setCommentCount}
+        />
       </Box>
       {isOpenComment && (
         <CommentCard

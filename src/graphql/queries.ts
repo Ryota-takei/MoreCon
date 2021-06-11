@@ -2079,6 +2079,200 @@ export const listLikes = /* GraphQL */ `
     }
   }
 `;
+export const listLikeSortByPost = /* GraphQL */ `
+  query ListLikeSortByPost(
+    $postId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelLikeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLikeSortByPost(
+      postId: $postId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        postId
+        post {
+          id
+          type
+          likeCount
+          thankCount
+          url
+          title
+          content
+          timestamp
+          contributorId
+          correspondingUserId
+          correspondingUserMessage
+          correspondingUserTitle
+          owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
+        }
+        user {
+          id
+          displayId
+          name
+          profile
+          image
+          createdAt
+          updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
+          owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listLikeSortByUser = /* GraphQL */ `
+  query ListLikeSortByUser(
+    $userId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelLikeFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listLikeSortByUser(
+      userId: $userId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        userId
+        postId
+        post {
+          id
+          type
+          likeCount
+          thankCount
+          url
+          title
+          content
+          timestamp
+          contributorId
+          correspondingUserId
+          correspondingUserMessage
+          correspondingUserTitle
+          owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
+        }
+        user {
+          id
+          displayId
+          name
+          profile
+          image
+          createdAt
+          updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
+          owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
 export const getThank = /* GraphQL */ `
   query GetThank($id: ID!) {
     getThank(id: $id) {
@@ -2290,6 +2484,104 @@ export const listThanks = /* GraphQL */ `
     $nextToken: String
   ) {
     listThanks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        userId
+        postId
+        correspondingUserId
+        post {
+          id
+          type
+          likeCount
+          thankCount
+          url
+          title
+          content
+          timestamp
+          contributorId
+          correspondingUserId
+          correspondingUserMessage
+          correspondingUserTitle
+          owner
+          contributor {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          correspondingUser {
+            id
+            displayId
+            name
+            profile
+            image
+            createdAt
+            updatedAt
+            owner
+          }
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          Thanks {
+            nextToken
+          }
+        }
+        user {
+          id
+          displayId
+          name
+          profile
+          image
+          createdAt
+          updatedAt
+          correspondingPosts {
+            nextToken
+          }
+          posts {
+            nextToken
+          }
+          owner
+          comments {
+            nextToken
+          }
+          likes {
+            nextToken
+          }
+          thankCounts {
+            nextToken
+          }
+          thank {
+            nextToken
+          }
+        }
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listThanxSortByCorrespondingUser = /* GraphQL */ `
+  query ListThanxSortByCorrespondingUser(
+    $correspondingUserId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelThankFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listThanxSortByCorrespondingUser(
+      correspondingUserId: $correspondingUserId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         userId
