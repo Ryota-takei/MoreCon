@@ -6635,6 +6635,220 @@ export type ListLikesQuery = {
   } | null,
 };
 
+export type ListLikeSortByPostQueryVariables = {
+  postId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelLikeFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListLikeSortByPostQuery = {
+  listLikeSortByPost?:  {
+    __typename: "ModelLikeConnection",
+    items?:  Array< {
+      __typename: "Like",
+      id: string,
+      userId: string,
+      postId: string,
+      post?:  {
+        __typename: "Post",
+        id: string,
+        type: string,
+        likeCount?: number | null,
+        thankCount?: number | null,
+        url?: string | null,
+        title: string,
+        content: string,
+        timestamp: number,
+        contributorId: string,
+        correspondingUserId?: string | null,
+        correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
+        owner?: string | null,
+        contributor?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        correspondingUser?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        Thanks?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      user?:  {
+        __typename: "User",
+        id: string,
+        displayId?: string | null,
+        name: string,
+        profile: string,
+        image?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        correspondingPosts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        posts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        owner?: string | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        thankCounts?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+        thank?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ListLikeSortByUserQueryVariables = {
+  userId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelLikeFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListLikeSortByUserQuery = {
+  listLikeSortByUser?:  {
+    __typename: "ModelLikeConnection",
+    items?:  Array< {
+      __typename: "Like",
+      id: string,
+      userId: string,
+      postId: string,
+      post?:  {
+        __typename: "Post",
+        id: string,
+        type: string,
+        likeCount?: number | null,
+        thankCount?: number | null,
+        url?: string | null,
+        title: string,
+        content: string,
+        timestamp: number,
+        contributorId: string,
+        correspondingUserId?: string | null,
+        correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
+        owner?: string | null,
+        contributor?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        correspondingUser?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        Thanks?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      user?:  {
+        __typename: "User",
+        id: string,
+        displayId?: string | null,
+        name: string,
+        profile: string,
+        image?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        correspondingPosts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        posts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        owner?: string | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        thankCounts?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+        thank?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetThankQueryVariables = {
   id: string,
 };
@@ -6885,6 +7099,114 @@ export type ListThanksQueryVariables = {
 
 export type ListThanksQuery = {
   listThanks?:  {
+    __typename: "ModelThankConnection",
+    items?:  Array< {
+      __typename: "Thank",
+      id: string,
+      userId: string,
+      postId: string,
+      correspondingUserId: string,
+      post?:  {
+        __typename: "Post",
+        id: string,
+        type: string,
+        likeCount?: number | null,
+        thankCount?: number | null,
+        url?: string | null,
+        title: string,
+        content: string,
+        timestamp: number,
+        contributorId: string,
+        correspondingUserId?: string | null,
+        correspondingUserMessage?: string | null,
+        correspondingUserTitle?: string | null,
+        owner?: string | null,
+        contributor?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        correspondingUser?:  {
+          __typename: "User",
+          id: string,
+          displayId?: string | null,
+          name: string,
+          profile: string,
+          image?: string | null,
+          createdAt: string,
+          updatedAt: string,
+          owner?: string | null,
+        } | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        Thanks?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      user?:  {
+        __typename: "User",
+        id: string,
+        displayId?: string | null,
+        name: string,
+        profile: string,
+        image?: string | null,
+        createdAt: string,
+        updatedAt: string,
+        correspondingPosts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        posts?:  {
+          __typename: "ModelPostConnection",
+          nextToken?: string | null,
+        } | null,
+        owner?: string | null,
+        comments?:  {
+          __typename: "ModelCommentConnection",
+          nextToken?: string | null,
+        } | null,
+        likes?:  {
+          __typename: "ModelLikeConnection",
+          nextToken?: string | null,
+        } | null,
+        thankCounts?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+        thank?:  {
+          __typename: "ModelThankConnection",
+          nextToken?: string | null,
+        } | null,
+      } | null,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ListThanxSortByCorrespondingUserQueryVariables = {
+  correspondingUserId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelThankFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListThanxSortByCorrespondingUserQuery = {
+  listThanxSortByCorrespondingUser?:  {
     __typename: "ModelThankConnection",
     items?:  Array< {
       __typename: "Thank",

@@ -1,5 +1,6 @@
-import { API, graphqlOperation } from "aws-amplify";
 import { useEffect, useState } from "react";
+import { API, graphqlOperation } from "aws-amplify";
+
 import { CreateLikeMutation } from "../../API";
 import { useAppSelector } from "../../app/hooks";
 import { selectUser } from "../../features/user/userSlice";
@@ -12,15 +13,15 @@ type CreateLike = {
 
 export const useLikePost = (post: Post) => {
   const loginUser = useAppSelector(selectUser);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isFetching, setIsFetching] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
-  const [isLike, setIsLike] = useState(false);
-  const [likeInformation, setLikeInformation] =
+  const [isCurrentUserLike, setIsCurrentUserLike] = useState(false);
+  const [likeID, setLikeID] =
     useState<string | undefined>("");
 
-  const onClickLike = async () => {
-    if (likeInformation || isLoading) return;
-    setIsLoading(true);
+  const onClickAddLike = async () => {
+    if (isCurrentUserLike || isFetching) return;
+    setIsFetching(true);
 
     const likeInput = {
       userId: loginUser?.id,
@@ -41,41 +42,45 @@ export const useLikePost = (post: Post) => {
         graphqlOperation(updatePost, { input: { ...postInput } })
       );
 
-      setIsLike(true);
-      setLikeInformation(res?.data.createLike?.id);
+      setIsCurrentUserLike(true);
+      setLikeID(res?.data.createLike?.id);
       setLikeCount((preValue) => preValue + 1);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
     } finally {
-      setIsLoading(false);
+      setIsFetching(false);
     }
   };
 
-  const onClickLikeCancel = async () => {
-    if (!likeInformation || isLoading) return;
-    setIsLoading(true);
+  const onClickCancelLike = async () => {
+    if (!isCurrentUserLike || isFetching) return;
+    setIsFetching(true);
 
     const likeInput = {
-      id: likeInformation,
+      id: likeID,
     };
 
     const postInput = {
       id: post?.id,
-      likeCount: likeCount -1
-    }
+      likeCount: likeCount - 1,
+    };
 
     try {
-      await API.graphql(graphqlOperation(deleteLike, { input: {...likeInput} }));
-      await API.graphql(graphqlOperation(updatePost,{input: {...postInput}}))
-      setIsLike(false);
-      setLikeInformation(undefined);
+      await API.graphql(
+        graphqlOperation(deleteLike, { input: { ...likeInput } })
+      );
+      await API.graphql(
+        graphqlOperation(updatePost, { input: { ...postInput } })
+      );
+      setIsCurrentUserLike(false);
+      setLikeID(undefined);
       setLikeCount((preValue) => preValue - 1);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
     } finally {
-      setIsLoading(false);
+      setIsFetching(false);
     }
   };
 
@@ -83,14 +88,15 @@ export const useLikePost = (post: Post) => {
     const isLikePost = post?.likes?.items?.find(
       (item) => item?.userId === loginUser?.id
     );
+    setLikeID(isLikePost?.id);
+
     //ログインしているユーザーがいいねしたかを確認
-    setLikeInformation(isLikePost?.id);
     if (isLikePost) {
-      setIsLike(true);
+      setIsCurrentUserLike(true);
     }
     setLikeCount(post?.likes?.items?.length ?? 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loginUser]);
 
-  return { onClickLikeCancel, onClickLike, likeCount, isLike };
+  return { onClickCancelLike, onClickAddLike, likeCount, isCurrentUserLike };
 };

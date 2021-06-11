@@ -28,7 +28,7 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
   const onCloseAlert = () => setIsOpen(false);
 
   // カスタムフック(likeの切り替え、like数、ログインしているユーザーがlikeしているかの確認)
-  const { onClickLikeCancel, onClickLike, likeCount, isLike } =
+  const { onClickCancelLike, onClickAddLike, likeCount, isCurrentUserLike } =
     useLikePost(post);
   //制作するボタンを押した際にpostのステータスの変更
   const { onClickProduct } = useUpdatePostStatus(post, setIsOpen);
@@ -50,9 +50,9 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
       <Flex borderTop="1px" color="gray.200" p="1">
         {post?.type === "new" && (
           <PostCardFooterLike
-            isLike={isLike}
-            onClickLike={onClickLike}
-            onClickLikeCancel={onClickLikeCancel}
+            isLike={isCurrentUserLike}
+            onClickLike={onClickAddLike}
+            onClickLikeCancel={onClickCancelLike}
           />
         )}
         {post?.type === "finish" && (
