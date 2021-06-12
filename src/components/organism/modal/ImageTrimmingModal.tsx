@@ -122,6 +122,8 @@ export const ImageTrimmingModal: VFC<Props> = (props: Props) => {
     wrapperOnClose()
   }
 
+  console.log(blobedImage)
+
   useEffect(() => {
     ;(async () => {
       await makeClientCrop()
