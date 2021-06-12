@@ -11,10 +11,11 @@ type Prop = {
   onClick?: () => void;
   type?:"button" | "submit" | "reset" | undefined
   isLoading?: boolean
+  px?:string
 };
 
 export const NormalButton: React.VFC<Prop> = memo((props) => {
-  const { text, hover, onClick,type, w, ...inputProps } = props;
+  const { text, hover, ...inputProps } = props;
 
   return (
     <Button
@@ -24,9 +25,6 @@ export const NormalButton: React.VFC<Prop> = memo((props) => {
       border="1px"
       borderRadius="15px"
       p={{ base: "3", md: "5" }}
-      onClick={onClick}
-      type={type}
-      w={w}
     >
       {text}
     </Button>

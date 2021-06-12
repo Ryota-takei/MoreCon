@@ -2,7 +2,6 @@ import React, { memo, useRef, useState } from "react";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 
 import { Post } from "../../../types/post/NewPots";
-import { useLikePost } from "../../../hooks/like/useLikePost";
 import { Alert } from "../alert/Alert";
 import { useUpdatePostStatus } from "../../../hooks/post/useUpdatePostStatus";
 import { SNSPop } from "../pop/SNSPop";
@@ -13,6 +12,7 @@ import { PostCardFooterProduction } from "../../molecule/postCardFooter.tsx/Post
 import { selectUser } from "../../../features/user/userSlice";
 import { CommentCount } from "../../molecule/postCardFooter.tsx/CommentCount";
 import { CommentIconText } from "../../molecule/postCardFooter.tsx/CommentIconText";
+import { useLikePost } from "../../../hooks/like/useLikePost";
 
 type Prop = {
   post: Post;
@@ -57,12 +57,12 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
         )}
         {post?.type === "finish" && (
           <VStack w="33%" spacing="0" color="blue.400">
-            <Text
-              fontWeight="bold"
-              fontSize="sm"
-              p="1"
-            >{`${post?.correspondingUser?.name}さんが実現済み`}</Text>
-          </VStack>
+              <Text
+                fontWeight="bold"
+                fontSize="sm"
+                p="1"
+                >{`${post?.correspondingUser?.name}さんが実現済み`}</Text>
+            </VStack>
         )}
         {post?.type === "inProduction" && (
           <VStack w="33%" spacing="0" color="blue.400">

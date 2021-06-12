@@ -1,22 +1,41 @@
 import { API, graphqlOperation } from "aws-amplify";
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
-import { ListPostsQueryVariables, ListPostsSortedByTimestampQuery, OnUpdatePostSubscription } from "../../API";
-import { additionalQuery, editInProductionPost, fetchNextToken, initialQuery } from "../../features/post/postSlice";
+import {
+  ListPostsQueryVariables,
+  ListPostsSortedByTimestampQuery,
+  OnUpdatePostSubscription,
+} from "../../API";
+import {
+  additionalQuery,
+  editInProductionPost,
+  fetchNextToken,
+  initialQuery,
+  selectNextToken,
+} from "../../features/post/postSlice";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
+import { useAppSelector } from "../../app/hooks";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 
 export const useGetInProductionPostAndSubscribe = () => {
   const dispatch = useDispatch();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isGetInProductionPostLoading, setIsGetInProductionPostLoading] =
+    useState(false);
+  const [isGetInProductionAddPostLoading, setIsGetInProductionAddPostLoading] =
+    useState(false);
+  const nextToken = useAppSelector(selectNextToken);
 
   const getPost = async (type: Type, nextToken: string | null = null) => {
-    setIsLoading(true);
+    if (type === "INITIAL_QUERY") {
+      setIsGetInProductionPostLoading(true);
+    } else {
+      setIsGetInProductionAddPostLoading(true);
+    }
     try {
       const res = (await API.graphql(
         graphqlOperation(listPostsSortedByTimestamp, {
@@ -27,23 +46,33 @@ export const useGetInProductionPostAndSubscribe = () => {
         } as ListPostsQueryVariables)
       )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
 
-      if (res.data?.listPostsSortedByTimestamp?.items) {
+      const posts = res.data?.listPostsSortedByTimestamp?.items;
+      if (posts) {
         if (type === "INITIAL_QUERY") {
-          dispatch(initialQuery(res.data.listPostsSortedByTimestamp.items));
+          dispatch(initialQuery(posts));
         } else {
-          dispatch(additionalQuery(res.data.listPostsSortedByTimestamp.items));
+          dispatch(additionalQuery(posts));
         }
       }
 
-      if (res.data?.listPostsSortedByTimestamp?.nextToken) {
-        dispatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
+      const newNextToken = res.data?.listPostsSortedByTimestamp?.nextToken;
+      if (newNextToken) {
+        dispatch(fetchNextToken(newNextToken));
+      } else {
+        dispatch(fetchNextToken(null));
       }
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
     }
 
-    setIsLoading(false);
+    setIsGetInProductionPostLoading(false);
+    setIsGetInProductionAddPostLoading(false);
+  };
+
+  const getAdditionalNewPost = () => {
+    if (nextToken === null) return;
+    getPost("ADDITIONAL_QUERY", nextToken);
   };
 
   useEffect(() => {
@@ -57,7 +86,6 @@ export const useGetInProductionPostAndSubscribe = () => {
           const post = msg.value.data.onUpdatePost;
           if (post) {
             dispatch(editInProductionPost(post));
-            console.log(post);
           }
         },
       });
@@ -69,5 +97,9 @@ export const useGetInProductionPostAndSubscribe = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return {isLoading}
-}
+  return {
+    isGetInProductionPostLoading,
+    getAdditionalNewPost,
+    isGetInProductionAddPostLoading,
+  };
+};

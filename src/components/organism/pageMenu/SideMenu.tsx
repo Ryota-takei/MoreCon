@@ -8,6 +8,7 @@ import { useHistory } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { changePageState } from "../../../features/page/pageSlice";
 import { selectUser } from "../../../features/user/userSlice";
+import { fetchNextToken } from "../../../features/post/postSlice";
 
 export const SideMenu = () => {
   const history = useHistory();
@@ -16,14 +17,17 @@ export const SideMenu = () => {
 
   const clickNewPosts = () => {
     dispatch(changePageState("newPosts"));
+    dispatch(fetchNextToken(null))
   };
   const clickInProductionPosts = () => {
     dispatch(changePageState("inProduction"));
+    dispatch(fetchNextToken(null))
   };
   const clickFinishPosts = () => {
     dispatch(changePageState("finish"));
+    dispatch(fetchNextToken(null))
   };
-
+ 
   const clickMyPage = () => {
     history.push(`/user/${currentUser?.displayId}`);
   };

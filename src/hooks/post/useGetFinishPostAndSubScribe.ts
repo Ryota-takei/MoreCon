@@ -5,14 +5,15 @@ import {
   ListPostsSortedByTimestampQuery,
   OnUpdatePostSubscription,
 } from "../../API";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   additionalQuery,
   fetchNextToken,
   initialQuery,
   editFinishPost,
+  selectNextToken,
 } from "../../features/post/postSlice";
-import {  listPostsSortedByTimestamp } from "../../graphql/queries";
+import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
@@ -22,31 +23,54 @@ type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 export const useGetFinishPostAndSubScribe = () => {
   const dispatch = useAppDispatch();
   const [isGetFinishPostLoading, setIsGetFinishPostLoading] = useState(false);
+  const [isGetFinishPostAddLoading, setIsGetFinishPostAddLoading] =
+    useState(false);
+  const nextToken = useAppSelector(selectNextToken);
 
   const getPosts = async (type: Type, nextToken: string | null = null) => {
-    setIsGetFinishPostLoading(true);
-    const res = (await API.graphql(
-      graphqlOperation(listPostsSortedByTimestamp, {
-        type: "finish",
-        sortDirection: "DESC",
-        limit: 8,
-        nextToken: nextToken,
-      } as ListPostsQueryVariables)
-    )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
-    console.log(res);
-
-    if (res.data?.listPostsSortedByTimestamp?.items) {
-      if (type === "INITIAL_QUERY") {
-        dispatch(initialQuery(res.data.listPostsSortedByTimestamp.items));
-      } else {
-        dispatch(additionalQuery(res.data.listPostsSortedByTimestamp.items));
-      }
+    if (type === "INITIAL_QUERY") {
+      setIsGetFinishPostLoading(true);
+    } else {
+      setIsGetFinishPostAddLoading(true);
     }
 
-    if (res.data?.listPostsSortedByTimestamp?.nextToken) {
-      dispatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
+    try {
+      const res = (await API.graphql(
+        graphqlOperation(listPostsSortedByTimestamp, {
+          type: "finish",
+          sortDirection: "DESC",
+          limit: 8,
+          nextToken: nextToken,
+        } as ListPostsQueryVariables)
+      )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
+      console.log(res);
+
+      const post = res.data?.listPostsSortedByTimestamp?.items;
+      if (post) {
+        if (type === "INITIAL_QUERY") {
+          dispatch(initialQuery(post));
+        } else {
+          dispatch(additionalQuery(post));
+        }
+      }
+
+      const newNextToken = res.data?.listPostsSortedByTimestamp?.nextToken;
+      if (newNextToken) {
+        dispatch(fetchNextToken(newNextToken));
+      } else {
+        dispatch(fetchNextToken(null));
+      }
+    } catch (error) {
+      console.log(error);
+      alert("エラーが発生しました");
     }
     setIsGetFinishPostLoading(false);
+    setIsGetFinishPostAddLoading(false);
+  };
+
+  const getAdditionalNewPost = () => {
+    if (nextToken === null) return;
+    getPosts("ADDITIONAL_QUERY", nextToken);
   };
 
   useEffect(() => {
@@ -71,5 +95,9 @@ export const useGetFinishPostAndSubScribe = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return {isGetFinishPostLoading}
+  return {
+    isGetFinishPostLoading,
+    isGetFinishPostAddLoading,
+    getAdditionalNewPost,
+  };
 };

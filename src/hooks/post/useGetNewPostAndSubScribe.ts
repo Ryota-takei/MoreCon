@@ -17,6 +17,7 @@ import {
   fetchNextToken,
   initialQuery,
   selectIsNewPost,
+  selectNextToken,
   subscriptionPosts,
 } from "../../features/post/postSlice";
 import { onCreatePost, onUpdatePost } from "../../graphql/subscriptions";
@@ -27,31 +28,55 @@ export const useGetNewPostAndSubScribe = () => {
   const dispatch = useAppDispatch();
   const isNewPost = useAppSelector(selectIsNewPost);
   const [isGetNewPostLoading, setIsGetNewPostLoading] = useState(false);
+  const [isGetAdditionalNewPostLoading, setIsGetAdditionalNewPostLoading] =
+    useState(false);
+
+  const nextToken = useAppSelector(selectNextToken);
 
   const getPosts = async (type: Type, nextToken: string | null = null) => {
-    setIsGetNewPostLoading(true);
-    const res = (await API.graphql(
-      graphqlOperation(listPostsSortedByTimestamp, {
-        type: "new",
-        sortDirection: "DESC",
-        limit: 8,
-        nextToken: nextToken,
-      } as ListPostsQueryVariables)
-    )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
-    console.log(res);
-
-    if (res.data?.listPostsSortedByTimestamp?.items) {
-      if (type === "INITIAL_QUERY") {
-        dispatch(initialQuery(res.data.listPostsSortedByTimestamp.items));
-      } else {
-        dispatch(additionalQuery(res.data.listPostsSortedByTimestamp.items));
-      }
+    console.log(nextToken);
+    if (type === "INITIAL_QUERY") {
+      setIsGetNewPostLoading(true);
+    } else {
+      setIsGetAdditionalNewPostLoading(true);
     }
 
-    if (res.data?.listPostsSortedByTimestamp?.nextToken) {
-      dispatch(fetchNextToken(res.data.listPostsSortedByTimestamp.nextToken));
+    try {
+      const res = (await API.graphql(
+        graphqlOperation(listPostsSortedByTimestamp, {
+          type: "new",
+          sortDirection: "DESC",
+          limit: 8,
+          nextToken: nextToken,
+        } as ListPostsQueryVariables)
+      )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
+
+      const posts = res.data?.listPostsSortedByTimestamp?.items;
+      if (posts) {
+        if (type === "INITIAL_QUERY") {
+          dispatch(initialQuery(posts));
+        } else {
+          dispatch(additionalQuery(posts));
+        }
+      }
+
+      const newNextToken = res.data?.listPostsSortedByTimestamp?.nextToken;
+      if (newNextToken) {
+        dispatch(fetchNextToken(newNextToken));
+      } else {
+        dispatch(fetchNextToken(null))
+      }
+    } catch (error) {
+      console.log(error);
+      alert("エラーが発生しました");
     }
     setIsGetNewPostLoading(false);
+    setIsGetAdditionalNewPostLoading(false);
+  };
+
+  const getAdditionalNewPost = () => {
+    if (nextToken === null) return;
+    getPosts("ADDITIONAL_QUERY", nextToken);
   };
 
   useEffect(() => {
@@ -99,5 +124,9 @@ export const useGetNewPostAndSubScribe = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { isGetNewPostLoading };
+  return {
+    isGetNewPostLoading,
+    getAdditionalNewPost,
+    isGetAdditionalNewPostLoading,
+  };
 };
