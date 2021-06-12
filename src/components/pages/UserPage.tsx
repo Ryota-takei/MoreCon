@@ -11,7 +11,7 @@ import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { searchByDisplayId } from "../../graphql/queries";
 import { SearchByDisplayIdQuery } from "../../API";
 import { GetUser } from "../../types/user/user";
-import { Box, Stack, Text } from "@chakra-ui/layout";
+import { Box, HStack, Stack, Text, VStack } from "@chakra-ui/layout";
 import { NormalButton } from "../atom/button/NormalButton";
 import { useGetImage } from "../../hooks/function/useGetImage";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
@@ -28,9 +28,10 @@ export const UserPage: React.VFC = memo(() => {
   const history = useHistory();
   const { userId } = useParams<{ userId: string }>();
   const { imageUrl } = useGetImage(user);
+  const thankCount = user?.thankCounts?.items?.length;
   //カスタムフック（ログインしているかどうかを確認）
   const { notAdminCheck } = useAdminCheck();
-  
+
   useEffect(() => {
     dispatch(getCurrentUserInformation());
     notAdminCheck();
@@ -57,22 +58,25 @@ export const UserPage: React.VFC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  console.log(user);
+
   return (
     <>
       <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">
         <Stack textAlign="center" pt="8" spacing="5">
-          <Avatar
-            src={imageUrl}
-            boxSize="150px"
-            mx="auto"
-          />
+          <Avatar src={imageUrl} boxSize="150px" mx="auto" />
 
           <Text fontWeight="bold" fontSize="lg">
             {user?.name}
           </Text>
           <Text pb="3">{user?.profile}</Text>
           <hr style={{ width: "80%", margin: "auto" }} />
-          <Text>30ありがとう</Text>
+          <VStack>
+            <HStack spacing="1">
+              <Text fontWeight="bold" fontSize="lg">{thankCount}</Text>
+              <Text fontSize="sm" color="gray.500">ありがとう</Text>
+            </HStack>
+          </VStack>
           {user?.id === loginUser?.id && (
             <Box mx="auto">
               <NormalButton
@@ -87,7 +91,10 @@ export const UserPage: React.VFC = memo(() => {
             </Box>
           )}
         </Stack>
-        <ToTopPageButton bottom={{base: "5%", sm:"30%"}} right={{ base: "5%", sm: "25%" }} />
+        <ToTopPageButton
+          bottom={{ base: "5%", sm: "30%" }}
+          right={{ base: "5%", sm: "25%" }}
+        />
       </Box>
     </>
   );
