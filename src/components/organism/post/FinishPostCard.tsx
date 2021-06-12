@@ -17,8 +17,8 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
   const { post } = props;
   const [isOpenComment, setIsOpenComment] = useState(false);
   const [commentsCount, setCommentsCount] = useState(0);
-  const { imageUrl } = useGetImage(post?.correspondingUser);
   const history = useHistory();
+  const { imageUrl } = useGetImage(post?.correspondingUser);
 
   const onClickPost = () => {
     history.push(`/posts/${post?.id}`);
@@ -28,6 +28,9 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
     if (post?.url) {
       window.open(post?.url);
     }
+  };
+  const onClickToUerPage = () => {
+    history.push(`/user/${post?.correspondingUser?.displayId}`);
   };
 
   return (
@@ -40,7 +43,12 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
         boxShadow="sm"
       >
         <HStack p="3">
-          <Avatar src={imageUrl} boxSize="70px" />
+          <Avatar
+            src={imageUrl}
+            boxSize="70px"
+            _hover={{ cursor: "pointer" }}
+            onClick={onClickToUerPage}
+          />
           <Text fontWeight="bold">{`${post?.contributor?.name}さんの欲しいを${post?.correspondingUser?.name}さんが実現してくれました！！`}</Text>
         </HStack>
         <Box p="3">

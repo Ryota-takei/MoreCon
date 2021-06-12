@@ -24,22 +24,23 @@ type SearchUser = {
 export const UserPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<GetUser>();
-  const userInformation = useAppSelector(selectUser);
-  const { userId } = useParams<{ userId: string }>();
-  const { imageUrl } = useGetImage(userInformation);
+  const loginUser = useAppSelector(selectUser);
   const history = useHistory();
-  //カスタムフック
+  const { userId } = useParams<{ userId: string }>();
+  const { imageUrl } = useGetImage(user);
+  //カスタムフック（ログインしているかどうかを確認）
   const { notAdminCheck } = useAdminCheck();
-
+  
   useEffect(() => {
     dispatch(getCurrentUserInformation());
     notAdminCheck();
+
+    //URLからユーザーを特定して、userStateに情報を格納
     const getUserInformation = async () => {
       try {
         const user = (await API.graphql(
           graphqlOperation(searchByDisplayId, { displayId: userId })
         )) as SearchUser;
-        console.log(user);
         if (!user.data.searchByDisplayId?.items![0]) {
           history.push("/page404");
         } else {
@@ -72,7 +73,7 @@ export const UserPage: React.VFC = memo(() => {
           <Text pb="3">{user?.profile}</Text>
           <hr style={{ width: "80%", margin: "auto" }} />
           <Text>30ありがとう</Text>
-          {user?.id === userInformation?.id && (
+          {user?.id === loginUser?.id && (
             <Box mx="auto">
               <NormalButton
                 hover={{ bg: "blue.300", color: "white" }}
