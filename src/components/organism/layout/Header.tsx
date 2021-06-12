@@ -5,14 +5,15 @@ import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
 import { Avatar } from "@chakra-ui/avatar";
 
 import { NormalButton } from "../../atom/button/NormalButton";
-import { useAppSelector } from "../../../app/hooks";
-import { selectIsAdmin, selectUser } from "../../../features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { getUserInformation, selectIsAdmin, selectUser } from "../../../features/user/userSlice";
 import { useGetImage } from "../../../hooks/function/useGetImage";
 
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
   const location = useLocation();
+  const dispatch = useAppDispatch()
   const isAdmin = useAppSelector(selectIsAdmin);
   const userInformation = useAppSelector(selectUser);
   const { imageUrl } = useGetImage(userInformation);
@@ -38,7 +39,8 @@ export const Header: React.VFC = memo(() => {
   const onClickSignout = useCallback( async () => {
     try {
       await Auth.signOut();
-      history.push("/");
+      dispatch(getUserInformation(null))
+      history.push("/")
     } catch (error) {
       alert("エラーが発生しました");
       console.log(error);
@@ -46,7 +48,7 @@ export const Header: React.VFC = memo(() => {
   },[history]);
 
   return (
-    <Box h="80px" boxShadow="md">
+    <Box h="80px" boxShadow="md" w="100%">
       <Flex
         w={{ base: "95%", md: "90%" }}
         mx="auto"
