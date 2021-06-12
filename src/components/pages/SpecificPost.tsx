@@ -11,6 +11,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
 import { Spinner } from "@chakra-ui/spinner";
 import { Box } from "@chakra-ui/layout";
+import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 
 type GetPost = {
   data: {
@@ -68,7 +69,10 @@ export const SpecificPost: React.VFC = memo(() => {
           <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />
         </Box>
       ) : (
-        <NewPostCard post={post} isPosts={false} />
+        <>
+          <NewPostCard post={post} isPosts={false} />
+          <ToTopPageButton bottom="30%" right={{ base: "5%", md: "25%" }} />
+        </>
       )}
     </Box>
   );

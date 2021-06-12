@@ -5,12 +5,19 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { NormalButton } from "../atom/button/NormalButton";
 import { ImageCard } from "../organism/topPageCard/ImageCard";
-import { useAppDispatch } from "../../app/hooks";
-import { getCurrentUserInformation } from "../../features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+  getCurrentUserInformation,
+  selectUser,
+} from "../../features/user/userSlice";
+import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 
 export const TopPage: React.VFC = memo(() => {
   const { isAdminCheck } = useAdminCheck();
   const dispatch = useAppDispatch();
+  const currentUser = useAppSelector(selectUser);
+
+  console.log(currentUser);
 
   useEffect(() => {
     //user情報をReduxに格納
@@ -31,14 +38,16 @@ export const TopPage: React.VFC = memo(() => {
           <Text fontWeight="bold" fontSize={{ base: "lg", md: "30px" }} mt="3">
             もっと便利に住みやすく
           </Text>
-          <Box mt="4">
-            <NormalButton
-              color="blue.200"
-              text="テストユーザーでログイン"
-              bg="white"
-              hover={{ bg: "blue.300", color: "white" }}
-            />
-          </Box>
+          {!currentUser && (
+            <Box mt="4">
+              <NormalButton
+                color="blue.200"
+                text="テストユーザーでログイン"
+                bg="white"
+                hover={{ bg: "blue.300", color: "white" }}
+              />
+            </Box>
+          )}
           <Flex
             mt="4"
             justifyContent="space-between"
@@ -59,6 +68,13 @@ export const TopPage: React.VFC = memo(() => {
           </Flex>
         </Box>
       </Box>
+      {currentUser && (
+        <ToTopPageButton
+          bottom={{ base: "5%", sm: "10%" }}
+          right="5%"
+          text="TOP"
+        />
+      )}
     </>
   );
 });

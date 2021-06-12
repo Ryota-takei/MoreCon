@@ -41,7 +41,7 @@ export const userSlice = createSlice({
       state.isAdmin = action.payload;
       console.log(action.payload);
     },
-    getUserInformation: (state, action:PayloadAction<GetUser>) => {
+    getUserInformation: (state, action:PayloadAction<GetUser | null>) => {
       state.user = action.payload;
     },
   },

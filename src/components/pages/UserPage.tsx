@@ -15,6 +15,7 @@ import { Box, Stack, Text } from "@chakra-ui/layout";
 import { Image } from "@chakra-ui/image";
 import { NormalButton } from "../atom/button/NormalButton";
 import { useGetImage } from "../../hooks/function/useGetImage";
+import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 
 type SearchUser = {
   data: SearchByDisplayIdQuery;
@@ -87,6 +88,7 @@ export const UserPage: React.VFC = memo(() => {
             </Box>
           )}
         </Stack>
+        <ToTopPageButton bottom={{base: "5%", sm:"30%"}} right={{ base: "5%", sm: "25%" }} />
       </Box>
     </>
   );
