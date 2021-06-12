@@ -5,7 +5,6 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { Textarea } from "@chakra-ui/textarea";
 import { Input } from "@chakra-ui/input";
 import { Storage, API, graphqlOperation } from "aws-amplify";
-import { Image } from "@chakra-ui/image";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 
@@ -23,6 +22,7 @@ import { updateUser } from "../../graphql/mutations";
 import { useHistory } from "react-router";
 import { useGetImage } from "../../hooks/function/useGetImage";
 import { getUniqueStr } from "../../function/getUniqueStr";
+import { Avatar } from "@chakra-ui/avatar";
 
 type InputValue = {
   name: string;
@@ -63,6 +63,9 @@ export const ProfilePage: React.VFC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInformation]);
 
+
+  console.log(uploadImage)
+
   const onChangeProfile = useCallback(async (data: InputValue) => {
     let fileName;
 
@@ -77,6 +80,8 @@ export const ProfilePage: React.VFC = memo(() => {
         alert("エラーが発生しました");
       }
     }
+
+    console.log(uploadImage)
     const input = {
       id: userInformation?.id,
       image: fileName,
@@ -93,7 +98,7 @@ export const ProfilePage: React.VFC = memo(() => {
       alert(error);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [uploadImage]);
 
   return (
     <>
@@ -104,20 +109,21 @@ export const ProfilePage: React.VFC = memo(() => {
             onClick={onOpen}
           >
             {previewImage ? (
-              <Image
+              <Avatar
                 src={previewImage}
                 alt="プロフィール画像"
                 borderRadius="full"
                 boxSize="120px"
+                border="none"
               />
             ) : (
-              <Image
+              <Avatar
                 src={imageUrl}
                 alt="プロフィール画像"
                 borderRadius="full"
                 boxSize="120px"
                 mx="auto"
-                border="1px"
+                border="none"
                 borderColor="gray.100"
               />
             )}

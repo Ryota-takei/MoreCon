@@ -12,10 +12,10 @@ import { searchByDisplayId } from "../../graphql/queries";
 import { SearchByDisplayIdQuery } from "../../API";
 import { GetUser } from "../../types/user/user";
 import { Box, Stack, Text } from "@chakra-ui/layout";
-import { Image } from "@chakra-ui/image";
 import { NormalButton } from "../atom/button/NormalButton";
 import { useGetImage } from "../../hooks/function/useGetImage";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
+import { Avatar } from "@chakra-ui/avatar";
 
 type SearchUser = {
   data: SearchByDisplayIdQuery;
@@ -60,10 +60,8 @@ export const UserPage: React.VFC = memo(() => {
     <>
       <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto">
         <Stack textAlign="center" pt="8" spacing="5">
-          <Image
+          <Avatar
             src={imageUrl}
-            alt="プロフィール画像"
-            borderRadius="full"
             boxSize="150px"
             mx="auto"
           />

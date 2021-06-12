@@ -71,7 +71,7 @@ export const SpecificPost: React.VFC = memo(() => {
       ) : (
         <>
           <NewPostCard post={post} isPosts={false} />
-          <ToTopPageButton bottom="30%" right={{ base: "5%", md: "25%" }} />
+          <ToTopPageButton bottom="25%" right={{ base: "5%", md: "25%" }} />
         </>
       )}
     </Box>
