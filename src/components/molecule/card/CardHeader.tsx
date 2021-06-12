@@ -7,6 +7,7 @@ import { getCreateDate } from "../../../function/getCreateDate";
 import { Avatar } from "@chakra-ui/avatar";
 import { useAppSelector } from "../../../app/hooks";
 import { selectPage } from "../../../features/page/pageSlice";
+import { useHistory } from "react-router";
 
 type Prop = {
   post: Post;
@@ -19,11 +20,21 @@ type Prop = {
 
 export const CardHeader: React.VFC<Prop> = memo((props) => {
   const { post, loginUser, imageUrl, setOpen, onOpen, fontWeight } = props;
+  const history = useHistory();
   const currentPage = useAppSelector(selectPage);
+
+  const onClickToUerPage = () => {
+    history.push(`/user/${post?.contributor?.displayId}`);
+  };
 
   return (
     <HStack p="3">
-      <Avatar src={imageUrl} boxSize="70px" />
+      <Avatar
+        src={imageUrl}
+        boxSize="70px"
+        _hover={{ cursor: "pointer" }}
+        onClick={onClickToUerPage}
+      />
       <Stack w="100%">
         <Flex>
           <Flex mr="auto" alignItems="center">

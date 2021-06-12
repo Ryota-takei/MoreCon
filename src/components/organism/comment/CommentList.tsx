@@ -3,15 +3,16 @@ import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Comment } from "../../../types/comment/CommentType";
 import moment from "moment";
 import { Avatar } from "@chakra-ui/avatar";
+import { useHistory } from "react-router";
 
 type Prop = {
   comment: Comment;
 };
 export const CommentList: React.VFC<Prop> = (props) => {
   const { comment } = props;
-  const {imageUrl } = useGetImage(comment?.user);
+  const history = useHistory();
+  const { imageUrl } = useGetImage(comment?.user);
   const now = moment();
-
 
   const calcTimestampDiff = (timestamp?: number) => {
     const scales = [
@@ -35,12 +36,18 @@ export const CommentList: React.VFC<Prop> = (props) => {
     }
   };
 
+  const onClickToUerPage = () => {
+    history.push(`/user/${comment?.user?.displayId}`);
+  };
+
   return (
     <Box mt="2">
       <HStack>
         <Avatar
           src={imageUrl}
           boxSize="40px"
+          _hover={{ cursor: "pointer" }}
+          onClick={onClickToUerPage}
         />
         <Stack borderRadius="15px" bg="gray.100" p="3" spacing="0">
           <Flex justifyContent="space-between">
