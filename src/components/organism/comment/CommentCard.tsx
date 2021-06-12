@@ -1,45 +1,54 @@
-import React, { memo } from "react";
-import { Box, HStack, Text } from "@chakra-ui/layout";
+import React, { memo, useState } from "react";
+import { Box, HStack, Text, VStack } from "@chakra-ui/layout";
 import { Textarea } from "@chakra-ui/textarea";
 
 import { NormalButton } from "../../atom/button/NormalButton";
 import { Post } from "../../../types/post/NewPots";
 import { Spinner } from "@chakra-ui/spinner";
 import { CommentList } from "./CommentList";
-import { useCommentCard } from "../../../hooks/comment/useCommentCard";
+import { useGetCommentAndSubscribe } from "../../../hooks/comment/useGetCommentAndSubscribe";
 import { Avatar } from "@chakra-ui/avatar";
+import { useCreateComment } from "../../../hooks/comment/useCreateComment";
+import { Comment } from "../../../types/comment/CommentType";
+import { Loading } from "../../atom/Loading/Loading";
 
 type Prop = {
   post: Post;
   imageUrl: string | undefined;
-  setCommentCount: React.Dispatch<React.SetStateAction<number>>;
+  setCommentsCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const CommentCard: React.VFC<Prop> = memo((props) => {
-  const { post, imageUrl, setCommentCount } = props;
+  const { post, imageUrl, setCommentsCount } = props;
+  const [comments, setComments] = useState<Comment[] | null>(null);
 
-  //カスタムフック (コメントの取得、コメントの投稿)
+  //カスタムフック (コメントの初回取得、追加取得、サブスクリプション)
   const {
-    comments,
-    isFetchingLoading,
-    isSubmitLoading,
-    handleSubmit,
-    register,
-    onClickComment,
-    checkKeyDown,
-    errors,
-  } = useCommentCard(setCommentCount, post);
+    isGetNewCommentLoading,
+    isGetAdditionalCommentLoading,
+    getAdditionalComments,
+  } = useGetCommentAndSubscribe(post, setCommentsCount, setComments);
+
+  //新規投稿機能
+  const { isSubmitLoading, register, handleSubmit, createNewComment, errors } =
+    useCreateComment(post);
+
+  const checkKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.key === "Enter" && e.preventDefault();
+  };
 
   return (
     <Box w="100%" p="2" border="1px" borderColor="gray.100" borderRadius="10px">
-      {isFetchingLoading ? (
+      {isGetNewCommentLoading ? (
         <Box w="100%" textAlign="center">
           <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />
         </Box>
       ) : (
         <>
           <form
-            onSubmit={handleSubmit(onClickComment)}
+            onSubmit={handleSubmit(createNewComment)}
             onKeyDown={(e) => checkKeyDown}
           >
             <HStack>
@@ -67,6 +76,19 @@ export const CommentCard: React.VFC<Prop> = memo((props) => {
           {comments?.map((comment) => (
             <CommentList comment={comment} key={comment?.id} />
           ))}
+           {isGetAdditionalCommentLoading ? (
+              <Loading />
+            ) : (
+              <VStack mt="3">
+                <NormalButton
+                  hover={{ bg: "blue.500" }}
+                  text="Read More"
+                  bg="blue.300"
+                  color="white"
+                  onClick={getAdditionalComments}
+                />
+              </VStack>
+            )}
         </>
       )}
     </Box>

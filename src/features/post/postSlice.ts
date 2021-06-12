@@ -27,7 +27,7 @@ export const postsSlice = createSlice({
     subscriptionPosts: (state, action: PayloadAction<Post>) => {
       state.posts = [action.payload, ...state.posts];
     },
-    fetchNextToken: (state, action: PayloadAction<string>) => {
+    fetchNextToken: (state, action: PayloadAction<string | null>) => {
       state.nextToken = action.payload;
     },
     deletePosts: (state, action: PayloadAction<string>) => {
@@ -72,6 +72,7 @@ export const postsSlice = createSlice({
     },
     changePostStatus: (state, action: PayloadAction<boolean>) => {
       state.isNewPost = action.payload;
+      state.nextToken = null;
     },
   },
   extraReducers: (builder) => {},

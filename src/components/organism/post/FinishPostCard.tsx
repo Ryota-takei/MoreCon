@@ -16,7 +16,7 @@ type Prop = {
 export const FinishPostCard: React.VFC<Prop> = memo((props) => {
   const { post } = props;
   const [isOpenComment, setIsOpenComment] = useState(false);
-  const [commentCount, setCommentCount] = useState(0);
+  const [commentsCount, setCommentsCount] = useState(0);
   const { imageUrl } = useGetImage(post?.correspondingUser);
   const history = useHistory();
 
@@ -72,16 +72,16 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
         </Box>
         <FinishPostCardFooter
           post={post}
-          commentCount={commentCount}
+          commentsCount={commentsCount}
+          setCommentsCount={setCommentsCount}
           setIsOpenComment={setIsOpenComment}
-          setCommentCount={setCommentCount}
         />
       </Box>
       {isOpenComment && (
         <CommentCard
           post={post}
+          setCommentsCount={setCommentsCount}
           imageUrl={imageUrl}
-          setCommentCount={setCommentCount}
         />
       )}
     </>

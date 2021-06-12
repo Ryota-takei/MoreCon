@@ -15,9 +15,9 @@ import { CommentIconText } from "../../molecule/postCardFooter.tsx/CommentIconTe
 
 type Prop = {
   post: Post;
-  commentCount: number;
+  commentsCount: number;
+  setCommentsCount: React.Dispatch<React.SetStateAction<number>>;
   setIsOpenComment: React.Dispatch<React.SetStateAction<boolean>>;
-  setCommentCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 type CreateThank = {
@@ -25,7 +25,7 @@ type CreateThank = {
 };
 
 export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
-  const { post, commentCount, setIsOpenComment, setCommentCount } = props;
+  const { post, setIsOpenComment, commentsCount, setCommentsCount } = props;
 
   const [isFetching, setIsFetching] = useState(false);
   const [isCurrentUserThank, setIsCurrentUserThank] = useState(false);
@@ -78,6 +78,11 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
   };
 
   useEffect(() => {
+    setCommentsCount(post?.comments?.items?.length ?? 0);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
     //ログインしているユーザーがいいねしているかを確認。いいねしていれば返り値を格納する。
     const isThankPost = post?.Thanks?.items?.find(
       (item) => item?.userId === currentUser?.id
@@ -88,11 +93,6 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
     setThankId(isThankPost?.id);
     setThankCount(post?.Thanks?.items?.length ?? 0);
 
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    setCommentCount(post?.comments?.items?.length ?? 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -108,7 +108,7 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
           </HStack>
         </VStack>
         <VStack w="33%" spacing="0">
-          <CommentCount commentCount={commentCount} />
+          <CommentCount commentCount={commentsCount} />
         </VStack>
         <VStack w="33%" spacing="0">
           <HStack>

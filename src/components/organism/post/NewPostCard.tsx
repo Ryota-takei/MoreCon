@@ -29,7 +29,7 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
   const loginUser = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const [isOpenComment, setIsOpenComment] = useState(false);
-  const [commentCount, setCommentCount] = useState(0);
+  const [commentsCount, setCommentsCount] = useState(0);
   const [open, setOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -56,7 +56,7 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
   };
 
   useEffect(() => {
-    setCommentCount(post?.comments?.items?.length ?? 0);
+    setCommentsCount(post?.comments?.items?.length ?? 0);
      // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -95,14 +95,14 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
           <NewPostCardFooter
             post={post}
             setIsOpenComment={setIsOpenComment}
-            commentCount={commentCount}
+            commentCount={commentsCount}
           />
         </Box>
         {isOpenComment && (
           <CommentCard
             post={post}
             imageUrl={imageUrl}
-            setCommentCount={setCommentCount}
+            setCommentsCount={setCommentsCount}
           />
         )}
         <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />

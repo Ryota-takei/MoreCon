@@ -1,6 +1,5 @@
 import { memo } from "react";
 import { Box, Flex, VStack } from "@chakra-ui/layout";
-import { Spinner } from "@chakra-ui/spinner";
 
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import {
@@ -11,19 +10,26 @@ import {
 import { NewPostCard } from "../../organism/post/NewPostCard";
 import { useGetNewPostAndSubScribe } from "../../../hooks/post/useGetNewPostAndSubScribe";
 import { useGetWantedPostAndSubScribe } from "../../../hooks/post/useGetWantedPostAndSubScribe";
+import { Loading } from "../../atom/Loading/Loading";
+import { NormalButton } from "../../atom/button/NormalButton";
 
 export const NewPostList: React.VFC = memo(() => {
   const posts = useAppSelector(selectPosts);
   const isNewPost = useAppSelector(selectIsNewPost);
   const dispatch = useAppDispatch();
 
-  //カスタムフック（新しいポストの取得とサブスクリプション)
-  const { isGetNewPostLoading } = useGetNewPostAndSubScribe();
+  //カスタムフック（新しいポストの取得、サブスクリプション、投稿の追加読み込み)
+  const {
+    isGetNewPostLoading,
+    getAdditionalNewPost,
+    isGetAdditionalNewPostLoading,
+  } = useGetNewPostAndSubScribe();
   //注目度の高いポストの取得(like順)
-  const { isGetWantedPostLoading } = useGetWantedPostAndSubScribe();
-
-  console.log("hoge");
-  console.log(posts);
+  const {
+    isGetWantedPostLoading,
+    getAdditionalWantedPost,
+    isGetAdditionalWantedPostLoading,
+  } = useGetWantedPostAndSubScribe();
 
   return (
     <Box minH="100Vh" w="100%" pt={{ base: "80px", md: "30px" }} p="2">
@@ -64,9 +70,7 @@ export const NewPostList: React.VFC = memo(() => {
         </Box>
       </Flex>
       {isGetNewPostLoading || isGetWantedPostLoading ? (
-        <Box w="100%" textAlign="center" pt="6">
-          <Spinner thickness="4px" speed="0.65s" size="xl" color="gray.500" />
-        </Box>
+        <Loading />
       ) : (
         <>
           <VStack spacing="3" mt="4">
@@ -74,6 +78,22 @@ export const NewPostList: React.VFC = memo(() => {
               <NewPostCard post={post} key={post?.id} isPosts={true} />
             ))}
           </VStack>
+            {isGetAdditionalNewPostLoading ||
+            isGetAdditionalWantedPostLoading ? (
+              <Loading />
+            ) : (
+              <VStack w="100%" mt="8" mb="10" >
+                <NormalButton
+                  hover={{ bg: "blue.500" }}
+                  text="Read More"
+                  bg="blue.300"
+                  color="white"
+                  onClick={isNewPost? getAdditionalNewPost :getAdditionalWantedPost}
+                  px="8"
+                  w={{ base: "80%", md: "60%"}}
+                />
+              </VStack>
+            )}
         </>
       )}
     </Box>
