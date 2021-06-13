@@ -36,15 +36,15 @@ export const useLikePost = (post: Post) => {
     try {
       const res = (await API.graphql(
         graphqlOperation(createLike, { input: { ...likeInput } })
-      )) as CreateLike;
+        )) as CreateLike;
 
-      await API.graphql(
-        graphqlOperation(updatePost, { input: { ...postInput } })
-      );
+        await API.graphql(
+          graphqlOperation(updatePost, { input: { ...postInput } })
+          );
 
-      setIsCurrentUserLike(true);
-      setLikeID(res?.data.createLike?.id);
-      setLikeCount((preValue) => preValue + 1);
+          setIsCurrentUserLike(true);
+          setLikeID(res?.data.createLike?.id);
+          setLikeCount((preValue) => preValue + 1);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");

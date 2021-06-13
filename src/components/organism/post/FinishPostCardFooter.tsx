@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
-import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { API, graphqlOperation } from "aws-amplify";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import Icon from "@chakra-ui/icon";
+import { ScaleFade } from "@chakra-ui/transition";
+import { Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 
 import { SNSPop } from "../pop/SNSPop";
 import { CreateThankMutation } from "../../../API";
@@ -125,20 +127,15 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
           onClick={isCurrentUserThank ? onClickCancelThank : onClickCreateThank}
         >
           {isCurrentUserThank ? (
-            <>
-              <Box color="red.500">
-                <AiFillHeart size="20px" />
-              </Box>
-              <Text color="red.500" fontSize="xs">
-                ありがとう
-              </Text>
-            </>
+            <ScaleFade initialScale={2} in={isCurrentUserThank}>
+              <Icon as={AiFillHeart} fontSize="20px" color="red.500" />
+            </ScaleFade>
           ) : (
-            <>
-              <AiOutlineHeart size="20px" />
-              <Text fontSize="xs">ありがとう</Text>
-            </>
+            <Icon as={AiOutlineHeart} fontSize="20px" mt="4px" />
           )}
+          <Text fontSize="xs" color={isCurrentUserThank ? "red.500" : ""}>
+            ありがとう
+          </Text>
         </VStack>
         <CommentIconText setIsOpenComment={setIsOpenComment} />
         <VStack w="33%" spacing="0">
