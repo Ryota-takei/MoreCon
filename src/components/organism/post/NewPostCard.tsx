@@ -2,7 +2,6 @@ import React, { memo, useEffect, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import { Box, Text } from "@chakra-ui/layout";
 import { useDisclosure } from "@chakra-ui/react";
-import { Helmet, HelmetProvider } from "react-helmet-async";
 
 import { Post } from "../../../types/post/NewPots";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
@@ -57,64 +56,59 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
 
   useEffect(() => {
     setCommentsCount(post?.comments?.items?.length ?? 0);
-     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(imageUrl);
 
   return (
     <>
-      <HelmetProvider>
-        <Helmet>
-          <title>{post?.title}</title>
-        </Helmet>
-        <Box
-          w="100%"
-          border="1px"
-          borderColor="gray.100"
-          borderRadius="10px"
-          boxShadow="sm"
-        >
-          <CardHeader
-            post={post}
-            loginUser={loginUser}
-            imageUrl={imageUrl}
-            onOpen={onOpen}
-            setOpen={setOpen}
-            fontWeight="bold"
-          />
-
-          <Box
-            onClick={() => isPosts && onClickPost()}
-            _hover={{ cursor: "pointer" }}
-          >
-            <Box p="4">
-              <Text>{post?.content}</Text>
-            </Box>
-          </Box>
-          <NewPostCardFooter
-            post={post}
-            setIsOpenComment={setIsOpenComment}
-            commentCount={commentsCount}
-          />
-        </Box>
-        {isOpenComment && (
-          <CommentCard
-            post={post}
-            imageUrl={imageUrl}
-            setCommentsCount={setCommentsCount}
-          />
-        )}
-        <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
-        <Alert
-          isOpen={open}
-          onClose={onCloseAlert}
-          cancelRef={cancelRef}
-          dialogBody="本当に削除しますか？"
-          buttonText="削除"
-          onClick={onClickDeletePost}
+      <Box
+        w="100%"
+        border="1px"
+        borderColor="gray.100"
+        borderRadius="10px"
+        boxShadow="sm"
+      >
+        <CardHeader
+          post={post}
+          loginUser={loginUser}
+          imageUrl={imageUrl}
+          onOpen={onOpen}
+          setOpen={setOpen}
+          fontWeight="bold"
         />
-      </HelmetProvider>
+
+        <Box
+          onClick={() => isPosts && onClickPost()}
+          _hover={{ cursor: "pointer" }}
+        >
+          <Box p="4">
+            <Text>{post?.content}</Text>
+          </Box>
+        </Box>
+        <NewPostCardFooter
+          post={post}
+          setIsOpenComment={setIsOpenComment}
+          commentCount={commentsCount}
+        />
+      </Box>
+      {isOpenComment && (
+        <CommentCard
+          post={post}
+          imageUrl={imageUrl}
+          setCommentsCount={setCommentsCount}
+        />
+      )}
+      <EditPostModal isOpen={isOpen} onClose={onClose} post={post} />
+      <Alert
+        isOpen={open}
+        onClose={onCloseAlert}
+        cancelRef={cancelRef}
+        dialogBody="本当に削除しますか？"
+        buttonText="削除"
+        onClick={onClickDeletePost}
+      />
     </>
   );
 });
