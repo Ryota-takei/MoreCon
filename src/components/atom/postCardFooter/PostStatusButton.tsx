@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 
 type Prop = {
   onClick?:() => void
-  text: string
+  text?: string
   isDisable?:boolean
 }
 

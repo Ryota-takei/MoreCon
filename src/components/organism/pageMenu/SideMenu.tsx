@@ -1,30 +1,23 @@
-import { Box, Stack } from "@chakra-ui/layout";
+import { useHistory } from "react-router";
 import { FaRegLightbulb, FaDesktop } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
 import { BsPeopleCircle } from "react-icons/bs";
+import { Box, Stack } from "@chakra-ui/layout";
 
 import { Menu } from "../../atom/sidebar/Menu";
-import { useHistory } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
-import { changePageState } from "../../../features/page/pageSlice";
+import { changePageState, Pages, selectPage } from "../../../features/page/pageSlice";
 import { selectUser } from "../../../features/user/userSlice";
 import { fetchNextToken } from "../../../features/post/postSlice";
 
 export const SideMenu = () => {
   const history = useHistory();
-  const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectUser);
+  const pageState = useAppSelector(selectPage);
+  const dispatch = useAppDispatch();
 
-  const clickNewPosts = () => {
-    dispatch(changePageState("newPosts"));
-    dispatch(fetchNextToken(null))
-  };
-  const clickInProductionPosts = () => {
-    dispatch(changePageState("inProduction"));
-    dispatch(fetchNextToken(null))
-  };
-  const clickFinishPosts = () => {
-    dispatch(changePageState("finish"));
+  const clickChangeState = (arg:Pages) => {
+    dispatch(changePageState(arg));
     dispatch(fetchNextToken(null))
   };
  
@@ -36,22 +29,25 @@ export const SideMenu = () => {
     <Box w="25%" display={{ base: "none", md: "block" }} mt="100px">
       <Stack spacing="4">
         <Menu
-          onClick={clickNewPosts}
+          onClick={()=> clickChangeState("newPosts")}
           children={<FaRegLightbulb />}
           text="みんなの欲しい"
           page="newPosts"
+          pageState={pageState}
         />
         <Menu
-          onClick={clickInProductionPosts}
+          onClick={()=> clickChangeState("inProduction")}
           children={<FaDesktop />}
           text="制作中！"
           page="inProduction"
+          pageState={pageState}
         />
         <Menu
-          onClick={clickFinishPosts}
+         onClick={()=> clickChangeState("finish")}
           children={<GiPartyPopper />}
           text="完成！"
           page="finish"
+          pageState={pageState}
         />
         <Box>
           <Menu
@@ -59,6 +55,7 @@ export const SideMenu = () => {
             children={<BsPeopleCircle />}
             text="マイページ"
             page="myPage"
+            pageState={pageState}
           />
         </Box>
       </Stack>

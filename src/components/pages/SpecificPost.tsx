@@ -1,16 +1,15 @@
-import React, { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
+import { Spinner } from "@chakra-ui/spinner";
+import { Box } from "@chakra-ui/layout";
 
 import { Post } from "../../types/post/NewPots";
 import { useAppDispatch } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
-
 import { NewPostCard } from "../organism/post/NewPostCard";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { API, graphqlOperation } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
-import { Spinner } from "@chakra-ui/spinner";
-import { Box } from "@chakra-ui/layout";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 
 type GetPost = {
@@ -21,9 +20,9 @@ type GetPost = {
 
 export const SpecificPost: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
-  const { postId } = useParams<{ postId: string }>();
   const [post, setPost] = useState<Post>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { postId } = useParams<{ postId: string }>();
   const history = useHistory();
   //カスタムフック
   const { notAdminCheck } = useAdminCheck();
@@ -49,6 +48,10 @@ export const SpecificPost: React.VFC = memo(() => {
     }
   };
 
+  const onClickReturn = () => {
+    history.goBack();
+  };
+
   useEffect(() => {
     dispatch(getCurrentUserInformation());
     notAdminCheck();
@@ -71,7 +74,11 @@ export const SpecificPost: React.VFC = memo(() => {
       ) : (
         <>
           <NewPostCard post={post} isPosts={false} />
-          <ToTopPageButton bottom="25%" right={{ base: "5%", md: "25%" }} />
+          <ToTopPageButton
+            bottom="25%"
+            right={{ base: "5%", md: "25%" }}
+            onClick={onClickReturn}
+          />
         </>
       )}
     </Box>
