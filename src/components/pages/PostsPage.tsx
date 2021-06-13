@@ -13,19 +13,23 @@ import { selectPage } from "../../features/page/pageSlice";
 import { InProductionPostList } from "../template/postList/InProductionPostList";
 import { PostListCenterMenu } from "../organism/pageMenu/PostListCenterMenu";
 import { FinishPostList } from "../template/postList/FinishPostList";
+import { useGoogleLogin } from "../../hooks/auth/useGoogleLogin";
 
 export const PostsPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
   const [displayTitle, setDisplayTitle] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pageState = useAppSelector(selectPage);
-  
+
   //カスタムフック(ログインしているかの確認。していなければトップページに遷移)
   const { notAdminCheck } = useAdminCheck();
+  //googleでログインする際にDBにアカウントがあるか、なければ新規アカウントを作る
+  const {isGoogleLogin} = useGoogleLogin()
 
   useEffect(() => {
     notAdminCheck();
     dispatch(getCurrentUserInformation());
+    isGoogleLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

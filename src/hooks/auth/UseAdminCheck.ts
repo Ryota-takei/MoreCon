@@ -23,7 +23,7 @@ export const useAdminCheck = () => {
       alert("エラーが発生しました")
     }
   };
-  
+
   const notAdminCheck = async () => {
     try{
       await Auth.currentUserInfo().then((user) => {
