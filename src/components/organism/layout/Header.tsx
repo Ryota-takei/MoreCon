@@ -1,4 +1,4 @@
-import React, { memo, useCallback } from "react";
+import React, { memo, useCallback, useEffect } from "react";
 import { useHistory, useLocation } from "react-router";
 import { Auth } from "aws-amplify";
 import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
@@ -45,7 +45,12 @@ export const Header: React.VFC = memo(() => {
       alert("エラーが発生しました");
       console.log(error);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   },[history]);
+
+  useEffect(()=> {
+    window.scrollTo(0, 0)
+  },[location.pathname])
 
   return (
     <Box h="80px" boxShadow="md" w="100%">
