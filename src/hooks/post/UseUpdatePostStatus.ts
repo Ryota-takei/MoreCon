@@ -22,18 +22,15 @@ export const useUpdatePostStatus = (
     };
 
     try {
-      const res = await API.graphql(graphqlOperation(updatePost, { input }));
+      await API.graphql(graphqlOperation(updatePost, { input }));
       if (post?.id) {
         dispatch(deletePosts(post?.id));
       }
       dispatch(changePageState("inProduction"))
-      console.log(res);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
-    } finally {
-      setIsOpen(false);
-    }
+    } 
   };
 
   return { onClickProduct };
