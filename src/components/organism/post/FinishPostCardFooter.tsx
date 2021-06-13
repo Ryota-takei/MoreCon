@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { API, graphqlOperation } from "aws-amplify";
@@ -101,10 +101,10 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
       <Flex borderTop="1px" borderColor="gray.200" p="1">
         <VStack w="33%" spacing="0">
           <HStack color="red.500" spacing="0">
-            <Text fontWeight="bold" fontSize="lg">
+            <Text fontWeight="semibold" fontSize="lg">
               {thankCount === 0 ? "" : thankCount}
             </Text>
-            <Text fontWeight="semibold">ありがとう</Text>
+            <Text>ありがとう</Text>
           </HStack>
         </VStack>
         <VStack w="33%" spacing="0">

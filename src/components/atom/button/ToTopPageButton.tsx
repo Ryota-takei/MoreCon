@@ -6,11 +6,15 @@ import { useHistory } from "react-router";
 type Prop = {
   text?: string;
   bottom: string | { base: string; md: string } | { base: string; sm: string };
-  right: string | { base: string; md: string } | { base: string; sm: string };
+  right:
+    | string
+    | { base: string; md: string }
+    | { base: string; sm: string; md: string };
+  onClick?: () => void;
 };
 
 export const ToTopPageButton: React.VFC<Prop> = memo((props) => {
-  const { text, bottom, right } = props;
+  const { text, bottom, right, onClick } = props;
   const history = useHistory();
   const returnTopPage = () => {
     history.push("/posts");
@@ -27,7 +31,7 @@ export const ToTopPageButton: React.VFC<Prop> = memo((props) => {
       bottom={bottom}
       right={right}
       fontWeight="bold"
-      onClick={returnTopPage}
+      onClick={onClick ? onClick : returnTopPage}
     >
       {text ? text : <BsArrowReturnLeft size="30px" />}
     </Circle>

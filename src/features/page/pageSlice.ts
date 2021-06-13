@@ -1,27 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
-type Pages = "newPosts" | "inProduction"| "finish"
+export type Pages = "newPosts" | "inProduction" | "finish";
+export type Log = "post" | "production" | "want";
 
 export interface PageState {
-  currentPage: Pages
+  currentPage: Pages;
+  myPageLog: Log;
 }
 const initialState: PageState = {
-  currentPage: "newPosts"
-}
+  currentPage: "newPosts",
+  myPageLog: "post",
+};
 
 export const pageSlice = createSlice({
-  name:"page",
-  initialState, 
+  name: "page",
+  initialState,
   reducers: {
-    changePageState:(state, action:PayloadAction<Pages>) => {
-      state.currentPage = action.payload
-    }
-  }
-})
+    changePageState: (state, action: PayloadAction<Pages>) => {
+      state.currentPage = action.payload;
+    },
+    changePageLog: (state, action: PayloadAction<Log>) => {
+      state.myPageLog = action.payload;
+    },
+  },
+});
 
-export const { changePageState} = pageSlice.actions
+export const { changePageState, changePageLog } = pageSlice.actions;
 
-export const selectPage = (state: RootState) => state.page.currentPage
+export const selectPage = (state: RootState) => state.page.currentPage;
+export const selectPageLog = (state: RootState) => state.page.myPageLog;
 
 export default pageSlice.reducer;

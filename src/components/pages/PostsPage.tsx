@@ -1,6 +1,6 @@
+import  { memo, useEffect, useState } from "react";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex } from "@chakra-ui/layout";
-import React, { memo, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
 
@@ -11,7 +11,7 @@ import { NewPostList } from "../template/postList/NewPostList";
 import { SideMenu } from "../organism/pageMenu/SideMenu";
 import { selectPage } from "../../features/page/pageSlice";
 import { InProductionPostList } from "../template/postList/InProductionPostList";
-import { CenterMenu } from "../organism/pageMenu/CenterMenu";
+import { PostListCenterMenu } from "../organism/pageMenu/PostListCenterMenu";
 import { FinishPostList } from "../template/postList/FinishPostList";
 
 export const PostsPage: React.VFC = memo(() => {
@@ -19,6 +19,7 @@ export const PostsPage: React.VFC = memo(() => {
   const [displayTitle, setDisplayTitle] = useState("");
   const { isOpen, onOpen, onClose } = useDisclosure();
   const pageState = useAppSelector(selectPage);
+  
   //カスタムフック(ログインしているかの確認。していなければトップページに遷移)
   const { notAdminCheck } = useAdminCheck();
 
@@ -42,7 +43,7 @@ export const PostsPage: React.VFC = memo(() => {
             onClick={onOpen}
             value={displayTitle}
           />
-          <CenterMenu/>
+          <PostListCenterMenu/>
         </Box>
         {pageState === "newPosts" && <NewPostList />}
         {pageState === "inProduction" && <InProductionPostList />}
