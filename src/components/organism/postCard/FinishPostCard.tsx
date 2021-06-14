@@ -89,7 +89,6 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
         <CommentCard
           post={post}
           setCommentsCount={setCommentsCount}
-          imageUrl={imageUrl}
         />
       )}
     </>

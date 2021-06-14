@@ -94,7 +94,6 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
       {isOpenComment && (
         <CommentCard
           post={post}
-          imageUrl={imageUrl}
           setCommentsCount={setCommentsCount}
         />
       )}

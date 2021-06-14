@@ -62,9 +62,11 @@ export const UserPagePostList: React.VFC<Prop> = memo((props) => {
             nextToken: null,
           } as ListPostsQueryVariables)
         )) as GraphQLResult<ListLikeSortByUserQuery>;
-        const wantPosts = res.data?.listLikeSortByUser?.items?.map(
-          (item) => item?.post
-        );
+
+        const pos = res.data?.listLikeSortByUser?.items?.filter(
+          (item) => item?.post !== null
+        ) 
+        const wantPosts = pos?.map(items => items?.post)
         setPosts(wantPosts);
       }
     } catch (error) {
@@ -78,7 +80,7 @@ export const UserPagePostList: React.VFC<Prop> = memo((props) => {
     getPosts(logStatus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logStatus, user]);
-  
+
   return (
     <>
       {isLoading ? (

@@ -11,16 +11,20 @@ import { Avatar } from "@chakra-ui/avatar";
 import { useCreateComment } from "../../../hooks/comment/useCreateComment";
 import { Comment } from "../../../types/comment/CommentType";
 import { Loading } from "../../atom/Loading/Loading";
+import { useGetImage } from "../../../hooks/function/useGetImage";
+import { useAppSelector } from "../../../app/hooks";
+import { selectUser } from "../../../features/user/userSlice";
 
 type Prop = {
   post: Post;
-  imageUrl: string | undefined;
   setCommentsCount: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const CommentCard: React.VFC<Prop> = memo((props) => {
-  const { post, imageUrl, setCommentsCount } = props;
+  const { post, setCommentsCount } = props;
   const [comments, setComments] = useState<Comment[] | null>(null);
+  const  currentUser = useAppSelector(selectUser)
+  const { imageUrl } = useGetImage(currentUser);
 
   //カスタムフック (コメントの初回取得、追加取得、サブスクリプション)
   const {

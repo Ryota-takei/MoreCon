@@ -9,7 +9,7 @@ export const SignUp: React.VFC = memo(() => {
   //カスタムフック（サインアップ機能）
   const { onSubmit, handleClickSignup, isLoading, isConfirmCode, email } =
     useSignUp();
-// ログイン済のユーザーはPostページに遷移する。
+  // ログイン済のユーザーはPostページに遷移する。
   const { adminCheck } = useAdminCheck();
 
   useEffect(() => {
