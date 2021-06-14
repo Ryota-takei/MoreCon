@@ -1,6 +1,5 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useCallback, useEffect, useState } from "react";
 import { Auth } from "aws-amplify";
-import { Image } from "@chakra-ui/image";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
@@ -14,6 +13,9 @@ import {
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 import { useHistory } from "react-router";
 import { Loading } from "../atom/Loading/Loading";
+import introduction_dev from "../../assets/image/introduction_dev.png";
+import introduction_user from "../../assets/image/introduction_user.png";
+import mainVisual from "../../assets/image/mainVisual.png";
 
 export const TopPage: React.VFC = memo(() => {
   const { isAdminCheck } = useAdminCheck();
@@ -24,7 +26,7 @@ export const TopPage: React.VFC = memo(() => {
   const email = process.env.REACT_APP_TEST_EMAIL;
   const password = process.env.REACT_APP_TEST_PASSWORD;
 
-  const onClickLoginTestUser = async () => {
+  const onClickLoginTestUser = useCallback(async () => {
     setIsLoading(true);
     try {
       if (email && password) {
@@ -39,7 +41,7 @@ export const TopPage: React.VFC = memo(() => {
       setIsLoading(false);
       alert("エラーが発生しました");
     }
-  };
+  }, []);
 
   useEffect(() => {
     //user情報をReduxに格納
@@ -59,7 +61,14 @@ export const TopPage: React.VFC = memo(() => {
             w={{ base: "90%", md: "80%" }}
             mx="auto"
           >
-            <Image src="./mainVisual.png" alt="メインヴィジュアル" w="100%" />
+            <Box
+              backgroundImage={mainVisual}
+              w="100%"
+              minH={{ base: "25vh", sm: "35vh", md: "50vh", lg: "60vh" }}
+              bgRepeat="no-repeat"
+              bgPosition="center"
+              bgSize="cover"
+            />
             <Text
               fontWeight="bold"
               fontSize={{ base: "lg", md: "30px" }}
@@ -86,12 +95,12 @@ export const TopPage: React.VFC = memo(() => {
               display={{ base: "block", md: "flex" }}
             >
               <ImageCard
-                src="./introduction_user.png"
+                src={introduction_user}
                 text="こんなWebサービスやアプリがあれば便利だなと、思ったら自由に投稿してみよう"
                 mr={3}
               />
               <ImageCard
-                src="./introduction_dev.png"
+                src={introduction_dev}
                 text="実現できそうなアプリがあったら、実際に制作をして便利なサービスを生み出していこう"
                 mt={5}
               />

@@ -104,7 +104,7 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
       <Flex borderTop="1px" borderColor="gray.200" p="1">
         <VStack w="33%" spacing="0">
           <HStack color="red.500" spacing="0">
-            <Text fontWeight="semibold" fontSize="lg">
+            <Text fontSize="lg">
               {thankCount === 0 ? "" : thankCount}
             </Text>
             <Text>ありがとう</Text>
@@ -128,7 +128,7 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
           onClick={isCurrentUserThank ? onClickCancelThank : onClickCreateThank}
         >
           {isCurrentUserThank ? (
-            <ScaleFade initialScale={1.2} in={isCurrentUserThank}>
+            <ScaleFade initialScale={1.5} in={isCurrentUserThank}>
               <Icon as={AiFillHeart} fontSize="20px" color="red.500" />
             </ScaleFade>
           ) : (

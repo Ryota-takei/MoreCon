@@ -20,7 +20,7 @@ export const ImageCard: React.VFC<Prop> = memo((props) => {
       mr={mr}
       mt={{ base: mt, md: "0" }}
     >
-      <Image src={src} alt="サービスイメージ" />
+      <Image src={src}/>
       <Text color="gray.500" w="90%" mx="auto" pb="10">
         {text}
       </Text>

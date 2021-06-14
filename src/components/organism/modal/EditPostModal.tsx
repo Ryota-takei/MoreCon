@@ -20,8 +20,6 @@ import {
 import { NormalButton } from "../../atom/button/NormalButton";
 import { Post } from "../../../types/post/NewPots";
 import { updatePost } from "../../../graphql/mutations";
-import { useDispatch } from "react-redux";
-import { editNewPosts } from "../../../features/post/postSlice";
 
 type Prop = {
   isOpen: boolean;
@@ -37,7 +35,6 @@ type InputValue = {
 export const EditPostModal: React.VFC<Prop> = memo((props) => {
   const { isOpen, onClose, post } = props;
   const [isLoading, setIsLoading] = useState(false);
-  const dispatch = useDispatch();
   const {
     register,
     setValue,
@@ -55,13 +52,8 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
       content: data.content,
     };
     try {
-      const res = (await API.graphql(
-        graphqlOperation(updatePost, { input })
-      )) as Post;
+      await API.graphql(graphqlOperation(updatePost, { input }));
 
-      dispatch(editNewPosts(res));
-      setValue("title", "");
-      setValue("content", "");
       setIsLoading(false);
       onClose();
     } catch (error) {

@@ -7,12 +7,14 @@ import {
   ListPostsQueryVariables,
   ListPostsSortedByTimestampQuery,
   OnCreatePostSubscription,
+  OnDeletePostSubscription,
   OnUpdatePostSubscription,
 } from "../../API";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   additionalQuery,
+  deletePosts,
   editNewPosts,
   fetchNextToken,
   initialQuery,
@@ -20,7 +22,7 @@ import {
   selectNextToken,
   subscriptionPosts,
 } from "../../features/post/postSlice";
-import { onCreatePost, onUpdatePost } from "../../graphql/subscriptions";
+import { onCreatePost, onDeletePost, onUpdatePost } from "../../graphql/subscriptions";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 
@@ -111,6 +113,26 @@ export const useGetNewPostAndSubScribe = () => {
           const post = msg.value.data.onUpdatePost;
           if (post) {
             dispatch(editNewPosts(post));
+          }
+        },
+      });
+      unsubscribe = () => {
+        subUpdatePost.unsubscribe();
+      };
+    }
+    return unsubscribe;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    let unsubscribe;
+    const subscription = API.graphql(graphqlOperation(onDeletePost));
+    if (subscription instanceof Observable) {
+      const subUpdatePost = subscription.subscribe({
+        next: (msg: { value: { data: OnDeletePostSubscription } }) => {
+          const post = msg.value.data.onDeletePost;
+          if (post) {
+            dispatch(deletePosts(post.id));
           }
         },
       });
