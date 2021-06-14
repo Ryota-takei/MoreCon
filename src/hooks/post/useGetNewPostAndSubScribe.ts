@@ -34,7 +34,6 @@ export const useGetNewPostAndSubScribe = () => {
   const nextToken = useAppSelector(selectNextToken);
 
   const getPosts = async (type: Type, nextToken: string | null = null) => {
-    console.log(nextToken);
     if (type === "INITIAL_QUERY") {
       setIsGetNewPostLoading(true);
     } else {
@@ -112,7 +111,6 @@ export const useGetNewPostAndSubScribe = () => {
           const post = msg.value.data.onUpdatePost;
           if (post) {
             dispatch(editNewPosts(post));
-            console.log(post);
           }
         },
       });

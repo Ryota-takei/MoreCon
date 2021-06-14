@@ -34,7 +34,7 @@ export const PostCardFooterLike: React.VFC<Prop> = memo((props) => {
           }
         >
           {isLike ? (
-            <ScaleFade initialScale={2} in={isLike}>
+            <ScaleFade initialScale={1.2} in={isLike}>
             <Icon
               as={AiFillLike}
               fontSize="22px"

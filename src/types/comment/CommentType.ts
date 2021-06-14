@@ -12,7 +12,6 @@ export type CommentType = {
   } | null;
 
   export type Comment = {
-    
       __typename: "Comment",
       id: string,
       type: string,

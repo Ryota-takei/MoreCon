@@ -1,7 +1,7 @@
-import { Button } from "@chakra-ui/button";
-import { Text } from "@chakra-ui/layout";
 import { memo } from "react";
 import type { IconType } from "react-icons";
+import { Button } from "@chakra-ui/button";
+import { Text } from "@chakra-ui/layout";
 
 type Prop = {
   text: string;

@@ -7,6 +7,7 @@ type AuthStatus = "AMAZON_COGNITO_USER_POOLS" | "API_KEY";
 export const useChangeAuth = () => {
   const isAdmin = useSelector(selectIsAdmin);
   const [authStatus, setAuthStatus] = useState<AuthStatus>("API_KEY");
+
   const changeAuth = () => {
     if (isAdmin) {
       setAuthStatus("AMAZON_COGNITO_USER_POOLS");

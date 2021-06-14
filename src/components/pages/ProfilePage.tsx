@@ -14,7 +14,7 @@ import {
 } from "../../features/user/userSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
-import { Form } from "../organism/layout/Form";
+import { Form } from "../organism/form/Form";
 import { ImageTrimmingModal } from "../organism/modal/ImageTrimmingModal";
 import { NormalButton } from "../atom/button/NormalButton";
 import { updateUser } from "../../graphql/mutations";
@@ -63,9 +63,6 @@ export const ProfilePage: React.VFC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userInformation]);
 
-
-  console.log(uploadImage)
-
   const onChangeProfile = useCallback(async (data: InputValue) => {
     let fileName;
 
@@ -81,7 +78,6 @@ export const ProfilePage: React.VFC = memo(() => {
       }
     }
 
-    console.log(uploadImage)
     const input = {
       id: userInformation?.id,
       image: fileName,
@@ -90,8 +86,7 @@ export const ProfilePage: React.VFC = memo(() => {
     };
 
     try {
-      const res = await API.graphql(graphqlOperation(updateUser, { input }));
-      console.log(res);
+      await API.graphql(graphqlOperation(updateUser, { input }));
       history.push(`/user/${userInformation?.displayId}`);
     } catch (error) {
       console.log(error);

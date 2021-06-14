@@ -6,7 +6,7 @@ import { Auth } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 import { Box, VStack } from "@chakra-ui/layout";
 
-import { Form } from "../layout/Form";
+import { Form } from "./Form";
 import { NormalInputArea } from "../../molecule/inputArea/NormalInputArea";
 import { SecondaryButton } from "../../atom/button/SecondaryButton";
 
@@ -35,13 +35,12 @@ export const ConfirmCodeForm: React.VFC<Prop> = memo((props) => {
     setIsLoading(true);
     const username = email;
     try {
-      const value = await Auth.resendSignUp(username);
+  await Auth.resendSignUp(username);
       toast({
         title: "検証コードをメールアドレス宛にお送りしました",
         position: "bottom",
         isClosable: true,
       });
-      console.log(value);
     } catch (error) {
       console.log(error.code);
     } finally {

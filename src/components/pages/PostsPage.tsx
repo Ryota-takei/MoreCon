@@ -1,9 +1,9 @@
 import  { memo, useEffect, useState } from "react";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex } from "@chakra-ui/layout";
+
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
-
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { useDisclosure } from "@chakra-ui/react";
 import { NewPostModal } from "../organism/modal/NewPostModal";

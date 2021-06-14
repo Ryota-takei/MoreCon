@@ -10,7 +10,6 @@ export const useGetImage = (userInformation: GetUser) => {
       try {
         if (userInformation?.image) {
           const res = (await Storage.get(userInformation.image)) as string;
-          console.log(res);
           return res;
         }
       } catch (error) {

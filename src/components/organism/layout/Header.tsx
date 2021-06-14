@@ -18,13 +18,13 @@ export const Header: React.VFC = memo(() => {
   const userInformation = useAppSelector(selectUser);
   const { imageUrl } = useGetImage(userInformation);
 
-  const onClickSignUp = useCallback(() => {
+  const onClickSignUp = () => {
     history.push("/signup");
-  }, [history]);
+  }
 
-  const onClickSignIn = useCallback(() => {
+  const onClickSignIn = () => {
     history.push("/signin");
-  }, [history]);
+  }
 
   const onClickHeading = useCallback(() => {
     history.push(isAdmin ? "/posts" : "/");
@@ -36,7 +36,7 @@ export const Header: React.VFC = memo(() => {
      // eslint-disable-next-line react-hooks/exhaustive-deps
   },[userInformation]);
 
-  const onClickSignout = useCallback( async () => {
+  const onClickSignout =  async () => {
     try {
       await Auth.signOut();
       dispatch(getUserInformation(null))
@@ -45,8 +45,7 @@ export const Header: React.VFC = memo(() => {
       alert("エラーが発生しました");
       console.log(error);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[history]);
+  }
 
   useEffect(()=> {
     window.scrollTo(0, 0)

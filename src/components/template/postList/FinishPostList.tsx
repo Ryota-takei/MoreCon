@@ -5,7 +5,7 @@ import { Spinner } from "@chakra-ui/spinner";
 import { useAppSelector } from "../../../app/hooks";
 import { selectPosts } from "../../../features/post/postSlice";
 import { useGetFinishPostAndSubScribe } from "../../../hooks/post/useGetFinishPostAndSubScribe";
-import { FinishPostCard } from "../../organism/post/FinishPostCard";
+import { FinishPostCard } from "../../organism/postCard/FinishPostCard";
 import { Loading } from "../../atom/Loading/Loading";
 import { NormalButton } from "../../atom/button/NormalButton";
 

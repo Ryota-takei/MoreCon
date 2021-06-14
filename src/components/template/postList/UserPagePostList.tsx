@@ -43,7 +43,6 @@ export const UserPagePostList: React.VFC<Prop> = memo((props) => {
             nextToken: null,
           } as ListPostsQueryVariables)
         )) as GraphQLResult<ListPostsSortedByContributorQuery>;
-        console.log(res);
         setPosts(res.data?.listPostsSortedByContributor?.items);
       } else if (logStatus === "production" && user) {
         const res = (await API.graphql(
@@ -79,7 +78,6 @@ export const UserPagePostList: React.VFC<Prop> = memo((props) => {
     getPosts(logStatus);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [logStatus, user]);
-  console.log(posts);
   
   return (
     <>

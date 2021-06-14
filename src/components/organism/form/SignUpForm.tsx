@@ -5,7 +5,7 @@ import { VStack } from "@chakra-ui/layout";
 
 import { SecondaryButton } from "../../atom/button/SecondaryButton";
 import { NormalInputArea } from "../../molecule/inputArea/NormalInputArea";
-import { Form } from "../layout/Form";
+import { Form } from "./Form";
 import { memo } from "react";
 
 type DataValue = {

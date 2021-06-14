@@ -7,7 +7,7 @@ import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Post } from "../../../types/post/NewPots";
 import { NormalButton } from "../../atom/button/NormalButton";
 import { CommentCard } from "../comment/CommentCard";
-import { FinishPostCardFooter } from "./FinishPostCardFooter";
+import { FinishPostCardFooter } from "../../molecule/postCardFooter.tsx/FinishPostCardFooter";
 
 type Prop = {
   post: Post;

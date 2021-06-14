@@ -6,9 +6,10 @@ import { useSignUp } from "../../hooks/auth/useSignUp";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 
 export const SignUp: React.VFC = memo(() => {
-  //カスタムフック
+  //カスタムフック（サインアップ機能）
   const { onSubmit, handleClickSignup, isLoading, isConfirmCode, email } =
     useSignUp();
+// ログイン済のユーザーはPostページに遷移する。
   const { adminCheck } = useAdminCheck();
 
   useEffect(() => {

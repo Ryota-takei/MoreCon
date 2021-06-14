@@ -3,7 +3,7 @@ import { useHistory } from "react-router";
 import { Flex, HStack, Stack, Text } from "@chakra-ui/layout";
 
 import { WantPost } from "../../../types/post/WantPost";
-import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
+import { PostStatusButton } from "../../atom/button/PostStatusButton";
 
 type Prop = {
   post: WantPost;

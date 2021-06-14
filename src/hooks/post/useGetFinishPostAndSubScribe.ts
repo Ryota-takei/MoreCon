@@ -43,7 +43,6 @@ export const useGetFinishPostAndSubScribe = () => {
           nextToken: nextToken,
         } as ListPostsQueryVariables)
       )) as GraphQLResult<ListPostsSortedByTimestampQuery>;
-      console.log(res);
 
       const post = res.data?.listPostsSortedByTimestamp?.items;
       if (post) {
@@ -83,7 +82,6 @@ export const useGetFinishPostAndSubScribe = () => {
           const post = msg.value.data.onUpdatePost;
           if (post) {
             dispatch(editFinishPost(post));
-            console.log(post);
           }
         },
       });

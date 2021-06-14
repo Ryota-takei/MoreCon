@@ -1,17 +1,16 @@
 import { memo, useRef, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
-import {Text } from "@chakra-ui/layout";
+import { Text } from "@chakra-ui/layout";
 import { useDisclosure } from "@chakra-ui/hooks";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 
-import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
+import { PostStatusButton } from "../../atom/button/PostStatusButton";
 import { FinishPostModal } from "../../organism/modal/FinishPostModal";
 import { deletePosts } from "../../../features/post/postSlice";
 import { updatePost } from "../../../graphql/mutations";
 import { useAppDispatch } from "../../../app/hooks";
 import { Post } from "../../../types/post/NewPots";
 import { Alert } from "../../organism/alert/Alert";
-
 
 type Prop = {
   post: Post;
@@ -69,7 +68,7 @@ export const PostCardFooterProduction: React.VFC<Prop> = memo((props) => {
         buttonText="戻す"
         onClick={onClickReturnNewPost}
       />
-      <FinishPostModal isOpen={isOpen} onClose={onClose} post={post}/>
+      <FinishPostModal isOpen={isOpen} onClose={onClose} post={post} />
     </>
   );
 });
