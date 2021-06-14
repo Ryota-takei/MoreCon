@@ -13,7 +13,7 @@ import { useSignIn } from "../../hooks/auth/useSignIn";
 import { IconButton } from "../atom/button/IconButton";
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
-import { Form } from "../organism/layout/Form";
+import { Form } from "../organism/form/Form";
 
 type Location = {
   state: string;
@@ -28,8 +28,9 @@ export const SignIn: React.VFC = memo(() => {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
-  //カスタムフック
+  //カスタムフック(サイン機能)
   const { handleClickLogin, isLoading } = useSignIn();
+  // ログイン済のユーザーがこのページにきた際にPostページに遷移する。
   const { adminCheck } = useAdminCheck();
 
   useEffect(() => {
@@ -39,10 +40,9 @@ export const SignIn: React.VFC = memo(() => {
 
   const handleClickGoogleLogin = async () => {
     try {
-      const user = Auth.federatedSignIn({
+      Auth.federatedSignIn({
         provider: CognitoHostedUIIdentityProvider.Google,
       });
-      console.log(user);
     } catch (error) {
       console.log(error);
     }

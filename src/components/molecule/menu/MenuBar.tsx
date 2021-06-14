@@ -6,7 +6,6 @@ import { MenuButton, MenuItem, MenuList, Menu } from "@chakra-ui/menu";
 type Prop = {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   onOpen?: () => void;
-  
 };
 
 export const MenuBar: React.VFC<Prop> = memo((props) => {

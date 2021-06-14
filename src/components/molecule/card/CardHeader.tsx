@@ -1,5 +1,6 @@
+import { memo } from "react";
 import { Box, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
-import React, { memo } from "react";
+
 import { Post } from "../../../types/post/NewPots";
 import { MenuBar } from "../menu/MenuBar";
 import { GetUser } from "../../../types/user/user";

@@ -58,7 +58,6 @@ export const EditPostModal: React.VFC<Prop> = memo((props) => {
       const res = (await API.graphql(
         graphqlOperation(updatePost, { input })
       )) as Post;
-      console.log(res);
 
       dispatch(editNewPosts(res));
       setValue("title", "");

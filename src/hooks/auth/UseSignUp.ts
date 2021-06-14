@@ -22,7 +22,6 @@ export const useSignUp = () => {
 
   const onSubmit = async (data: DataValue) => {
     setIsLoading(true);
-    console.log(data);
     try {
       await Auth.signUp({
         username: data.email,
@@ -47,7 +46,7 @@ export const useSignUp = () => {
           isClosable: true,
         });
       } else {
-        console.log("error signing up:", error);
+        console.log(error);
         alert("エラーが発生しました。");
       }
     } finally {
@@ -58,11 +57,9 @@ export const useSignUp = () => {
   const handleClickSignup = async (data: DataConfirmValue) => {
     const username = email;
     const code = data.ConfirmCode;
-    console.log(data);
 
     try {
-      const user = await Auth.confirmSignUp(username, code);
-      console.log(user);
+     await Auth.confirmSignUp(username, code);
       toast({
         title:
           "セキュリティーの理由からお手数をお掛けしますが、ログインをお願いします",

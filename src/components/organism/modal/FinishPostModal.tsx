@@ -71,8 +71,8 @@ export const FinishPostModal: React.VFC<Prop> = memo((props) => {
         dispatch(deletePosts(post.id));
       }
       setIsLoading(false);
-      onClose();
       dispatch(changePageState("finish"));
+      onClose();
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");

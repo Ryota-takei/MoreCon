@@ -5,7 +5,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { NormalButton } from "../atom/button/NormalButton";
-import { ImageCard } from "../organism/topPageCard/ImageCard";
+import { ImageCard } from "../molecule/topPageCard/ImageCard";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
   getCurrentUserInformation,

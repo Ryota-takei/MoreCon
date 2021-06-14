@@ -5,15 +5,16 @@ import Icon from "@chakra-ui/icon";
 import { ScaleFade } from "@chakra-ui/transition";
 import { Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 
-import { SNSPop } from "../pop/SNSPop";
+import { SNSPop } from "../../organism/pop/SNSPop";
 import { CreateThankMutation } from "../../../API";
 import { useAppSelector } from "../../../app/hooks";
 import { selectUser } from "../../../features/user/userSlice";
 import { createThank, deleteThank } from "../../../graphql/mutations";
 import { Post } from "../../../types/post/NewPots";
-import { PostStatusButton } from "../../atom/postCardFooter/PostStatusButton";
-import { CommentCount } from "../../molecule/postCardFooter.tsx/CommentCount";
-import { CommentIconText } from "../../molecule/postCardFooter.tsx/CommentIconText";
+import { PostStatusButton } from "../../atom/button/PostStatusButton";
+import { CommentCount } from "../comment/CommentCount";
+import { CommentIconText } from "../comment/CommentIconText";
+
 
 type Prop = {
   post: Post;
@@ -127,7 +128,7 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
           onClick={isCurrentUserThank ? onClickCancelThank : onClickCreateThank}
         >
           {isCurrentUserThank ? (
-            <ScaleFade initialScale={2} in={isCurrentUserThank}>
+            <ScaleFade initialScale={1.2} in={isCurrentUserThank}>
               <Icon as={AiFillHeart} fontSize="20px" color="red.500" />
             </ScaleFade>
           ) : (

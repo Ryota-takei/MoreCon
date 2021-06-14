@@ -27,7 +27,6 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isAdmin]);
 
-  console.log(authStatus, isAdmin);
   return (
     <ChakraProvider theme={theme}>
       <BrowserRouter>

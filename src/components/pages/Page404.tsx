@@ -1,5 +1,5 @@
-import { Box, Text } from "@chakra-ui/layout";
 import { memo, useEffect } from "react";
+import { Box, Text } from "@chakra-ui/layout";
 import { useHistory } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { getCurrentUserInformation, selectUser } from "../../features/user/userSlice";

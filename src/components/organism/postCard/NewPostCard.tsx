@@ -10,7 +10,7 @@ import { deletePost } from "../../../graphql/mutations";
 import { deletePosts } from "../../../features/post/postSlice";
 import { Alert } from "../alert/Alert";
 import { EditPostModal } from "../modal/EditPostModal";
-import { NewPostCardFooter } from "./NewPostCardFooter";
+import { NewPostCardFooter } from "../../molecule/postCardFooter.tsx/NewPostCardFooter";
 import { CardHeader } from "../../molecule/card/CardHeader";
 import { CommentCard } from "../comment/CommentCard";
 import { useHistory } from "react-router";
@@ -58,8 +58,6 @@ export const NewPostCard: React.VFC<Prop> = memo((props) => {
     setCommentsCount(post?.comments?.items?.length ?? 0);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(imageUrl);
 
   return (
     <>

@@ -32,6 +32,7 @@ export const useSignIn = () => {
 
   const handleClickLogin = async (data: DataValue) => {
     setIsLoading(true);
+
     try {
       const userData = (await Auth.signIn(data.email, data.password)) as User;
       const result = (await API.graphql(

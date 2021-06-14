@@ -65,7 +65,6 @@ export const postsSlice = createSlice({
       }
     },
     editFinishPost: (state, action: PayloadAction<Post>) => {
-      console.log(action.payload);
       if (action.payload?.type === "finish") {
         state.posts = [action.payload, ...state.posts];
       }

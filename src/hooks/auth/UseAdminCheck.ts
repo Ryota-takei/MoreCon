@@ -8,6 +8,7 @@ export const useAdminCheck = () => {
   const dispatch = useAppDispatch();
   const history = useHistory();
 
+//ログインしているユーザーがサインアップもしくはサインイン画面にきたら、postページに遷移する。
   const adminCheck = async () => {
     try{
       await Auth.currentUserInfo().then((user) => {
@@ -23,7 +24,7 @@ export const useAdminCheck = () => {
       alert("エラーが発生しました")
     }
   };
-
+  // ログインユーザーでない際にはtopページに遷移する。
   const notAdminCheck = async () => {
     try{
       await Auth.currentUserInfo().then((user) => {
@@ -40,7 +41,8 @@ export const useAdminCheck = () => {
       alert("エラーが発生しました")
     }
   };
-
+  
+  // ログインしているかどうかでUIをかえるページでのチェック。遷移は必要なし（トップページなど）
   const isAdminCheck = async () => {
     try {
       await Auth.currentUserInfo().then((user) => {
@@ -56,5 +58,5 @@ export const useAdminCheck = () => {
     }
   };
 
-  return { adminCheck, notAdminCheck, isAdminCheck };
+  return {adminCheck,  notAdminCheck, isAdminCheck };
 };

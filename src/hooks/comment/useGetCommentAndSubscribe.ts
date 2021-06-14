@@ -23,7 +23,6 @@ export const useGetCommentAndSubscribe = (
   setCommentsCount: React.Dispatch<React.SetStateAction<number>>,
   setComments: React.Dispatch<React.SetStateAction<Comment[] | null>>
 ) => {
-
   const [isGetNewCommentLoading, setIsGetNewCommentLoading] = useState(false);
   const [nextToken, setNextToken] = useState<string | null>(null);
   const [isGetAdditionalCommentLoading, setIsGetAdditionalCommentLoading] =

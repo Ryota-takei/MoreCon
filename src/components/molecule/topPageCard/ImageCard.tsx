@@ -1,6 +1,6 @@
+import { memo } from "react";
 import { Image } from "@chakra-ui/image";
 import { Box, Text } from "@chakra-ui/layout";
-import { memo } from "react";
 
 type Prop = {
   src: string;

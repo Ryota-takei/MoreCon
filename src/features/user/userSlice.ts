@@ -39,7 +39,6 @@ export const userSlice = createSlice({
   reducers: {
     getCurrentUserStatus: (state, action:PayloadAction<boolean> )=> {
       state.isAdmin = action.payload;
-      console.log(action.payload);
     },
     getUserInformation: (state, action:PayloadAction<GetUser | null>) => {
       state.user = action.payload;

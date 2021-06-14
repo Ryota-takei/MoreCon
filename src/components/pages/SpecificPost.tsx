@@ -6,7 +6,7 @@ import { Box } from "@chakra-ui/layout";
 import { Post } from "../../types/post/NewPots";
 import { useAppDispatch } from "../../app/hooks";
 import { getCurrentUserInformation } from "../../features/user/userSlice";
-import { NewPostCard } from "../organism/post/NewPostCard";
+import { NewPostCard } from "../organism/postCard/NewPostCard";
 import { useAdminCheck } from "../../hooks/auth/useAdminCheck";
 import { API, graphqlOperation } from "aws-amplify";
 import { getPost } from "../../graphql/queries";
@@ -24,7 +24,7 @@ export const SpecificPost: React.VFC = memo(() => {
   const [isLoading, setIsLoading] = useState(false);
   const { postId } = useParams<{ postId: string }>();
   const history = useHistory();
-  //カスタムフック
+  //カスタムフック（ログインユーザーでない際にはtopページに遷移する。）
   const { notAdminCheck } = useAdminCheck();
 
   const getPostInformation = async () => {
@@ -39,7 +39,6 @@ export const SpecificPost: React.VFC = memo(() => {
         setIsLoading(false);
         history.push("/page404");
       }
-      console.log(res);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");

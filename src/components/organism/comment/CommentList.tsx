@@ -1,9 +1,10 @@
+import { useHistory } from "react-router";
+import moment from "moment";
+import { Avatar } from "@chakra-ui/avatar";
+
 import { Box, Flex, HStack, Stack, Text } from "@chakra-ui/layout";
 import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Comment } from "../../../types/comment/CommentType";
-import moment from "moment";
-import { Avatar } from "@chakra-ui/avatar";
-import { useHistory } from "react-router";
 
 type Prop = {
   comment: Comment;

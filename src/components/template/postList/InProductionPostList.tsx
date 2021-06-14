@@ -1,6 +1,6 @@
 import { Box, VStack } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
-import { NewPostCard } from "../../organism/post/NewPostCard";
+import { NewPostCard } from "../../organism/postCard/NewPostCard";
 import { selectPosts } from "../../../features/post/postSlice";
 import { useAppSelector } from "../../../app/hooks";
 import { useGetInProductionPostAndSubscribe } from "../../../hooks/post/useGetInProductionPostAndSubscribe";

@@ -7,14 +7,13 @@ import { updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 
 export const useUpdatePostStatus = (
-  post: Post,
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+  post: Post
 ) => {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectUser);
 
   const onClickProduct = async () => {
-    if(post?.type !== "new") return
+    if (post?.type !== "new") return;
     const input = {
       id: post?.id,
       type: "inProduction",
@@ -26,11 +25,11 @@ export const useUpdatePostStatus = (
       if (post?.id) {
         dispatch(deletePosts(post?.id));
       }
-      dispatch(changePageState("inProduction"))
+      dispatch(changePageState("inProduction"));
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
-    } 
+    }
   };
 
   return { onClickProduct };

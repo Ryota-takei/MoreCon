@@ -1,16 +1,17 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 
-import { GetUserGraph, NewUser } from "./useSignIn";
-import { getUser } from "../../graphql/queries";
+import { getUserInformation } from "../../features/user/userSlice";
 import { getUniqueStr } from "../../function/getUniqueStr";
 import { createUser } from "../../graphql/mutations";
+import { GetUserGraph, NewUser } from "./useSignIn";
 import { useAppDispatch } from "../../app/hooks";
-import { getUserInformation } from "../../features/user/userSlice";
+import { getUser } from "../../graphql/queries";
 
 export const useGoogleLogin = () => {
   const dispatch = useAppDispatch();
   const toast = useToast();
+
   const isGoogleLogin = async () => {
     try {
       const user = await Auth.currentUserInfo().then((user) => {
@@ -20,6 +21,7 @@ export const useGoogleLogin = () => {
         graphqlOperation(getUser, { id: user.username })
       )) as GetUserGraph;
 
+      //Googleでログイン時にdbにアカウントがなければ新規でアカウント作成
       if (!currentUser.data.getUser) {
         const input = {
           id: user.username,

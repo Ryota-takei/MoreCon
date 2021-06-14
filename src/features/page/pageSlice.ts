@@ -13,6 +13,7 @@ const initialState: PageState = {
   myPageLog: "post",
 };
 
+// どこのページを見ているかを管理
 export const pageSlice = createSlice({
   name: "page",
   initialState,
