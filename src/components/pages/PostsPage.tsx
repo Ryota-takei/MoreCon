@@ -34,7 +34,7 @@ export const PostsPage: React.VFC = memo(() => {
   }, []);
 
   return (
-    <Flex w={{ base: "100%", md: "70%" }} mx="auto" maxW="1250px">
+    <Flex w={{ base: "100%", md: "70%" }} mx="auto" maxW="800px">
       <SideMenu />
       <Box w={{ base: "100%", sm: "90%", md: "75%" }} minH="100vh" mx="auto">
         <Box textAlign="center" w="100%" mt="3">
