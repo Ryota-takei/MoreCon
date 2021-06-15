@@ -1,6 +1,6 @@
-import { Page404 } from '../components/pages/Page404'
-import {  SpecificPost } from '../components/pages/SpecificPost'
-import { PostsPage } from '../components/pages/PostsPage'
+import { Page404 } from '../views/components/pages/Page404'
+import {  SpecificPost } from '../views/components/pages/SpecificPost'
+import { PostsPage } from '../views/components/pages/PostsPage'
 
 export const postRouter = [
   {

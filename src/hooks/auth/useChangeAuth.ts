@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import {selectIsAdmin} from "../../features/user/userSlice"
+import {selectIsAdmin} from "../../redux/slices/user/userSlice"
 
 type AuthStatus = "AMAZON_COGNITO_USER_POOLS" | "API_KEY";
 

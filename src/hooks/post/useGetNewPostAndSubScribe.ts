@@ -11,7 +11,7 @@ import {
   OnUpdatePostSubscription,
 } from "../../API";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   additionalQuery,
   deletePosts,
@@ -21,8 +21,12 @@ import {
   selectIsNewPost,
   selectNextToken,
   subscriptionPosts,
-} from "../../features/post/postSlice";
-import { onCreatePost, onDeletePost, onUpdatePost } from "../../graphql/subscriptions";
+} from "../../redux/slices/post/postSlice";
+import {
+  onCreatePost,
+  onDeletePost,
+  onUpdatePost,
+} from "../../graphql/subscriptions";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 
@@ -65,7 +69,7 @@ export const useGetNewPostAndSubScribe = () => {
       if (newNextToken) {
         dispatch(fetchNextToken(newNextToken));
       } else {
-        dispatch(fetchNextToken(null))
+        dispatch(fetchNextToken(null));
       }
     } catch (error) {
       console.log(error);

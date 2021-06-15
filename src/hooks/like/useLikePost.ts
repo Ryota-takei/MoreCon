@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 
 import { CreateLikeMutation } from "../../API";
-import { useAppSelector } from "../../app/hooks";
-import { selectUser } from "../../features/user/userSlice";
+import { useAppSelector } from "../../redux/app/hooks";
+import { selectUser } from "../../redux/slices/user/userSlice";
 import { createLike, deleteLike, updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 
@@ -16,8 +16,7 @@ export const useLikePost = (post: Post) => {
   const [isFetching, setIsFetching] = useState(false);
   const [likeCount, setLikeCount] = useState(0);
   const [isCurrentUserLike, setIsCurrentUserLike] = useState(false);
-  const [likeID, setLikeID] =
-    useState<string | undefined>("");
+  const [likeID, setLikeID] = useState<string | undefined>("");
 
   const onClickAddLike = async () => {
     if (isCurrentUserLike || isFetching) return;
@@ -36,15 +35,15 @@ export const useLikePost = (post: Post) => {
     try {
       const res = (await API.graphql(
         graphqlOperation(createLike, { input: { ...likeInput } })
-        )) as CreateLike;
+      )) as CreateLike;
 
-        await API.graphql(
-          graphqlOperation(updatePost, { input: { ...postInput } })
-          );
+      await API.graphql(
+        graphqlOperation(updatePost, { input: { ...postInput } })
+      );
 
-          setIsCurrentUserLike(true);
-          setLikeID(res?.data.createLike?.id);
-          setLikeCount((preValue) => preValue + 1);
+      setIsCurrentUserLike(true);
+      setLikeID(res?.data.createLike?.id);
+      setLikeCount((preValue) => preValue + 1);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");

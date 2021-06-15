@@ -7,14 +7,14 @@ import {
   ListPostsSortedByLikeCountQuery,
 } from "../../API";
 import { listPostsSortedByLikeCount } from "../../graphql/queries";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   additionalQuery,
   fetchNextToken,
   initialQuery,
   selectIsNewPost,
   selectNextToken,
-} from "../../features/post/postSlice";
+} from "../../redux/slices/post/postSlice";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 

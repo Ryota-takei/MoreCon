@@ -13,12 +13,12 @@ import {
   fetchNextToken,
   initialQuery,
   selectNextToken,
-} from "../../features/post/postSlice";
+} from "../../redux/slices/post/postSlice";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
-import { useAppSelector } from "../../app/hooks";
+import { useAppSelector } from "../../redux/app/hooks";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 

@@ -1,8 +1,8 @@
 import { Auth } from "aws-amplify";
 import { useHistory } from "react-router";
 
-import { useAppDispatch } from "../../app/hooks";
-import { getCurrentUserStatus } from "../../features/user/userSlice";
+import { useAppDispatch } from "../../redux/app/hooks";
+import { getCurrentUserStatus } from "../../redux/slices/user/userSlice";
 
 export const useAdminCheck = () => {
   const dispatch = useAppDispatch();

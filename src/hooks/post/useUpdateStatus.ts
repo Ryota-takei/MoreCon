@@ -1,14 +1,12 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { changePageState } from "../../features/page/pageSlice";
-import { deletePosts } from "../../features/post/postSlice";
-import { selectUser } from "../../features/user/userSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { changePageState } from "../../redux/slices/page/pageSlice";
+import { deletePosts } from "../../redux/slices/post/postSlice";
+import { selectUser } from "../../redux/slices/user/userSlice";
 import { updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 
-export const useUpdatePostStatus = (
-  post: Post
-) => {
+export const useUpdatePostStatus = (post: Post) => {
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectUser);
 

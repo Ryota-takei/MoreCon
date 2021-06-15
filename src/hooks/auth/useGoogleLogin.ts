@@ -1,11 +1,11 @@
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 
-import { getUserInformation } from "../../features/user/userSlice";
-import { getUniqueStr } from "../../function/getUniqueStr";
+import { getUserInformation } from "../../redux/slices/user/userSlice";
+import { getUniqueStr } from "../../utils/getUniqueStr";
 import { createUser } from "../../graphql/mutations";
 import { GetUserGraph, NewUser } from "./useSignIn";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch } from "../../redux/app/hooks";
 import { getUser } from "../../graphql/queries";
 
 export const useGoogleLogin = () => {
