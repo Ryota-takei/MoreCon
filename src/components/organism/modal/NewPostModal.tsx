@@ -155,10 +155,10 @@ export const NewPostModal: React.VFC<Prop> = memo((props) => {
 });
 
 const REQUIRE = "必須入力項目です";
-const VIOLATION_NAME_COUNT = "タイトルは２0文字以下で入力してください";
+const VIOLATION_NAME_COUNT = "タイトルは30文字以下で入力してください";
 const VIOLATION_PROFILE_COUNT = "本文は400文字以下で入力してください";
 
 const postChangeSchema = yup.object().shape({
-  title: yup.string().required(REQUIRE).max(20, VIOLATION_NAME_COUNT),
+  title: yup.string().required(REQUIRE).max(30, VIOLATION_NAME_COUNT),
   content: yup.string().required(REQUIRE).max(400, VIOLATION_PROFILE_COUNT),
 });

@@ -11,6 +11,7 @@ import { updatePost } from "../../../graphql/mutations";
 import { useAppDispatch } from "../../../app/hooks";
 import { Post } from "../../../types/post/NewPots";
 import { Alert } from "../../organism/alert/Alert";
+import { changePageState } from "../../../features/page/pageSlice";
 
 type Prop = {
   post: Post;
@@ -37,7 +38,7 @@ export const PostCardFooterProduction: React.VFC<Prop> = memo((props) => {
       if (post) {
         dispatch(deletePosts(post.id));
       }
-      setIsOpenReturnAlert(false);
+      dispatch(changePageState("newPosts"));
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
