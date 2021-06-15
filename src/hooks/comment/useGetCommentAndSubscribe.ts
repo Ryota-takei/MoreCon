@@ -60,7 +60,7 @@ export const useGetCommentAndSubscribe = (
       if (newNextToken) {
         setNextToken(newNextToken);
       } else {
-        setNextToken(null)
+        setNextToken(null);
       }
     } catch (error) {
       console.log(error);

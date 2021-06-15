@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-import { useAppSelector } from "../../app/hooks";
-import { selectUser } from "../../features/user/userSlice";
+import { useAppSelector } from "../../redux/app/hooks";
+import { selectUser } from "../../redux/slices/user/userSlice";
 import { createComment } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";
 

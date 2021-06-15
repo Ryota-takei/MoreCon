@@ -5,14 +5,14 @@ import {
   ListPostsSortedByTimestampQuery,
   OnUpdatePostSubscription,
 } from "../../API";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import {
   additionalQuery,
   fetchNextToken,
   initialQuery,
   editFinishPost,
   selectNextToken,
-} from "../../features/post/postSlice";
+} from "../../redux/slices/post/postSlice";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";

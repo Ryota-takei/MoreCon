@@ -2,15 +2,17 @@ import { BrowserRouter } from "react-router-dom";
 import { Router } from "./router/Router";
 import { useEffect } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./chakraTheme/theme";
+import theme from "./views/chakraTheme/theme";
+
 
 import { useChangeAuth } from "./hooks/auth/useChangeAuth";
-import { useAppSelector } from "./app/hooks";
-import { selectIsAdmin } from "./features/user/userSlice";
+import { useAppSelector } from "./redux/app/hooks";
+import { selectIsAdmin } from "./redux/slices/user/userSlice";
 
 import Amplify from "aws-amplify";
 import config from "./aws-exports";
-import { HeaderLayout } from "./components/template/HeaderLayout";
+import { HeaderLayout } from "./views/components/template/HeaderLayout";
+
 Amplify.configure(config);
 
 function App() {

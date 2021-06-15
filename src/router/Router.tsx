@@ -1,8 +1,8 @@
 import { Route, Switch } from "react-router-dom";
-import { Page404 } from "../components/pages/Page404";
-import { SignIn } from "../components/pages/SignIn";
-import { SignUp } from "../components/pages/SignUp";
-import { TopPage } from "../components/pages/TopPage";
+import { Page404 } from "../views/components/pages/Page404";
+import { SignIn } from "../views/components/pages/SignIn";
+import { SignUp } from "../views/components/pages/SignUp";
+import { TopPage } from "../views/components/pages/TopPage";
 import { postRouter } from "./PostRouter";
 import { userRoutes } from "./UserRoutes";
 

@@ -3,13 +3,13 @@ import { useHistory } from "react-router";
 import { Auth, API, graphqlOperation } from "aws-amplify";
 import { useToast } from "@chakra-ui/toast";
 
-import { getUserInformation } from "../../features/user/userSlice";
+import { getUserInformation } from "../../redux/slices/user/userSlice";
 import { User } from "../../types/user/user";
 import { getUser } from "../../graphql/queries";
 import { CreateUserMutation, GetUserQuery } from "../../API";
 import { createUser } from "../../graphql/mutations";
-import { useAppDispatch } from "../../app/hooks";
-import { getUniqueStr } from "../../function/getUniqueStr";
+import { useAppDispatch } from "../../redux/app/hooks";
+import { getUniqueStr } from "../../utils/getUniqueStr";
 
 export type DataValue = {
   email: string;
