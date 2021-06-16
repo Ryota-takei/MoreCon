@@ -120,10 +120,7 @@ export const TopPage: React.VFC = memo(() => {
             >
               使いかた
             </Text>
-            <Flex
-              justifyContent="space-between"
-              display={{ base: "block", md: "flex" }}
-            >
+            <Box>
               <HowToUseCard
                 title="こんなサービスがあったら便利だなと思ったら投稿"
                 url={newPosts}
@@ -135,13 +132,8 @@ export const TopPage: React.VFC = memo(() => {
                 url={inProduction}
                 text="他の人が作成しているサービスはサイドバーの『制作中』から見ることができます。『コメント』で応援しましょう。"
                 mt={3}
+                isEven={true}
               />
-            </Flex>
-            <Flex
-              justifyContent="space-between"
-              display={{ base: "block", md: "flex" }}
-              mt={{ base: "0", md: "5" }}
-            >
               <HowToUseCard
                 title="完成したサービスを見る"
                 url={finishPosts}
@@ -153,8 +145,9 @@ export const TopPage: React.VFC = memo(() => {
                 url={userPage}
                 text="投稿やコメントのユーザーアイコンから他のユーザーページに訪問して、投稿履歴や制作履歴などを見ることができます。また『ありがとう』をどのくらい貰ったかを見ることができます。"
                 mt={3}
+                isEven={true}
               />
-            </Flex>
+            </Box>
           </Box>
         </Box>
       )}

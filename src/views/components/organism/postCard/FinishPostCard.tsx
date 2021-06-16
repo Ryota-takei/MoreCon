@@ -29,8 +29,8 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
       window.open(post?.url);
     }
   };
-  const onClickToUerPage = () => {
-    history.push(`/user/${post?.correspondingUser?.displayId}`);
+  const onClickToUerPage = (id: string | null | undefined) => {
+    history.push(`/user/${id}`);
   };
 
   return (
@@ -47,9 +47,22 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
             src={imageUrl}
             boxSize="70px"
             _hover={{ cursor: "pointer" }}
-            onClick={onClickToUerPage}
+            onClick={() => onClickToUerPage(post?.correspondingUser?.displayId)}
           />
-          <Text fontWeight="bold">{`${post?.contributor?.name}さんの欲しいを${post?.correspondingUser?.name}さんが実現してくれました！！`}</Text>
+          <HStack fontWeight="semibold" spacing="0">
+            <Text
+              _hover={{ cursor: "pointer" }}
+              onClick={() => onClickToUerPage(post?.contributor?.displayId)}
+            >{`${post?.contributor?.name}さん`}</Text>
+            <Text>の欲しいを</Text>
+            <Text
+              _hover={{ cursor: "pointer" }}
+              onClick={() =>
+                onClickToUerPage(post?.correspondingUser?.displayId)
+              }
+            >{`${post?.correspondingUser?.name}さん`}</Text>
+            <Text>が実現してくれました！！</Text>
+          </HStack>
         </HStack>
         <Box p="3">
           <HStack my="2">

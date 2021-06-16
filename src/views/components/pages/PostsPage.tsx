@@ -1,4 +1,4 @@
-import  { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex } from "@chakra-ui/layout";
 
@@ -24,18 +24,18 @@ export const PostsPage: React.VFC = memo(() => {
   //カスタムフック(ログインしているかの確認。していなければトップページに遷移)
   const { notAdminCheck } = useAdminCheck();
   //googleでログインする際にDBにアカウントがあるか、なければ新規アカウントを作る
-  const {isGoogleLogin} = useGoogleLogin()
+  const { isGoogleLogin } = useGoogleLogin();
 
   useEffect(() => {
     notAdminCheck();
     dispatch(getCurrentUserInformation());
-    isGoogleLogin()
+    isGoogleLogin();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <Flex w={{ base: "100%", md: "70%" }} mx="auto" maxW="800px">
-      <SideMenu />
+      <SideMenu onOpen={onOpen} />
       <Box w={{ base: "100%", sm: "90%", md: "75%" }} minH="100vh" mx="auto">
         <Box textAlign="center" w="100%" mt="3">
           <Input
@@ -47,11 +47,11 @@ export const PostsPage: React.VFC = memo(() => {
             onClick={onOpen}
             value={displayTitle}
           />
-          <PostListCenterMenu/>
+          <PostListCenterMenu />
         </Box>
         {pageState === "newPosts" && <NewPostList />}
         {pageState === "inProduction" && <InProductionPostList />}
-        {pageState === "finish" && <FinishPostList/>}
+        {pageState === "finish" && <FinishPostList />}
       </Box>
       <NewPostModal
         isOpen={isOpen}

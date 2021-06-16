@@ -13,6 +13,7 @@ import { CommentCount } from "../comment/CommentCount";
 import { useLikePost } from "../../../../hooks/like/useLikePost";
 import { useUpdatePostStatus } from "../../../../hooks/post/useUpdateStatus";
 import { CommentIconText } from "../comment/CommentIconText";
+import { useHistory } from "react-router";
 
 type Prop = {
   post: Post;
@@ -23,6 +24,7 @@ type Prop = {
 export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
   const { post, setIsOpenComment, commentCount } = props;
   const currentUser = useAppSelector(selectUser);
+  const history = useHistory();
   const [isOpen, setIsOpen] = useState(false);
   const cancelRef = useRef<HTMLButtonElement>(null);
   const onCloseAlert = () => setIsOpen(false);
@@ -32,6 +34,10 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
     useLikePost(post);
   //制作するボタンを押した際にpostのステータスの変更
   const { onClickProduct } = useUpdatePostStatus(post);
+
+  const onClickToUserPage = (id: string | undefined | null) => {
+    history.push(`/user/${id}`);
+  };
 
   return (
     <>
@@ -61,6 +67,10 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
               fontWeight="bold"
               fontSize="sm"
               p="1"
+              _hover={{ cursor: "pointer" }}
+              onClick={() =>
+                onClickToUserPage(post?.correspondingUser?.displayId)
+              }
             >{`${post?.correspondingUser?.name}さんが実現済み`}</Text>
           </VStack>
         )}
@@ -70,6 +80,8 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
               fontWeight="bold"
               fontSize="sm"
               p="1"
+              _hover={{ cursor: "pointer" }}
+              onClick={() => onClickToUserPage(post?.correspondingUser?.displayId)}
             >{`${post?.correspondingUser?.name}さんが制作中。コメントで応援しよう！！`}</Text>{" "}
           </VStack>
         )}
