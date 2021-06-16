@@ -49,20 +49,22 @@ export const FinishPostCard: React.VFC<Prop> = memo((props) => {
             _hover={{ cursor: "pointer" }}
             onClick={() => onClickToUerPage(post?.correspondingUser?.displayId)}
           />
-          <HStack fontWeight="semibold" spacing="0">
-            <Text
+          <Text fontWeight="semibold" spacing="0">
+            <Box
+              as="a"
               _hover={{ cursor: "pointer" }}
               onClick={() => onClickToUerPage(post?.contributor?.displayId)}
-            >{`${post?.contributor?.name}さん`}</Text>
-            <Text>の欲しいを</Text>
-            <Text
+            >{`${post?.contributor?.name}さん`}</Box>
+            の欲しいを
+            <Box
+              as="a"
               _hover={{ cursor: "pointer" }}
               onClick={() =>
                 onClickToUerPage(post?.correspondingUser?.displayId)
               }
-            >{`${post?.correspondingUser?.name}さん`}</Text>
-            <Text>が実現してくれました！！</Text>
-          </HStack>
+            >{`${post?.correspondingUser?.name}さん`}</Box>
+            が実現してくれました！！
+          </Text>
         </HStack>
         <Box p="3">
           <HStack my="2">
