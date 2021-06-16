@@ -38,7 +38,12 @@ export const CardHeader: React.VFC<Prop> = memo((props) => {
       />
       <Stack w="100%">
         <Flex>
-          <Flex mr="auto" alignItems="center">
+          <Flex
+            mr="auto"
+            alignItems="center"
+            _hover={{ cursor: "pointer" }}
+            onClick={onClickToUerPage}
+          >
             <Heading size="sm">{post?.contributor?.name}</Heading>
             <Heading size="xs" color="gray.400" ml="1">
               さん
