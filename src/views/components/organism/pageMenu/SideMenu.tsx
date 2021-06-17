@@ -6,7 +6,7 @@ import { BsPeopleCircle } from "react-icons/bs";
 import { Box, Stack } from "@chakra-ui/layout";
 
 import { Menu } from "../../atom/sidebar/Menu";
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   changePageState,
   Pages,

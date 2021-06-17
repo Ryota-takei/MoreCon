@@ -4,10 +4,10 @@ import { Box, Flex, Heading, HStack, Stack, Text } from "@chakra-ui/layout";
 import { Post } from "../../../../types/post/NewPots";
 import { MenuBar } from "../menu/MenuBar";
 import { GetUser } from "../../../../types/user/user";
-import { getCreateDate } from "../../../../utils/getCreateDate";
+import { getCreateDate } from "../../../utils/getCreateDate";
 import { Avatar } from "@chakra-ui/avatar";
 import { selectPage } from "../../../../redux/slices/page/pageSlice";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { useHistory } from "react-router";
 
 type Prop = {

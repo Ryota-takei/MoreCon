@@ -3,7 +3,7 @@ import { Stack, Text, VStack } from "@chakra-ui/layout";
 import { Icon, ScaleFade } from "@chakra-ui/react";
 import { AiOutlineLike, AiFillLike } from "react-icons/ai";
 
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { selectPage } from "../../../../redux/slices/page/pageSlice";
 
 

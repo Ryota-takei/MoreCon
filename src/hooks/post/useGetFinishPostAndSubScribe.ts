@@ -5,7 +5,7 @@ import {
   ListPostsSortedByTimestampQuery,
   OnUpdatePostSubscription,
 } from "../../API";
-import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   additionalQuery,
   fetchNextToken,

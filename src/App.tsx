@@ -6,7 +6,7 @@ import theme from "./views/chakraTheme/theme";
 
 
 import { useChangeAuth } from "./hooks/auth/useChangeAuth";
-import { useAppSelector } from "./redux/app/hooks";
+import { useAppSelector } from "./redux/hooks";
 import { selectIsAdmin } from "./redux/slices/user/userSlice";
 
 import Amplify from "aws-amplify";

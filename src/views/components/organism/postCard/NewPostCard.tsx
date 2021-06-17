@@ -4,7 +4,7 @@ import { Box, Text } from "@chakra-ui/layout";
 import { useDisclosure } from "@chakra-ui/react";
 
 import { Post } from "../../../../types/post/NewPots";
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 import { deletePost } from "../../../../graphql/mutations";
 import { deletePosts } from "../../../../redux/slices/post/postSlice";

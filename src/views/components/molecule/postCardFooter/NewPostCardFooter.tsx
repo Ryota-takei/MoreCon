@@ -4,7 +4,7 @@ import { Box, Flex, HStack, Text, VStack } from "@chakra-ui/layout";
 import { Post } from "../../../../types/post/NewPots";
 import { Alert } from "../../organism/alert/Alert";
 import { SNSPop } from "../../organism/pop/SNSPop";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { PostStatusButton } from "../../atom/button/PostStatusButton";
 import { PostCardFooterLike } from "./PostCardFooterLike";
 import { PostCardFooterProduction } from "./PostCardFooterProduction";

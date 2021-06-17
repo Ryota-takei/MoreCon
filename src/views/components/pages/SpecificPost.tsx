@@ -4,7 +4,7 @@ import { Spinner } from "@chakra-ui/spinner";
 import { Box } from "@chakra-ui/layout";
 
 import { Post } from "../../../types/post/NewPots";
-import { useAppDispatch } from "../../../redux/app/hooks";
+import { useAppDispatch } from "../../../redux/hooks";
 import { getCurrentUserInformation } from "../../../redux/slices/user/userSlice";
 import { NewPostCard } from "../organism/postCard/NewPostCard";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";

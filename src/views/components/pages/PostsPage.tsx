@@ -2,7 +2,7 @@ import { memo, useEffect, useState } from "react";
 import { Input } from "@chakra-ui/input";
 import { Box, Flex } from "@chakra-ui/layout";
 
-import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { selectPage } from "../../../redux/slices/page/pageSlice";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
 import { useDisclosure } from "@chakra-ui/react";

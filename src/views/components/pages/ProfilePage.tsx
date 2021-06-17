@@ -12,7 +12,7 @@ import {
   getCurrentUserInformation,
   selectUser,
 } from "../../../redux/slices/user/userSlice";
-import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
 import { Form } from "../organism/form/Form";
 import { ImageTrimmingModal } from "../organism/modal/ImageTrimmingModal";
@@ -22,7 +22,7 @@ import { updateUser } from "../../../graphql/mutations";
 import { useHistory } from "react-router";
 import { useGetImage } from "../../../hooks/function/useGetImage";
 import { Avatar } from "@chakra-ui/avatar";
-import { getUniqueStr } from "../../../utils/getUniqueStr";
+import { getUniqueStr } from "../../utils/getUniqueStr";
 
 type InputValue = {
   name: string;

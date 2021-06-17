@@ -5,7 +5,7 @@ import { Box, Flex, Heading, HStack } from "@chakra-ui/layout";
 import { Avatar } from "@chakra-ui/avatar";
 
 import { NormalButton } from "../../atom/button/NormalButton";
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   getUserInformation,
   selectIsAdmin,

@@ -4,7 +4,7 @@ import { API, graphqlOperation } from "aws-amplify";
 import { Avatar } from "@chakra-ui/avatar";
 import { Box, HStack, Stack, Text, VStack } from "@chakra-ui/layout";
 
-import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   getCurrentUserInformation,
   selectUser,

@@ -7,7 +7,7 @@ import {
   ListPostsSortedByLikeCountQuery,
 } from "../../API";
 import { listPostsSortedByLikeCount } from "../../graphql/queries";
-import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   additionalQuery,
   fetchNextToken,

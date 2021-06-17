@@ -8,8 +8,8 @@ import { User } from "../../types/user/user";
 import { getUser } from "../../graphql/queries";
 import { CreateUserMutation, GetUserQuery } from "../../API";
 import { createUser } from "../../graphql/mutations";
-import { useAppDispatch } from "../../redux/app/hooks";
-import { getUniqueStr } from "../../utils/getUniqueStr";
+import { useAppDispatch } from "../../redux/hooks";
+import { getUniqueStr } from "../../views/utils/getUniqueStr";
 
 export type DataValue = {
   email: string;

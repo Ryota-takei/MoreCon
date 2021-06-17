@@ -1,5 +1,5 @@
 import { API, graphqlOperation } from "aws-amplify";
-import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { changePageState } from "../../redux/slices/page/pageSlice";
 import { deletePosts } from "../../redux/slices/post/postSlice";
 import { selectUser } from "../../redux/slices/user/userSlice";
