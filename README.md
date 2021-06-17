@@ -9,6 +9,8 @@
 
 アプリURL：https://www.morecon.net/   
 お試しでご利用いただけるようにテストユーザー用のログインも用意してあります。
+※Qiitaにも苦労した点、工夫した点、使用技術を紹介した記事を投稿しました
+https://qiita.com/takeiin/items/41c3ade449a72f2dc3fa
 
 ## アプリのUIと機能
 ### Top画面
