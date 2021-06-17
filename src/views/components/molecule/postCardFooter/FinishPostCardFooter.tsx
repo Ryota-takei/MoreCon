@@ -12,7 +12,7 @@ import { Post } from "../../../../types/post/NewPots";
 import { PostStatusButton } from "../../atom/button/PostStatusButton";
 import { CommentCount } from "../comment/CommentCount";
 import { CommentIconText } from "../comment/CommentIconText";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 
 

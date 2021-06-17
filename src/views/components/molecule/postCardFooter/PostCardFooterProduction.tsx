@@ -8,7 +8,7 @@ import { PostStatusButton } from "../../atom/button/PostStatusButton";
 import { FinishPostModal } from "../../organism/modal/FinishPostModal";
 import { deletePosts } from "../../../../redux/slices/post/postSlice";
 import { updatePost } from "../../../../graphql/mutations";
-import { useAppDispatch } from "../../../../redux/app/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { Post } from "../../../../types/post/NewPots";
 import { Alert } from "../../organism/alert/Alert";
 import { changePageState } from "../../../../redux/slices/page/pageSlice";

@@ -12,7 +12,7 @@ import { useCreateComment } from "../../../../hooks/comment/useCreateComment";
 import { Comment } from "../../../../types/comment/CommentType";
 import { Loading } from "../../atom/Loading/Loading";
 import { useGetImage } from "../../../../hooks/function/useGetImage";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 
 type Prop = {

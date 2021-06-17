@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 
 import { CreateLikeMutation } from "../../API";
-import { useAppSelector } from "../../redux/app/hooks";
+import { useAppSelector } from "../../redux/hooks";
 import { selectUser } from "../../redux/slices/user/userSlice";
 import { createLike, deleteLike, updatePost } from "../../graphql/mutations";
 import { Post } from "../../types/post/NewPots";

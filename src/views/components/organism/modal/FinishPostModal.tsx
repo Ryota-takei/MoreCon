@@ -20,7 +20,7 @@ import { Input } from "@chakra-ui/input";
 import { Post } from "../../../../types/post/NewPots";
 import { API, graphqlOperation } from "aws-amplify";
 import { updatePost } from "../../../../graphql/mutations";
-import { useAppDispatch } from "../../../../redux/app/hooks";
+import { useAppDispatch } from "../../../../redux/hooks";
 import { deletePosts } from "../../../../redux/slices/post/postSlice";
 import { changePageState } from "../../../../redux/slices/page/pageSlice";
 

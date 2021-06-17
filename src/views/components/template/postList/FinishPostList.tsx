@@ -2,7 +2,7 @@ import { memo } from "react";
 import { Box, VStack } from "@chakra-ui/layout";
 import { Spinner } from "@chakra-ui/spinner";
 
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { selectPosts } from "../../../../redux/slices/post/postSlice";
 import { useGetFinishPostAndSubScribe } from "../../../../hooks/post/useGetFinishPostAndSubScribe";
 import { FinishPostCard } from "../../organism/postCard/FinishPostCard";

@@ -4,7 +4,7 @@ import { Auth, API, graphqlOperation } from "aws-amplify";
 import { getUser } from "../../../graphql/queries";
 import { GetUserGraph } from "../../../hooks/auth/useSignIn";
 import { GetUser } from "../../../types/user/user";
-import { RootState } from "../../app/store";
+import { RootState } from "../../store";
 
 
 export interface UserState {

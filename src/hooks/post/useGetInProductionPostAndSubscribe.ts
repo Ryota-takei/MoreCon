@@ -18,7 +18,7 @@ import { listPostsSortedByTimestamp } from "../../graphql/queries";
 import { GraphQLResult } from "@aws-amplify/api-graphql";
 import { onUpdatePost } from "../../graphql/subscriptions";
 import { Observable } from "zen-observable-ts";
-import { useAppSelector } from "../../redux/app/hooks";
+import { useAppSelector } from "../../redux/hooks";
 
 type Type = "INITIAL_QUERY" | "ADDITIONAL_QUERY";
 

@@ -11,7 +11,7 @@ import {
   OnUpdatePostSubscription,
 } from "../../API";
 import { listPostsSortedByTimestamp } from "../../graphql/queries";
-import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   additionalQuery,
   deletePosts,

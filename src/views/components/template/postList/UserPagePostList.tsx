@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/layout";
 
 import { GetUser } from "../../../../types/user/user";
 import { API, graphqlOperation } from "aws-amplify";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { Log, selectPageLog } from "../../../../redux/slices/page/pageSlice";
 import {
   listLikeSortByUser,

@@ -19,7 +19,7 @@ import {
 
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 import { NormalButton } from "../../atom/button/NormalButton";
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { API, graphqlOperation } from "aws-amplify";
 import { createPost } from "../../../../graphql/mutations";
 import { changePostStatus } from "../../../../redux/slices/post/postSlice";

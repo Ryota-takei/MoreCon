@@ -3,7 +3,7 @@ import { Spinner } from "@chakra-ui/spinner";
 
 import { NewPostCard } from "../../organism/postCard/NewPostCard";
 import { selectPosts } from "../../../../redux/slices/post/postSlice";
-import { useAppSelector } from "../../../../redux/app/hooks";
+import { useAppSelector } from "../../../../redux/hooks";
 import { useGetInProductionPostAndSubscribe } from "../../../../hooks/post/useGetInProductionPostAndSubscribe";
 import { Loading } from "../../atom/Loading/Loading";
 import { NormalButton } from "../../atom/button/NormalButton";

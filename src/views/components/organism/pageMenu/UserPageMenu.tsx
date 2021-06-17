@@ -2,7 +2,7 @@ import { memo } from "react";
 import { HStack } from "@chakra-ui/layout";
 
 import { Menu } from "../../atom/sidebar/Menu";
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   changePageLog,
   Log,

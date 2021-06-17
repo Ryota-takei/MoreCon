@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { HStack } from "@chakra-ui/layout";
 
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import { fetchNextToken } from "../../../../redux/slices/post/postSlice";
 import { Menu } from "../../atom/sidebar/Menu";
 import {

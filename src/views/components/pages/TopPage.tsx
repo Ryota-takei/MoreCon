@@ -5,7 +5,7 @@ import { Box, Flex, Text } from "@chakra-ui/layout";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
 import { NormalButton } from "../atom/button/NormalButton";
 import { ImageCard } from "../molecule/topPageCard/ImageCard";
-import { useAppDispatch, useAppSelector } from "../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 import {
   getCurrentUserInformation,
   selectUser,

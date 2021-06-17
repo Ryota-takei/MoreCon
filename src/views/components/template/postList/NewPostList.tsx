@@ -1,7 +1,7 @@
 import { memo } from "react";
 import { Box, Flex, VStack } from "@chakra-ui/layout";
 
-import { useAppDispatch, useAppSelector } from "../../../../redux/app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../../redux/hooks";
 import {
   changePostStatus,
   selectIsNewPost,
