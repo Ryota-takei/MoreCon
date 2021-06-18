@@ -1,6 +1,5 @@
 import { Image } from "@chakra-ui/image";
 import { Box, Text } from "@chakra-ui/layout";
-import React from "react";
 
 type Prop = {
   title: string;
@@ -22,9 +21,9 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
     >
       {isEven ? (
         <>
-          <Box w={{ base: "90%", md: "50%" }}>
+          <Box w={{ base: "90%", md: "50%" }} my="auto" mx="auto">
             <Text
-              fontSize={{ base: "lg", md: "xl" }}
+              fontSize={{ base: "24px", md: "25px" }}
               fontWeight="bold"
               pb="2"
               textAlign="center"
@@ -35,12 +34,18 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
             <Text
               letterSpacing={{ base: "", md: "wide" }}
               fontWeight="semibold"
+              fontSize={{ base: "15px", md: "18px" }}
               mt="6"
             >
               {text}
             </Text>
           </Box>
-          <Box w={{ base: "90%", md: "50%" }} mt={{ base: "3", md: "" }}>
+          <Box
+            w={{ base: "90%", md: "50%" }}
+            pt={{ base: "5", md: "" }}
+            my="auto"
+            mx="auto"
+          >
             <Image src={url} />
           </Box>{" "}
         </>
@@ -49,14 +54,16 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
           <Box
             w={{ base: "90%", md: "50%" }}
             display={{ base: "none", md: "flex" }}
-            mt={{ base: "3", md: "" }}
+            mt={{ base: "5", md: "" }}
+            my="auto"
+            mx="auto"
           >
             <Image src={url} />
           </Box>
-          <Box w={{ base: "90%", md: "50%" }}>
+          <Box w={{ base: "90%", md: "50%" }} my="auto" mx="auto">
             <Text
-              fontSize={{ base: "lg", md: "xl" }}
               fontWeight="bold"
+              fontSize={{ base: "22px", md: "25px" }}
               pb="2"
               textAlign="center"
             >
@@ -66,6 +73,7 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
             <Text
               letterSpacing={{ base: "", md: "wide" }}
               fontWeight="semibold"
+              fontSize={{ base: "15px", md: "18px" }}
               mt="6"
             >
               {text}
@@ -74,7 +82,9 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
           <Box
             w={{ base: "90%", md: "50%" }}
             display={{ base: "flex", md: "none" }}
-            mt={{ base: "3", md: "" }}
+            pt={{ base: "3", md: "" }}
+            my="auto"
+            mx="auto"
           >
             <Image src={url} />
           </Box>
