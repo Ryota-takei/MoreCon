@@ -17,7 +17,7 @@ https://qiita.com/takeiin/items/41c3ade449a72f2dc3fa
 ○ログイン/新規登録/テストログイン。  
 ○簡易的にアプリの使用方法の記載。  
 
-![ezgif.com-gif-maker (2).gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/1233228/ec368131-2e26-fe18-50f0-733c4a9231ea.gif)
+![ezgif.com-gif-maker (11).gif](https://qiita-image-store.s3.ap-northeast-1.amazonaws.com/0/1233228/cbe1a6f0-c672-7577-b96b-30902c0a7bc2.gif)
 
 ### 未制作投稿一覧画面
 （新規の投稿を一覧で表示。後述の制作中投稿や完成している投稿は表示されません）   
