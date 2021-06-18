@@ -1,7 +1,7 @@
+import { memo } from "react";
 import { useHistory } from "react-router";
 import { FaRegLightbulb, FaDesktop } from "react-icons/fa";
 import { GiPartyPopper } from "react-icons/gi";
-import { IoCreateOutline } from "react-icons/io5";
 import { BsPeopleCircle } from "react-icons/bs";
 import { Box, Stack } from "@chakra-ui/layout";
 
@@ -14,14 +14,14 @@ import {
 } from "../../../../redux/slices/page/pageSlice";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 import { fetchNextToken } from "../../../../redux/slices/post/postSlice";
-import { memo } from "react";
+import { NewPost } from "../../atom/sidebar/NewPost";
 
 type Prop = {
- onOpen:() => void
-}
+  onOpen: () => void;
+};
 
-export const SideMenu:React.VFC<Prop> = memo((props) => {
-  const {onOpen} = props
+export const SideMenu: React.VFC<Prop> = memo((props) => {
+  const { onOpen } = props;
   const history = useHistory();
   const currentUser = useAppSelector(selectUser);
   const pageState = useAppSelector(selectPage);
@@ -61,20 +61,18 @@ export const SideMenu:React.VFC<Prop> = memo((props) => {
           pageState={pageState}
         />
         <Menu
-          onClick={onOpen}
-          children={<IoCreateOutline />}
-          text="新規投稿"
+          onClick={clickMyPage}
+          children={<BsPeopleCircle />}
+          text="マイページ"
+          page="myPage"
           pageState={pageState}
         />
-        <Box>
-          <Menu
-            onClick={clickMyPage}
-            children={<BsPeopleCircle />}
-            text="マイページ"
-            page="myPage"
-            pageState={pageState}
-          />
-        </Box>
+        <NewPost
+          onClick={onOpen}
+          text="新規投稿"
+          bg="blue.300"
+          color="white"
+        />
       </Stack>
     </Box>
   );

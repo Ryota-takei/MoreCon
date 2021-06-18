@@ -121,12 +121,14 @@ export const TopPage: React.VFC = memo(() => {
               使いかた
             </Text>
             <Box>
+              <Box bg="gray.100" w="100%" height="6px" opacity="0.7" />
               <HowToUseCard
-                title="こんなサービスがあったら便利だなと思ったら投稿"
+                title="こんなサービスがあったら便利！と思ったら投稿"
                 url={newPosts}
                 text=" あったら便利なサービスを投稿してみましょう。その投稿に対して他の方が『want』や『コメント』をしてくれたり、そのサービスを作ってくれます。
               もしくは『制作する』を押して、あなた自身が他の方のサービスを実現しましょう。"
               />
+              <Box bg="gray.100" w="100%" height="6px" opacity="0.7" />
               <HowToUseCard
                 title="制作中の投稿を見る"
                 url={inProduction}
@@ -134,12 +136,14 @@ export const TopPage: React.VFC = memo(() => {
                 mt={3}
                 isEven={true}
               />
+              <Box bg="gray.100" w="100%" height="6px" opacity="0.7" />
               <HowToUseCard
                 title="完成したサービスを見る"
                 url={finishPosts}
                 text="完成したサービスはサイドバーの『完成』から見ることができます。実際に制作されたサービスを使ったり、『コメント』や『ありがとう』を送りましょう。"
                 mt={3}
               />
+              <Box bg="gray.100" w="100%" height="6px" opacity="0.7" />
               <HowToUseCard
                 title="ユーザーページを見る"
                 url={userPage}
