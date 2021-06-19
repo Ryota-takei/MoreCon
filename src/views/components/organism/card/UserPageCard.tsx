@@ -41,7 +41,15 @@ export const UserPageCard: React.VFC<Prop> = memo((props) => {
       onClick={onClickCard}
     >
       <Flex justifyContent="space-between">
-        <Text fontWeight="bold">{post?.title}</Text>
+        <Text
+          fontWeight="bold"
+          fontSize={{ base: "sm", sm: "md" }}
+          textOverflow="ellipsis"
+          whiteSpace="nowrap"
+          overflow="hidden"
+        >
+          {post?.title}
+        </Text>
         <PostStatusButton text={postStatus} isDisable={true} />
       </Flex>
       <HStack>

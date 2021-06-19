@@ -53,7 +53,7 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
         <>
           <Box
             w={{ base: "90%", md: "50%" }}
-            display={{ base: "none", md: "flex" }}
+            display={{ base: "none", md: "block" }}
             mt={{ base: "5", md: "" }}
             my="auto"
             mx="auto"
@@ -81,7 +81,7 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
           </Box>
           <Box
             w={{ base: "90%", md: "50%" }}
-            display={{ base: "flex", md: "none" }}
+            display={{ base: "block", md: "none" }}
             pt={{ base: "3", md: "" }}
             my="auto"
             mx="auto"
@@ -93,3 +93,4 @@ export const HowToUseCard: React.VFC<Prop> = (props) => {
     </Box>
   );
 };
+
