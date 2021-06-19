@@ -15,7 +15,6 @@ import { CommentIconText } from "../comment/CommentIconText";
 import { useAppSelector } from "../../../../redux/hooks";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 
-
 type Prop = {
   post: Post;
   commentsCount: number;
@@ -104,20 +103,14 @@ export const FinishPostCardFooter: React.VFC<Prop> = (props) => {
       <Flex borderTop="1px" borderColor="gray.200" p="1">
         <VStack w="33%" spacing="0">
           <HStack color="red.500" spacing="0">
-            <Text fontSize="lg">
-              {thankCount === 0 ? "" : thankCount}
-            </Text>
+            <Text fontSize="lg">{thankCount === 0 ? "" : thankCount}</Text>
             <Text>ありがとう</Text>
           </HStack>
         </VStack>
         <VStack w="33%" spacing="0">
           <CommentCount commentCount={commentsCount} />
         </VStack>
-        <VStack w="33%" spacing="0">
-          <HStack>
-            <SNSPop post={post} />
-          </HStack>
-        </VStack>
+        <SNSPop post={post} />
       </Flex>
       <Flex borderTop="1px" borderColor="gray.200" p="1">
         <VStack

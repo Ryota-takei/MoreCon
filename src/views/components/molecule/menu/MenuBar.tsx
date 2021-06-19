@@ -14,20 +14,26 @@ export const MenuBar: React.VFC<Prop> = memo((props) => {
   return (
     <>
       <Menu>
-        <MenuButton
-          as={IconButton}
-          aria-label="Options"
-          icon={<BsThreeDots />}
-          outline="none"
-          bg="white"
-          color="gray.400"
-          h="6"
-          _hover={{ outline: "none", bg: "white" }}
-        />
-        <MenuList>
-          <MenuItem onClick={() => setIsOpen(true)}>削除する</MenuItem>
-            <MenuItem onClick={onOpen}>編集する</MenuItem>
-        </MenuList>
+        {({ isOpen }) => (
+          <>
+            <MenuButton
+              as={IconButton}
+              aria-label="Options"
+              icon={<BsThreeDots />}
+              outline="none"
+              bg="white"
+              color="gray.400"
+              h="6"
+              _hover={{ outline: "none", bg: "white" }}
+            />
+            {isOpen && (
+              <MenuList>
+                <MenuItem onClick={() => setIsOpen(true)}>削除する</MenuItem>
+                <MenuItem onClick={onOpen}>編集する</MenuItem>
+              </MenuList>
+            )}
+          </>
+        )}
       </Menu>
     </>
   );

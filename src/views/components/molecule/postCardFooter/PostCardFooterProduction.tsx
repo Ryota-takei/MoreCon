@@ -48,18 +48,24 @@ export const PostCardFooterProduction: React.VFC<Prop> = memo((props) => {
   return (
     <>
       <Menu>
-        <MenuButton my="auto" h="100%">
-          <PostStatusButton text="制作中" />
-        </MenuButton>
+        {({ isOpen }) => (
+          <>
+            <MenuButton my="auto" h="100%">
+              <PostStatusButton text="制作中" />
+            </MenuButton>
 
-        <MenuList>
-          <MenuItem onClick={() => setIsOpenReturnAlert(true)}>
-            <Text color="black">未制作に戻す</Text>
-          </MenuItem>
-          <MenuItem onClick={onOpen}>
-            <Text color="black">完成！！</Text>
-          </MenuItem>
-        </MenuList>
+            {isOpen && (
+              <MenuList>
+                <MenuItem onClick={() => setIsOpenReturnAlert(true)}>
+                  <Text color="black">未制作に戻す</Text>
+                </MenuItem>
+                <MenuItem onClick={onOpen}>
+                  <Text color="black">完成！！</Text>
+                </MenuItem>
+              </MenuList>
+            )}
+          </>
+        )}
       </Menu>
       <Alert
         isOpen={isOpenReturnAlert}

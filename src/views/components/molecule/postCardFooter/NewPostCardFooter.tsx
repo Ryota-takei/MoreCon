@@ -95,6 +95,7 @@ export const NewPostCardFooter: React.VFC<Prop> = memo((props) => {
               />
             </HStack>
           )}
+        {/* 製作者用のボタン */}
           {post?.type === "inProduction" &&
             post?.correspondingUserId === currentUser?.id && (
               <Box h="100%">
