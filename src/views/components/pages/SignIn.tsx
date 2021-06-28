@@ -14,6 +14,7 @@ import { IconButton } from "../atom/button/IconButton";
 import { CognitoHostedUIIdentityProvider } from "@aws-amplify/auth/lib/types";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
 import { Form } from "../organism/form/Form";
+import { useTestLogin } from "../../../hooks/auth/useTestLogin";
 
 type Location = {
   state: string;
@@ -28,6 +29,8 @@ export const SignIn: React.VFC = memo(() => {
   } = useForm({
     resolver: yupResolver(SigninSchema),
   });
+  //カスタムフック（テストログイン）
+  const { onClickLoginTestUser } = useTestLogin();
   //カスタムフック(サイン機能)
   const { handleClickLogin, isLoading } = useSignIn();
   // ログイン済のユーザーがこのページにきた際にPostページに遷移する。
@@ -90,6 +93,17 @@ export const SignIn: React.VFC = memo(() => {
           icon={FcGoogle}
           iconPosition="left"
           onClick={handleClickGoogleLogin}
+        />
+      </Box>
+      <Box textAlign="center" mt="6">
+        <SecondaryButton
+          hover={{ bg: "blue.300", color: "white" }}
+          text="テストユーザーでログイン"
+          bg="white"
+          color="blue.300"
+          type="submit"
+          isLoading={isLoading}
+          onClick={onClickLoginTestUser}
         />
       </Box>
     </Form>

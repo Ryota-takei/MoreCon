@@ -1,5 +1,4 @@
-import React, { memo, useCallback, useEffect, useState } from "react";
-import { Auth } from "aws-amplify";
+import React, { memo, useEffect, useState } from "react";
 import { Box, Flex, Text } from "@chakra-ui/layout";
 
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
@@ -11,7 +10,6 @@ import {
   selectUser,
 } from "../../../redux/slices/user/userSlice";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
-import { useHistory } from "react-router";
 import { Loading } from "../atom/Loading/Loading";
 import introduction_dev from "../../assets/image/introduction_dev.png";
 import introduction_user from "../../assets/image/introduction_user.png";
@@ -21,33 +19,15 @@ import inProduction from "../../assets/image/inProduction.png";
 import finishPosts from "../../assets/image/finishPosts.png";
 import userPage from "../../assets/image/userPage.png";
 import { HowToUseCard } from "../molecule/topPageCard/HowToUseCard";
+import { useTestLogin } from "../../../hooks/auth/useTestLogin";
 
 export const TopPage: React.VFC = memo(() => {
   const { isAdminCheck } = useAdminCheck();
   const dispatch = useAppDispatch();
-  const history = useHistory();
-  const [isLoading, setIsLoading] = useState(false);
   const currentUser = useAppSelector(selectUser);
-  const email = process.env.REACT_APP_TEST_EMAIL;
-  const password = process.env.REACT_APP_TEST_PASSWORD;
 
-  const onClickLoginTestUser = useCallback(async () => {
-    setIsLoading(true);
-    try {
-      if (email && password) {
-        await Auth.signIn(email, password);
-      } else {
-        throw new Error("ログインに失敗しました");
-      }
-      setIsLoading(false);
-      history.push("/posts");
-    } catch (error) {
-      console.log(error);
-      setIsLoading(false);
-      alert("エラーが発生しました");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  //カスタムフック（テストログイン）
+  const { onClickLoginTestUser, isLoading } = useTestLogin();
 
   useEffect(() => {
     //user情報をReduxに格納

@@ -1,12 +1,13 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { VStack } from "@chakra-ui/layout";
+import { VStack, Box } from "@chakra-ui/layout";
 
 import { SecondaryButton } from "../../atom/button/SecondaryButton";
 import { NormalInputArea } from "../../molecule/inputArea/NormalInputArea";
 import { Form } from "./Form";
 import { memo } from "react";
+import { useTestLogin } from "../../../../hooks/auth/useTestLogin";
 
 type DataValue = {
   email: string;
@@ -28,6 +29,9 @@ export const SignUpForm: React.VFC<Prop> = memo((props) => {
   } = useForm({
     resolver: yupResolver(SignupSchema),
   });
+
+  //カスタムフック（テストログイン）
+  const { onClickLoginTestUser } = useTestLogin();
 
   return (
     <Form heading="新規登録">
@@ -67,6 +71,17 @@ export const SignUpForm: React.VFC<Prop> = memo((props) => {
           />
         </VStack>
       </form>
+      <Box textAlign="center" mt="6">
+        <SecondaryButton
+          hover={{ bg: "blue.300", color: "white" }}
+          text="テストユーザーでログイン"
+          bg="white"
+          color="blue.300"
+          type="submit"
+          isLoading={isLoading}
+          onClick={onClickLoginTestUser}
+        />
+      </Box>
     </Form>
   );
 });
