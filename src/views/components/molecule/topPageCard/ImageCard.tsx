@@ -22,7 +22,7 @@ export const ImageCard: React.VFC<Prop> = memo((props) => {
       boxShadow="md"
     >
       <Image src={src}/>
-      <Text color="gray.500" w="90%" mx="auto" pb="10">
+      <Text  w="90%" mx="auto" pb="10">
         {text}
       </Text>
     </Box>
