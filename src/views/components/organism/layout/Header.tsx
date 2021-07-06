@@ -12,6 +12,8 @@ import {
   selectUser,
 } from "../../../../redux/slices/user/userSlice";
 import { useGetImage } from "../../../../hooks/function/useGetImage";
+import { useTestLogin } from "../../../../hooks/auth/useTestLogin";
+import { VStack } from "@chakra-ui/react";
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
@@ -20,6 +22,9 @@ export const Header: React.VFC = memo(() => {
   const isAdmin = useAppSelector(selectIsAdmin);
   const userInformation = useAppSelector(selectUser);
   const { imageUrl } = useGetImage(userInformation);
+
+  //カスタムフック（テストログイン）
+  const { onClickLoginTestUser } = useTestLogin();
 
   const onClickSignUp = () => {
     history.push("/signup");
@@ -82,6 +87,17 @@ export const Header: React.VFC = memo(() => {
           )}
           {!isAdmin && !location.pathname.includes("user") && (
             <>
+              {!userInformation && (
+                <Box display={{base:"none", sm:"block"}}>
+                  <NormalButton
+                    text="テストログイン"
+                    onClick={onClickLoginTestUser}
+                    hover={{ bg: "blue.500" }}
+                    bg="blue.300"
+                    color="white"
+                  />
+                </Box>
+              )}
               <NormalButton
                 hover={{ bg: "blue.500" }}
                 text="新規登録"

@@ -63,7 +63,7 @@ export const TopPage: React.VFC = memo(() => {
               もっと便利に住みやすく
             </Text>
             {!currentUser && (
-              <Box mt="4">
+              <Box mt="4" display={{base:"block", sm:"none"}}>
                 <NormalButton
                   text="テストユーザーでログイン"
                   onClick={onClickLoginTestUser}
