@@ -82,8 +82,8 @@ export const UserPage: React.VFC = memo(() => {
               </Text>
             </HStack>
           </VStack>
-          {user?.id === loginUser?.id && (
-            <Box mx="auto">
+          <Box mx="auto">
+            {user?.id === loginUser?.id ? (
               <NormalButton
                 hover={{ bg: "blue.300", color: "white" }}
                 text="プロフィールを編集する"
@@ -93,8 +93,33 @@ export const UserPage: React.VFC = memo(() => {
                 w={{ base: "300px", md: "40%" }}
                 onClick={() => history.push("/user")}
               />
-            </Box>
-          )}
+            ) : (
+              <NormalButton
+                hover={{ bg: "blue.300", color: "white" }}
+                text="フォローする"
+                borderColor="blue.200"
+                bg="white"
+                color="blue.200"
+                w={{ base: "300px", md: "40%" }}
+              />
+            )}
+          </Box>
+          <VStack>
+            <HStack　spacing="5">
+              <HStack color="gray.600" spacing="0">
+                <Text fontWeight="bold" fontSize="lg">
+                  0
+                </Text>
+                <Text>フォロー</Text>
+              </HStack>
+              <HStack color="gray.600" spacing="0">
+                <Text fontWeight="bold" fontSize="lg">
+                  0
+                </Text>
+                <Text>フォロワー</Text>
+              </HStack>
+            </HStack>
+          </VStack>
           <UserPageMenu />
           <UserPagePostList user={user} />
         </Stack>
