@@ -10,22 +10,51 @@ import {
   selectUser,
 } from "../../../redux/slices/user/userSlice";
 import { useAdminCheck } from "../../../hooks/auth/useAdminCheck";
-import { searchByDisplayId } from "../../../graphql/queries";
-import { SearchByDisplayIdQuery } from "../../../API";
+import {
+  listFollowRelationshipByFollowerId,
+  listFollowRelationshipByFollowId,
+  searchByDisplayId,
+} from "../../../graphql/queries";
+import {
+  ListFollowRelationshipByFollowerIdQuery,
+  ListFollowRelationshipByFollowIdQuery,
+  SearchByDisplayIdQuery,
+} from "../../../API";
 import { GetUser } from "../../../types/user/user";
 import { NormalButton } from "../atom/button/NormalButton";
 import { useGetImage } from "../../../hooks/function/useGetImage";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 import { UserPageMenu } from "../organism/pageMenu/UserPageMenu";
 import { UserPagePostList } from "../template/postList/UserPagePostList";
+import { createFollowRelationship } from "../../../graphql/mutations";
 
 type SearchUser = {
   data: SearchByDisplayIdQuery;
 };
 
+type FollowerInformation = {
+  data: ListFollowRelationshipByFollowerIdQuery;
+};
+
+type FollowInformation = {
+  data: ListFollowRelationshipByFollowIdQuery;
+};
+
+type FollowRelationshipInfo = {
+  followId: string;
+  followerId: string;
+  id: string;
+} | null;
+
 export const UserPage: React.VFC = memo(() => {
   const dispatch = useAppDispatch();
   const [user, setUser] = useState<GetUser>();
+  const [followerRelationshipInfo, setFollowerRelationshipInfo] = useState<
+    FollowRelationshipInfo[] | undefined | null
+  >();
+  const [followRelationshipInfo, setFollowRelationshipInfo] = useState<
+    FollowRelationshipInfo[] | undefined | null
+  >();
   const loginUser = useAppSelector(selectUser);
   const history = useHistory();
   const { userId } = useParams<{ userId: string }>();
@@ -53,6 +82,19 @@ export const UserPage: React.VFC = memo(() => {
     }
   };
 
+  const createNewFollowRelationship = async () => {
+    const input = {
+      followId: loginUser?.id,
+      followerId: user?.id,
+    };
+    try {
+      await API.graphql(graphqlOperation(createFollowRelationship, { input }));
+    } catch (error) {
+      console.log(error);
+      alert("エラーが発生しました");
+    }
+  };
+
   useEffect(() => {
     dispatch(getCurrentUserInformation());
     notAdminCheck();
@@ -60,6 +102,36 @@ export const UserPage: React.VFC = memo(() => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
+
+  useEffect(() => {
+    if (user) {
+      const getFollowInformation = async () => {
+        const res = (await API.graphql(
+          graphqlOperation(listFollowRelationshipByFollowerId, {
+            followerId: user?.id,
+          })
+        )) as FollowerInformation;
+        console.log(res);
+        setFollowerRelationshipInfo(
+          res.data.listFollowRelationshipByFollowerId?.items
+        );
+      };
+
+      const getFollowerInformation = async () => {
+        const res = (await API.graphql(
+          graphqlOperation(listFollowRelationshipByFollowId, {
+            followId: user?.id,
+          })
+        )) as FollowInformation;
+        setFollowRelationshipInfo(
+          res.data.listFollowRelationshipByFollowId?.items
+        );
+      };
+
+      getFollowerInformation();
+      getFollowInformation();
+    }
+  }, [user]);
 
   return (
     <>
@@ -101,20 +173,21 @@ export const UserPage: React.VFC = memo(() => {
                 bg="white"
                 color="blue.200"
                 w={{ base: "300px", md: "40%" }}
+                onClick={createNewFollowRelationship}
               />
             )}
           </Box>
           <VStack>
-            <HStack　spacing="5">
+            <HStack spacing="5">
               <HStack color="gray.600" spacing="0">
                 <Text fontWeight="bold" fontSize="lg">
-                  0
+                  {followRelationshipInfo?.length}
                 </Text>
                 <Text>フォロー</Text>
               </HStack>
               <HStack color="gray.600" spacing="0">
                 <Text fontWeight="bold" fontSize="lg">
-                  0
+                  {followerRelationshipInfo?.length}
                 </Text>
                 <Text>フォロワー</Text>
               </HStack>
