@@ -3307,3 +3307,23 @@ export const onDeleteThank = /* GraphQL */ `
     }
   }
 `;
+export const onCreateFollowRelationship = /* GraphQL */ `
+  subscription OnCreateFollowRelationship {
+    onCreateFollowRelationship {
+      id
+      followId
+      followerId
+      owner
+    }
+  }
+`;
+export const onDeleteFollowRelationship = /* GraphQL */ `
+  subscription OnDeleteFollowRelationship {
+    onDeleteFollowRelationship {
+      id
+      followId
+      followerId
+      owner
+    }
+  }
+`;

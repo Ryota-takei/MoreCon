@@ -279,6 +279,26 @@ export type DeleteThankInput = {
   id: string,
 };
 
+export type DeleteFollowRelationshipInput = {
+  id: string,
+};
+
+export type ModelFollowRelationshipConditionInput = {
+  followId?: ModelIDInput | null,
+  followerId?: ModelIDInput | null,
+  and?: Array< ModelFollowRelationshipConditionInput | null > | null,
+  or?: Array< ModelFollowRelationshipConditionInput | null > | null,
+  not?: ModelFollowRelationshipConditionInput | null,
+};
+
+export type FollowRelationship = {
+  __typename: "FollowRelationship",
+  id: string,
+  followId: string,
+  followerId: string,
+  owner?: string | null,
+};
+
 export type CreatePostInput = {
   id?: string | null,
   type: string,
@@ -322,6 +342,12 @@ export type CreateThankInput = {
   userId: string,
   postId: string,
   correspondingUserId: string,
+};
+
+export type CreateFollowRelationshipInput = {
+  id?: string | null,
+  followId: string,
+  followerId: string,
 };
 
 export type ModelPostFilterInput = {
@@ -401,6 +427,21 @@ export type ModelThankFilterInput = {
   and?: Array< ModelThankFilterInput | null > | null,
   or?: Array< ModelThankFilterInput | null > | null,
   not?: ModelThankFilterInput | null,
+};
+
+export type ModelFollowRelationshipFilterInput = {
+  id?: ModelIDInput | null,
+  followId?: ModelIDInput | null,
+  followerId?: ModelIDInput | null,
+  and?: Array< ModelFollowRelationshipFilterInput | null > | null,
+  or?: Array< ModelFollowRelationshipFilterInput | null > | null,
+  not?: ModelFollowRelationshipFilterInput | null,
+};
+
+export type ModelFollowRelationshipConnection = {
+  __typename: "ModelFollowRelationshipConnection",
+  items?:  Array<FollowRelationship | null > | null,
+  nextToken?: string | null,
 };
 
 export type UpdatePostMutationVariables = {
@@ -2888,6 +2929,21 @@ export type DeleteThankMutation = {
   } | null,
 };
 
+export type DeleteFollowRelationshipMutationVariables = {
+  input: DeleteFollowRelationshipInput,
+  condition?: ModelFollowRelationshipConditionInput | null,
+};
+
+export type DeleteFollowRelationshipMutation = {
+  deleteFollowRelationship?:  {
+    __typename: "FollowRelationship",
+    id: string,
+    followId: string,
+    followerId: string,
+    owner?: string | null,
+  } | null,
+};
+
 export type CreatePostMutationVariables = {
   input: CreatePostInput,
   condition?: ModelPostConditionInput | null,
@@ -4250,6 +4306,21 @@ export type CreateThankMutation = {
         nextToken?: string | null,
       } | null,
     } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type CreateFollowRelationshipMutationVariables = {
+  input: CreateFollowRelationshipInput,
+  condition?: ModelFollowRelationshipConditionInput | null,
+};
+
+export type CreateFollowRelationshipMutation = {
+  createFollowRelationship?:  {
+    __typename: "FollowRelationship",
+    id: string,
+    followId: string,
+    followerId: string,
     owner?: string | null,
   } | null,
 };
@@ -7299,6 +7370,84 @@ export type ListThanxSortByCorrespondingUserQuery = {
           nextToken?: string | null,
         } | null,
       } | null,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type GetFollowRelationshipQueryVariables = {
+  id: string,
+};
+
+export type GetFollowRelationshipQuery = {
+  getFollowRelationship?:  {
+    __typename: "FollowRelationship",
+    id: string,
+    followId: string,
+    followerId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type ListFollowRelationshipsQueryVariables = {
+  filter?: ModelFollowRelationshipFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFollowRelationshipsQuery = {
+  listFollowRelationships?:  {
+    __typename: "ModelFollowRelationshipConnection",
+    items?:  Array< {
+      __typename: "FollowRelationship",
+      id: string,
+      followId: string,
+      followerId: string,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ListFollowRelationshipByFollowIdQueryVariables = {
+  followId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelFollowRelationshipFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFollowRelationshipByFollowIdQuery = {
+  listFollowRelationshipByFollowId?:  {
+    __typename: "ModelFollowRelationshipConnection",
+    items?:  Array< {
+      __typename: "FollowRelationship",
+      id: string,
+      followId: string,
+      followerId: string,
+      owner?: string | null,
+    } | null > | null,
+    nextToken?: string | null,
+  } | null,
+};
+
+export type ListFollowRelationshipByFollowerIdQueryVariables = {
+  followerId?: string | null,
+  sortDirection?: ModelSortDirection | null,
+  filter?: ModelFollowRelationshipFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListFollowRelationshipByFollowerIdQuery = {
+  listFollowRelationshipByFollowerId?:  {
+    __typename: "ModelFollowRelationshipConnection",
+    items?:  Array< {
+      __typename: "FollowRelationship",
+      id: string,
+      followId: string,
+      followerId: string,
       owner?: string | null,
     } | null > | null,
     nextToken?: string | null,
@@ -11082,6 +11231,26 @@ export type OnDeleteThankSubscription = {
         nextToken?: string | null,
       } | null,
     } | null,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnCreateFollowRelationshipSubscription = {
+  onCreateFollowRelationship?:  {
+    __typename: "FollowRelationship",
+    id: string,
+    followId: string,
+    followerId: string,
+    owner?: string | null,
+  } | null,
+};
+
+export type OnDeleteFollowRelationshipSubscription = {
+  onDeleteFollowRelationship?:  {
+    __typename: "FollowRelationship",
+    id: string,
+    followId: string,
+    followerId: string,
     owner?: string | null,
   } | null,
 };

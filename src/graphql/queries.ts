@@ -2665,3 +2665,84 @@ export const listThanxSortByCorrespondingUser = /* GraphQL */ `
     }
   }
 `;
+export const getFollowRelationship = /* GraphQL */ `
+  query GetFollowRelationship($id: ID!) {
+    getFollowRelationship(id: $id) {
+      id
+      followId
+      followerId
+      owner
+    }
+  }
+`;
+export const listFollowRelationships = /* GraphQL */ `
+  query ListFollowRelationships(
+    $filter: ModelFollowRelationshipFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFollowRelationships(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        followId
+        followerId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listFollowRelationshipByFollowId = /* GraphQL */ `
+  query ListFollowRelationshipByFollowId(
+    $followId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelFollowRelationshipFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFollowRelationshipByFollowId(
+      followId: $followId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        followId
+        followerId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const listFollowRelationshipByFollowerId = /* GraphQL */ `
+  query ListFollowRelationshipByFollowerId(
+    $followerId: ID
+    $sortDirection: ModelSortDirection
+    $filter: ModelFollowRelationshipFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listFollowRelationshipByFollowerId(
+      followerId: $followerId
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        followId
+        followerId
+        owner
+      }
+      nextToken
+    }
+  }
+`;
