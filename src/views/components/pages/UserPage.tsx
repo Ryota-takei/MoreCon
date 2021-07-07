@@ -16,6 +16,7 @@ import {
   searchByDisplayId,
 } from "../../../graphql/queries";
 import {
+  CreateFollowRelationshipMutation,
   ListFollowRelationshipByFollowerIdQuery,
   ListFollowRelationshipByFollowIdQuery,
   SearchByDisplayIdQuery,
@@ -26,7 +27,10 @@ import { useGetImage } from "../../../hooks/function/useGetImage";
 import { ToTopPageButton } from "../atom/button/ToTopPageButton";
 import { UserPageMenu } from "../organism/pageMenu/UserPageMenu";
 import { UserPagePostList } from "../template/postList/UserPagePostList";
-import { createFollowRelationship } from "../../../graphql/mutations";
+import {
+  createFollowRelationship,
+  deleteFollowRelationship,
+} from "../../../graphql/mutations";
 
 type SearchUser = {
   data: SearchByDisplayIdQuery;
@@ -40,6 +44,9 @@ type FollowInformation = {
   data: ListFollowRelationshipByFollowIdQuery;
 };
 
+type CreateFollow = {
+  data: CreateFollowRelationshipMutation;
+};
 type FollowRelationshipInfo = {
   followId: string;
   followerId: string;
@@ -55,11 +62,17 @@ export const UserPage: React.VFC = memo(() => {
   const [followRelationshipInfo, setFollowRelationshipInfo] = useState<
     FollowRelationshipInfo[] | undefined | null
   >();
+  const [isFollow, setIsFollow] = useState<
+    FollowRelationshipInfo | undefined
+  >();
+  const [followerCount, setFollowerCount] = useState(0)
   const loginUser = useAppSelector(selectUser);
   const history = useHistory();
   const { userId } = useParams<{ userId: string }>();
   const { imageUrl } = useGetImage(user);
+  const [isMouseOver, setIsMouseOver] = useState(false);
   const thankCount = user?.thankCounts?.items?.length;
+
   //カスタムフック（ログインしているかどうかを確認）
   const { notAdminCheck } = useAdminCheck();
 
@@ -83,15 +96,35 @@ export const UserPage: React.VFC = memo(() => {
   };
 
   const createNewFollowRelationship = async () => {
-    const input = {
-      followId: loginUser?.id,
-      followerId: user?.id,
-    };
-    try {
-      await API.graphql(graphqlOperation(createFollowRelationship, { input }));
-    } catch (error) {
-      console.log(error);
-      alert("エラーが発生しました");
+    if (isFollow) {
+      const input = {
+        id: isFollow.id,
+      };
+      try {
+        await API.graphql(
+          graphqlOperation(deleteFollowRelationship, { input })
+        );
+        setIsFollow(undefined);
+        setFollowerCount(preCount => preCount - 1)
+      } catch (error) {
+        console.log(error);
+        alert("エラーが発生しました");
+      }
+    } else {
+      const input = {
+        followId: loginUser?.id,
+        followerId: user?.id,
+      };
+      try {
+        const res = (await API.graphql(
+          graphqlOperation(createFollowRelationship, { input })
+        )) as CreateFollow;
+        setIsFollow(res.data.createFollowRelationship);
+        setFollowerCount(preCount => preCount + 1)
+      } catch (error) {
+        console.log(error);
+        alert("エラーが発生しました");
+      }
     }
   };
 
@@ -103,6 +136,8 @@ export const UserPage: React.VFC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
+  console.log(isFollow);
+
   useEffect(() => {
     if (user) {
       const getFollowInformation = async () => {
@@ -111,10 +146,10 @@ export const UserPage: React.VFC = memo(() => {
             followerId: user?.id,
           })
         )) as FollowerInformation;
-        console.log(res);
         setFollowerRelationshipInfo(
           res.data.listFollowRelationshipByFollowerId?.items
         );
+        setFollowerCount(res.data.listFollowRelationshipByFollowerId?.items?.length ?? 0)
       };
 
       const getFollowerInformation = async () => {
@@ -132,6 +167,15 @@ export const UserPage: React.VFC = memo(() => {
       getFollowInformation();
     }
   }, [user]);
+
+  useEffect(() => {
+    setIsFollow(() =>
+      followerRelationshipInfo?.find((res) => res?.followId === loginUser?.id)
+    );
+    console.log("hige");
+  }, [loginUser]);
+
+  console.log(isMouseOver);
 
   return (
     <>
@@ -165,10 +209,26 @@ export const UserPage: React.VFC = memo(() => {
                 w={{ base: "300px", md: "40%" }}
                 onClick={() => history.push("/user")}
               />
+            ) : isFollow ? (
+              <NormalButton
+                hover={{ bg: "red.300", color: "white", text: "フォロー解除" }}
+                text={isMouseOver ? "フォローを解除" : "フォロー中"}
+                borderColor="blue.200"
+                bg="blue.300"
+                color="white"
+                w={{ base: "300px", md: "40%" }}
+                onClick={createNewFollowRelationship}
+                onMouseOver={() => {
+                  setIsMouseOver(true);
+                }}
+                onMouseLeave={() => {
+                  setIsMouseOver(false);
+                }}
+              />
             ) : (
               <NormalButton
                 hover={{ bg: "blue.300", color: "white" }}
-                text="フォローする"
+                text="フォローをする"
                 borderColor="blue.200"
                 bg="white"
                 color="blue.200"
@@ -187,7 +247,7 @@ export const UserPage: React.VFC = memo(() => {
               </HStack>
               <HStack color="gray.600" spacing="0">
                 <Text fontWeight="bold" fontSize="lg">
-                  {followerRelationshipInfo?.length}
+                  {followerCount}
                 </Text>
                 <Text>フォロワー</Text>
               </HStack>
