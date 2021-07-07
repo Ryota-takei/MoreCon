@@ -18,8 +18,8 @@ export const Menu: React.VFC<Prop> = (props) => {
       fontSize={{ base: "14px", sm: "18px" }}
       spacing="2"
       fontWeight="bold"
-      _hover={{ cursor: "pointer", color: "blue.500", bg: "blue.50" }}
       onClick={onClick}
+      _hover={{ cursor: "pointer", color: "blue.500", bg: "blue.50" }}
       color={page === pageState ? "blue.500" : "gray.600"}
       bg={page === pageState ? "blue.50" : undefined}
       w={{ base: "33%", md: "100%" }}
