@@ -2163,6 +2163,19 @@ export const deleteThank = /* GraphQL */ `
     }
   }
 `;
+export const deleteFollowRelationship = /* GraphQL */ `
+  mutation DeleteFollowRelationship(
+    $input: DeleteFollowRelationshipInput!
+    $condition: ModelFollowRelationshipConditionInput
+  ) {
+    deleteFollowRelationship(input: $input, condition: $condition) {
+      id
+      followId
+      followerId
+      owner
+    }
+  }
+`;
 export const createPost = /* GraphQL */ `
   mutation CreatePost(
     $input: CreatePostInput!
@@ -3345,6 +3358,19 @@ export const createThank = /* GraphQL */ `
           nextToken
         }
       }
+      owner
+    }
+  }
+`;
+export const createFollowRelationship = /* GraphQL */ `
+  mutation CreateFollowRelationship(
+    $input: CreateFollowRelationshipInput!
+    $condition: ModelFollowRelationshipConditionInput
+  ) {
+    createFollowRelationship(input: $input, condition: $condition) {
+      id
+      followId
+      followerId
       owner
     }
   }

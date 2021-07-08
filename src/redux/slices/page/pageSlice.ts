@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../store";
 
 export type Pages = "newPosts" | "inProduction" | "finish";
-export type Log = "post" | "production" | "want";
+export type Log = "post" | "production" | "want" | "follow" | "follower";
 
 export interface PageState {
   currentPage: Pages;

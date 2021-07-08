@@ -46,7 +46,7 @@ export const UserPagePostList: React.VFC<Prop> = memo((props) => {
         )) as GraphQLResult<ListPostsSortedByContributorQuery>;
         setPosts(res.data?.listPostsSortedByContributor?.items);
       } else if (logStatus === "production" && user) {
-        const res = (await API.graphql(
+        const res = (await API.graphql( 
           graphqlOperation(listPostsSortedByCorrespondingUser, {
             correspondingUserId: user?.id,
             sortDirection: "DESC",

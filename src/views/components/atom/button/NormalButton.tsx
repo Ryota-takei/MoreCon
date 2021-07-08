@@ -7,15 +7,17 @@ type Prop = {
   bg: string;
   w?: { base: string; md: string };
   text: string;
-  hover: { bg: string; color?: string };
+  hover: { bg: string; color?: string; text?: string };
   onClick?: () => void;
   type?: "button" | "submit" | "reset" | undefined;
   isLoading?: boolean;
   px?: string;
+  onMouseLeave?: React.MouseEventHandler<HTMLButtonElement>;
+  onMouseOver?: React.MouseEventHandler<HTMLButtonElement>;
 };
 
 export const NormalButton: React.VFC<Prop> = memo((props) => {
-  const { text, hover, ...inputProps } = props;
+  const { text, hover, onMouseLeave, onMouseOver, ...inputProps } = props;
 
   return (
     <Button
@@ -25,6 +27,8 @@ export const NormalButton: React.VFC<Prop> = memo((props) => {
       border="1px"
       borderRadius="15px"
       p={{ base: "3", md: "5" }}
+      onMouseLeave={onMouseLeave}
+      onMouseOver={onMouseOver}
     >
       {text}
     </Button>
