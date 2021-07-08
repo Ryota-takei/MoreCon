@@ -1,6 +1,9 @@
 import { API, graphqlOperation } from "aws-amplify";
 import { useEffect, useState } from "react";
-import { createFollowRelationship, deleteFollowRelationship } from "../../graphql/mutations";
+import {
+  createFollowRelationship,
+  deleteFollowRelationship,
+} from "../../graphql/mutations";
 import {
   listFollowRelationshipByFollowerId,
   listFollowRelationshipByFollowId,
@@ -15,7 +18,7 @@ import {
 } from "../../types/follow/follow";
 import { GetUser } from "../../types/user/user";
 
-export const useFollowRelation = (user:GetUser) => {
+export const useFollowRelation = (user: GetUser) => {
   const [followerRelationshipInfo, setFollowerRelationshipInfo] = useState<
     FollowRelationshipInfo[] | undefined | null
   >();
@@ -97,7 +100,6 @@ export const useFollowRelation = (user:GetUser) => {
     setIsFollow(() =>
       followerRelationshipInfo?.find((res) => res?.followId === loginUser?.id)
     );
-    console.log("hige");
   }, [loginUser, followerRelationshipInfo]);
 
   return {
@@ -105,6 +107,6 @@ export const useFollowRelation = (user:GetUser) => {
     followRelationshipInfo,
     isFollow,
     followerCount,
-    createNewFollowRelationship
+    createNewFollowRelationship,
   };
 };

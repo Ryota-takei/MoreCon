@@ -1,5 +1,5 @@
 import React, { memo, useEffect } from "react";
-import { Box, HStack, Stack, Text, VStack, Flex } from "@chakra-ui/layout";
+import { Box, HStack, Stack, Flex, Text } from "@chakra-ui/layout";
 import { API, graphqlOperation } from "aws-amplify";
 import {
   getUser,
@@ -11,7 +11,6 @@ import { GetUser } from "../../../../types/user/user";
 import { useGetImage } from "../../../../hooks/function/useGetImage";
 import { Avatar } from "@chakra-ui/avatar";
 import { useHistory } from "react-router-dom";
-import { Loading } from "../../atom/Loading/Loading";
 import { useAppSelector } from "../../../../redux/hooks";
 import { selectUser } from "../../../../redux/slices/user/userSlice";
 import { useFollowRelation } from "../../../../hooks/follow/useFollowRelation";
@@ -19,6 +18,7 @@ import {
   FollowInformation,
   FollowRelationshipInfo,
 } from "../../../../types/follow/follow";
+import { FollowButton } from "../../atom/button/FollowButton";
 
 type Prop = {
   id?: string;
@@ -30,28 +30,20 @@ type UserInfo = {
 export const UserFollowList: React.VFC<Prop> = memo((props) => {
   const { id } = props;
   const [user, setUser] = useState<GetUser>();
-  const [isLoading, setIsLoading] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
   const [isMouseOver, setIsMouseOver] = useState(false);
   const loginUser = useAppSelector(selectUser);
-  const {
-    followerRelationshipInfo,
-    followRelationshipInfo,
-    isFollow,
-    followerCount,
-    createNewFollowRelationship,
-  } = useFollowRelation(user);
   const history = useHistory();
+
+  const { createNewFollowRelationship } = useFollowRelation(user);
   const { imageUrl } = useGetImage(user);
 
   const getUserInformation = async () => {
-    setIsLoading(true);
     try {
       const user = (await API.graphql(
         graphqlOperation(getUser, { id: id })
       )) as UserInfo;
       setUser(user.data.getUser);
-      setIsLoading(false);
     } catch (error) {
       console.log(error);
       alert("エラーが発生しました");
@@ -69,7 +61,6 @@ export const UserFollowList: React.VFC<Prop> = memo((props) => {
         res.data.listFollowRelationshipByFollowId?.items?.find(
           (item) => item?.followerId === id
         ) as FollowRelationshipInfo;
-      console.log(checkFollow());
       setIsFollowing(checkFollow() !== undefined);
     } catch (error) {
       console.log(error);
@@ -86,80 +77,53 @@ export const UserFollowList: React.VFC<Prop> = memo((props) => {
     getFollowInfo();
   }, []);
 
-  console.log(isFollow);
-  console.log(isFollowing);
-  useEffect(() => {}, []);
-
   return (
-    <>
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <Box borderBottom="1px" borderColor="gray.300" px="4" py="6">
-          <Flex justifyContent="space-between">
-            <HStack
-              spacing="3"
-              _hover={{ cursor: "pointer" }}
-              onClick={() => history.push(`/user/${user?.displayId}`)}
-            >
-              <Avatar src={imageUrl} boxSize="60px" />
+    <Box borderBottom="1px" borderColor="gray.300" px="4" py="6">
+      <Flex justifyContent="space-between">
+        <HStack
+          spacing="3"
+          _hover={{ cursor: "pointer" }}
+          onClick={() => history.push(`/user/${user?.displayId}`)}
+          textOverflow="ellipsis"
+          whiteSpace="nowrap"
+          overflow="hidden"
+        >
+          <Avatar src={imageUrl} boxSize="60px" />
 
-              <Stack>
-                <Box fontWeight="bold" textAlign="left">
-                  {user?.name}
-                </Box>
-                <Box fontSize={{ base: "xs", sm: "md" }}>{user?.profile}</Box>
-              </Stack>
-            </HStack>
-            <HStack>
-              {loginUser?.id !== user?.id && !isFollowing && (
-                <Box
-                  h={{ base: "25px", sm: "32px" }}
-                  fontSize={{ base: "xs", sm: "md" }}
-                  borderRadius="15px"
-                  borderColor="blue.200"
-                  border="1px"
-                  bg="white"
-                  color="blue.200"
-                  _hover={{ cursor: "pointer", bg: "blue.50" }}
-                  py="1"
-                  px={{ base: "4", sm: "5" }}
-                  fontWeight="bold"
-                  minW={{ base: "100px", sm: "120px" }}
-                  textAlign="center"
-                  onClick={follow}
-                >
-                  フォロー
-                </Box>
-              )}
-              {loginUser?.id !== user?.id && isFollowing && (
-                <Box
-                  h={{ base: "25px", sm: "32px" }}
-                  fontSize={{ base: "xs", sm: "md" }}
-                  bg="blue.300"
-                  borderRadius="15px"
-                  color="white"
-                  py="1"
-                  px={{ base: "4", sm: "3" }}
-                  fontWeight="bold"
-                  minW={{ base: "100px", sm: "120px" }}
-                  textAlign="center"
-                  _hover={{ bg: "red.300", color: "white" }}
-                  onMouseOver={() => {
-                    setIsMouseOver(true);
-                  }}
-                  onMouseLeave={() => {
-                    setIsMouseOver(false);
-                  }}
-                  onClick={follow}
-                >
-                  {isMouseOver ? "フォロー解除" : "フォロー中"}
-                </Box>
-              )}
-            </HStack>
-          </Flex>
-        </Box>
-      )}
-    </>
+          <Stack>
+            <Text fontWeight="bold" textAlign="left">
+              {user?.name}
+            </Text>
+            <Text fontSize={{ base: "xs", sm: "md" }}>{user?.profile}</Text>
+          </Stack>
+        </HStack>
+        <HStack>
+          {loginUser?.id !== user?.id && !isFollowing && (
+            <FollowButton
+              text="フォロー"
+              follow={follow}
+              bg="white"
+              color="blue.200"
+              hover={{ cursor: "pointer", bg: "blue.50" }}
+            />
+          )}
+          {loginUser?.id !== user?.id && isFollowing && (
+            <FollowButton
+              text={isMouseOver ? "フォロー解除" : "フォロー中"}
+              follow={follow}
+              onMouseLeave={() => {
+                setIsMouseOver(false);
+              }}
+              onMouseOver={() => {
+                setIsMouseOver(true);
+              }}
+              hover={{ cursor: "pointer", bg: "red.300", color: "white" }}
+              bg="blue.300"
+              color="white"
+            />
+          )}
+        </HStack>
+      </Flex>
+    </Box>
   );
 });

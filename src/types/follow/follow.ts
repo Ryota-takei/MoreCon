@@ -1,4 +1,4 @@
-import { CreateFollowRelationshipMutation, ListFollowRelationshipByFollowerIdQuery, ListFollowRelationshipByFollowIdQuery, SearchByDisplayIdQuery } from "../../API";
+import { CreateFollowRelationshipMutation, GetUserQuery, ListFollowRelationshipByFollowerIdQuery, ListFollowRelationshipByFollowIdQuery, SearchByDisplayIdQuery } from "../../API";
 
 export type SearchUser = {
   data: SearchByDisplayIdQuery;
@@ -20,3 +20,8 @@ export type FollowRelationshipInfo = {
   followerId: string;
   id: string;
 } | null;
+
+
+export type UserInfo = {
+  data: GetUserQuery;
+};

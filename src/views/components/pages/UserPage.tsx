@@ -78,11 +78,6 @@ export const UserPage: React.VFC = memo(() => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [userId]);
 
-  console.log(isFollow);
-  console.log(followRelationshipInfo);
-  console.log(isMouseOver);
-  console.log(pageState);
-
   return (
     <>
       <Box w={{ base: "100", md: "50%" }} minH="100vh" mx="auto" mb="10">
