@@ -13,7 +13,6 @@ import {
 } from "../../../../redux/slices/user/userSlice";
 import { useGetImage } from "../../../../hooks/function/useGetImage";
 import { useTestLogin } from "../../../../hooks/auth/useTestLogin";
-import { VStack } from "@chakra-ui/react";
 
 export const Header: React.VFC = memo(() => {
   const history = useHistory();
@@ -75,7 +74,7 @@ export const Header: React.VFC = memo(() => {
           </Heading>
         </Box>
         <HStack spacing="2">
-          {location.pathname.includes("user") && (
+          {location.pathname.includes(userInformation?.displayId ?? "user") && (
             <NormalButton
               hover={{ bg: "blue.300", color: "white" }}
               text="ログアウト"
@@ -88,7 +87,7 @@ export const Header: React.VFC = memo(() => {
           {!isAdmin && !location.pathname.includes("user") && (
             <>
               {!userInformation && (
-                <Box display={{base:"none", sm:"block"}}>
+                <Box display={{ base: "none", sm: "block" }}>
                   <NormalButton
                     text="テストログイン"
                     onClick={onClickLoginTestUser}
@@ -115,15 +114,18 @@ export const Header: React.VFC = memo(() => {
               />
             </>
           )}
-          {isAdmin && !location.pathname.includes("user") && (
-            <Avatar
-              src={imageUrl}
-              boxSize="70px"
-              mx="auto"
-              onClick={onClickIcon}
-              _hover={{ cursor: "pointer", opacity: "0.8" }}
-            />
-          )}
+          {isAdmin &&
+            !location.pathname.includes(
+              userInformation?.displayId ?? "user"
+            ) && (
+              <Avatar
+                src={imageUrl}
+                boxSize="70px"
+                mx="auto"
+                onClick={onClickIcon}
+                _hover={{ cursor: "pointer", opacity: "0.8" }}
+              />
+            )}
         </HStack>
       </Flex>
     </Box>
